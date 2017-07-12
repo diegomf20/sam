@@ -2,28 +2,15 @@ $(document).ready(
     function() {
         var anio = (new Date).getFullYear();
         $("#txtanio").val(anio);
+        graficar();
     }
+
 );
 
 var morrisMes= Morris.Area({
     element: 'morris-area-mes',
     behaveLikeLine: true,
-    data: [
-      /*
-      {mes: '1', inversion: 334, pagado: 227},
-       {mes: '2', inversion: 332, pagado: 56},
-       {mes: '3', inversion: 334, pagado: 227},
-        {mes: '4', inversion: 356, pagado: 223},
-        {mes: '5', inversion: 332, pagado: 56},
-        {mes: '6', inversion: 334, pagado: 227},
-         {mes: '7', inversion: 356, pagado: 223},
-         {mes: '8', inversion: 332, pagado: 56},
-         {mes: '9', inversion: 356, pagado: 223},
-         {mes: '10', inversion: 334, pagado: 227},
-          {mes: '11', inversion: 356, pagado: 223},
-          {mes: '12', inversion: 332, pagado: 56.56},*/
-     ],
-
+    data: [],
     xkey: 'mes',
     ykeys: ['inversion','pagado'],//, 'compras'
     labels: ['inversion','pagado'],//, 'compras'
@@ -52,12 +39,7 @@ var morrisMes= Morris.Area({
 var morrisAnio= Morris.Area({
     element: 'morris-area-anio',
     behaveLikeLine: true,
-    data: [
-/*
-     {anio: '2010 ', inversion: 334, pagado: 227},
-      {anio: '2011 ', inversion: 356, pagado: 223},
-      {anio: '2012 ', inversion: 332, pagado: 56},*/
-    ],
+    data: [],
     xkey: 'anio',
     ykeys: ['inversion','pagado'],
     labels: ['inversion','pagado'],
@@ -73,36 +55,6 @@ $('#cbperiodo').change(function (){
     graficar();
 });
 
-/*
-function datos(){
-  $.ajax({
-    url: '../app/control/c-estadisticas.php',
-    type:'POST',
-    //dataType: "json",
-    data:{operacion:"graficamensual", anio:$("#txtanio").val()},
-
-    success: function(resultado){
-    console.log(resultado);
-    //morrisMes.setData(resultado);
-    }
-  });
-}
-
-function datos2(){
-  $.ajax({
-    url: '../app/control/c-estadisticas.php',
-    type:'POST',
-    //dataType: "json",
-    data:{operacion:'grafica'},
-    success: function(response){
-      console.log("adentro");
-      console.log(response);
-      morrisAnio.setData(response);
-    }
-  });
-}
-
-*/
 function graficar(){
   if ($('#cbperiodo').val()==0) {
     $('#txtanio').prop('disabled',false);
