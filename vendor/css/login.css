@@ -1,0 +1,74 @@
+body{
+  background-color: #111;
+  position: relative;
+  height: 100%;
+}
+.login{
+  padding-top: 50px;
+  position: absolute;
+  margin: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 500px;
+  background: url('../img/fondo.JPG') left center;
+  background-size: auto 115%;
+  background-repeat: no-repeat;
+}
+@media (min-width: 880px){
+  .login{
+    padding-top: 100px;
+    background-position:  center center;
+    background-size: 115% auto;
+  }
+}
+
+
+.tarjeta{
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+  padding: 25px;
+  border-radius: 10px;
+}
+@media (min-width: 450px){
+  .tarjeta{
+    width: 350px;
+  }
+}
+input.control{
+  border: 0.5px solid #eee;
+  background-color: #fff;
+  padding: 10px 20px;
+  width: 100%
+}
+button.control{
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px 20px;
+  border: 0px;
+  background-color: #ffc20a;
+}
+.centrar{
+  text-align: center;
+  color: #ffc20a;
+  margin-bottom: 0;
+  font-size: 60px
+}
+.imagen{
+  padding-top: 10px;
+  font-size: 80px;
+  text-align: center;
+  color: #fff
+}
+.separar{
+  text-align: center;
+  color: #fff;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  line-height: 20px;
+  font-size: 20px;
+}
+
+form{width: 100%}

@@ -1,0 +1,23 @@
+.coding-alert{
+  font-size: 18px;
+  position: fixed;
+  top: 50px;
+  z-index: 1100;
+  background-color: #fff;
+  padding: 10px 30px;
+  width: 400px;
+  border: 2px solid #111;
+  border-radius: 5px;
+  animation-duration: 0.5s;
+  animation-name: slidein;
+}
+.coding-alert.success{
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #3c763d;
+}
+@keyframes slidein {
+  0%{right: -12px}
+    50%{}
+      100{}
+}

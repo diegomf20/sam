@@ -1,0 +1,73 @@
+.inicio{
+  padding-top: 200px;
+  padding-bottom: 210px;
+  background-image: url('../img/fondo.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: auto 130%;
+}
+
+.registrar{
+  display: none;
+  border-radius: 10px;
+  background-color: #fff;
+  width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+}
+.login{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+}
+.centrar{
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 10px
+}
+
+
+/*nAV BAR*/
+.nav{margin-right: auto;margin-left: auto}
+.nav li{ padding-left: 20px;padding-right: 20px}
+.nav a{text-decoration: none;font-weight: 400;color: #999}
+.nav a:hover{color:#ffc20a }
+
+.navbar-dark{background-color: #111;transition: 0.5s}
+
+
+/*Alertas de codign out*/
+.coding-alert{
+  font-size: 18px;
+  position: fixed;
+  top: 10px;
+  z-index: 1100;
+  background-color: #fff;
+  padding: 10px 30px;
+  right: 10px;
+  width: 300px;
+  border: 2px solid #111;
+  border-radius: 5px;
+  animation-duration: 0.5s;
+  animation-name: slidein;
+}
+.coding-alert.success{
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #3c763d;
+}
+@keyframes slidein {
+  from {
+    top:-20px;
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+}

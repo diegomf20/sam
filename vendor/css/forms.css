@@ -1,0 +1,32 @@
+input.control, select.control{
+  width: 100%;
+  border:none;
+  border-bottom: 1px solid #111;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+input.control:focus,select.control:focus{
+  outline: 0px;
+}
+select.control option:first{
+    color: grey;
+}
+button.control{
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid #111;
+  font-size: 15px;
+  padding: 8px;
+  width: 100%;
+}
+button.boton-primario{
+  background-color: #efb810;
+}
+button.boton-default{
+  background-color: #ccc;
+  border-color: #999
+}
+label.control{
+  line-height: 50px;
+  margin-bottom: 0px;
+}

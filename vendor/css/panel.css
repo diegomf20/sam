@@ -1,0 +1,164 @@
+html,body{
+  font-family: 'Roboto';
+  background-color: #eee;
+  height: 100%;
+  margin: 0;
+}
+.centrar{
+  text-align: center
+}
+
+.panel{height: 100%;position: relative}
+.menu{
+  color: #fff;
+  background-image: url('../img/fondo.jpg');
+  background-position:center right;
+  width: 260px;
+  position: absolute;
+  left: -260px;
+  top: 0;
+  bottom: 0;
+  border-right: 1px solid #ddd
+}
+.menu-visible{left: 0}
+.contenido{margin-left: 0;height: 100%;overflow-y: scroll;}
+.contenido-deslizar{transform: translate3d(260px,0,0);}
+#menu-boton{float: left;}
+
+@media (min-width: 992px){
+  #menu-boton{display: none}
+  .menu{left: 0}
+  .contenido{margin-left: 260px;transform: translate3d(0,0,0)}
+}
+
+.menu::before{ content:""; position:absolute; top:0; left:0; width:100%; height:100%; opacity: 0.77; background:#000 }
+
+.menu-logo{ position: relative; padding-top: 10px; padding-bottom: 10px }
+.menu-logo .logo-momentaneo{ font-size: 40px; margin: 0; color:#efb810; text-align: center }
+
+.menu-avatar{ position: relative; padding-left: 20px; padding-right: 20px }
+.avatar-separe{ padding-top: 20px; padding-bottom: 20px; border-bottom: 1px solid hsla(0,0%,100%,.3); border-top: 1px solid hsla(0,0%,100%,.3) }
+.avatar-imagen{ width: 106px; margin-left: auto; margin-right: auto }
+.avatar-imagen img{ height: 100px; width: 100px; border-radius: 50%; border: 3px solid hsla(0,0%,100%,.3) }
+.avatar-datos h4{
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-weight: 300;
+  font-size: 16px;
+}
+.menu-opciones{
+  height: calc(100% - 290px);
+  position: relative;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  overflow-y: hidden;
+}
+.menu-opciones:hover{
+  overflow-y: scroll;
+}
+
+
+.menu-opciones ul{list-style: none;padding-left: 0;padding-right: 0;}
+.menu-opciones ul>li>a{display: block; padding: 10px 15px}
+.menu-opciones li{border-radius: 5px;opacity: 1;margin-bottom: 5px}
+.menu-opciones li.activo{background-color: hsla(0,0%,100%,.23);}
+.menu-opciones i{float: left; font-size: 28px; text-align: center;margin-right: 15px;width: 30px;line-height: 30px;}
+.menu-opciones p{line-height: 30px;font-size: 12px;margin: 0;}
+.menu-opciones a{text-decoration: none; color: #fff;font-family: 'Roboto';font-weight: 700;}
+
+
+
+.contenido-head{
+  width: 100%;
+  background-color: #fff;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 30px;
+}
+.contenido-head .head-icon i{
+  float: left;
+  font-size: 35px;
+  margin-right: 15px
+}
+.contenido-head .head-titulo{
+  float:left;
+  line-height: 40px;
+  font-weight: 700;
+  font-size: 20px;
+}
+.head-salir{float: right;font-size: 20px}
+
+.tarjeta{
+  background-color: #fff;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  border: 1px solid #ddd;
+}
+.tarjeta .header{
+  background-color: #ccc;
+  border-bottom: 1px solid #ddd;
+  padding: 15px 15px 0;
+}
+.tarjeta .body{
+  padding: 15px;
+}
+.tarjeta .footer{
+  background-color: #ccc;
+  border-top:1px solid #ddd;
+  padding: 5px 15px 15px;
+}
+.totales i{
+  font-size: 50px;
+  line-height: 60px
+}
+.totales h2,.totales h3{ text-align: right }
+.totales h1{
+  font-weight: 700;
+  font-size: 40px;
+}
+.footer h6{
+  margin: 0;
+  color:#333;
+}
+.totales{color: #111}
+.totales.amarillo{background-color:#ffc20a}
+.totales.verde{background-color:#2ECC71}
+.totales.azul{background-color:#2489c5}
+.totales.rojo{background-color:#EF4136}
+
+.txt-amarillo{color:#efb810}
+.txt-verde{color: #87cb16}
+.txt-azul{color: #0090d9}
+.txt-rojo{color: #fb404b}
+
+table{font-weight: 700}
+h1{ font-size: 30px; font-weight: 400 }
+h2{ font-size: 25px; font-weight: 700 }
+h3{ font-size: 22px; font-weight: 400 }
+h4{ font-size: 18px; font-weight: 300 }
+h5{}
+h2,h3,h4{margin: 0}
+/*Extras de plantillas*/
+/*botones de rango de inversionista*/
+.rango{
+  padding: 5px 10px;
+  text-transform: uppercase;
+  width: 80%;
+  margin-left: 10%;
+  border: 1px solid black;
+  font-size: 15px;
+  border-radius: 10px;
+}
+.rango-inversionista{
+  background-color:#87cb16;
+}
+.rango-ejecutivo{
+  background-color:#0090d9;
+}
+.rango-platino{
+  background-color:#eee;
+}
+.rango-master{
+  background-color: #fb404b
+}
