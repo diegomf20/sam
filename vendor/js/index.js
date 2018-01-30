@@ -6,10 +6,10 @@ $('#registrar').click(function(){
     data:{operacion:"registrar",nombres:$('#nombres').val(),apellidos:$('#apellidos').val(),celular:$('#celular').val(),dni:$('#dni').val(),email:$('#email').val()},
     success: function(response){
       if (response=='correcto') {
-        alerta('Registrado Correctamente');
+        alertify.success('Registrado Correctamente');
         setTimeout(function () {
           location.href='tablero.php';
-        }, 2000);
+        }, 3000);
       }else {
         alerta(response);
       }

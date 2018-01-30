@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+
 <html>
 <head>
 	<title>SAM</title>
 	<link rel="stylesheet" href="vendor/framewoks/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+	<link rel="stylesheet" href="vendor/alertifyjs/css/alertify.min.css">
 	<link rel="stylesheet" href="vendor/css/index.css">
 	<link rel="stylesheet" href="vendor/css/forms.css">
 </head>
@@ -27,20 +28,7 @@
 					<div class="col-lg-6">
 					</div>
 					<div class="col-lg-6">
-						<div class="login">
-			        <h1 class="centrar">Login</h1>
-			        <div class="row">
-			          <div class="col-sm-12">
-			              <input id="email" type="text" class="control" placeholder="Ingrese Email">
-			          </div>
-			          <div class="col-sm-12">
-			              <input id="contrasenia" type="password" class="control" placeholder="Ingrese Contraseña">
-			          </div>
-			          <div class="col-sm-12">
-			              <button id="ingresar" class="control boton-default">INGRESAR</button>
-			          </div>
-			        </div>
-			      </div>
+
 						<div class="registrar">
 							<h1>Registro Rapido</h1>
 							<div class="row">
@@ -92,6 +80,7 @@
 </body>
 <script type="text/javascript" src="vendor/framewoks/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="vendor/framewoks/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="vendor/alertifyjs/alertify.min.js"></script>
 <script type="text/javascript" src="vendor/js/index.js">
 
 </script>

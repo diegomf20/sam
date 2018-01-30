@@ -86,6 +86,22 @@ class sinversionista
      }
    }
 
+   function listarInversionistas(){
+     $db=new baseDatos();
+     try {
+       $conexion=$db->conectar();
+       $sql='SELECT tb_inversionista.`idinversionista`,`nombres`,`apellidos`,`fecha`,numerooperacion,paquete,tipo
+              FROM `tb_inversionista` LEFT JOIN tb_inversion ON tb_inversionista.idinversionista=tb_inversion.idinversionista
+              ORDER BY tb_inversionista.`idinversionista` DESC';
+       $sentencia=$conexion->prepare($sql);
+       $sentencia->execute();
+       $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+       return $resultados;
+     } catch (PDOException $e) {
+       throw $e;
+     }
+   }
+
   /**
    * Actualizaciones de datos del inversionista
    */

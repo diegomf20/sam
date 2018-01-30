@@ -36,25 +36,38 @@
             <div class="col-sm-12">
               <div class="tarjeta">
                 <div class="header">
-                  Lista de Inversionistas
+                  <div class="row">
+                    <div class="col-sm-8">
+                      Lista de Inversionistas
+                    </div>
+                  </div>
                 </div>
                 <div class="body">
                   <div class="row">
                     <div class="col-sm-12">
                       <table class="table table-bordered table-striped">
                         <tr>
-                          <td>Nombre de Inversionista</td>
-                          <td>id</td>
-                          <td>Estado</td>
-                          <td>actualizar</td>
-                          <td>paquete</td>
+                          <td>ID</td>
+                          <td>NOMBRE Y APELLIDOS</td>
+                          <td>NUMERO DE OPERACION</td>
+                          <td>FECHA</td>
+                          <td>PAQUETE</td>
+                          <td>ESTADO</td>
                         </tr>
-                        <tr>
-                          <td>Luis Tucunango</td>
-                          <td><input id="idinversionista" class="control"></td>
-                          <td>Inactivo</td>
-                          <td><button id="agregar" class="control">Inversion</button></td>
-                          <td><input id="paquete" class="control"></td>
+                        <tr v-for="item in items">
+                          <td>{{item.idinversionista}}</td>
+                          <td>{{item.nombres}} {{item.apellidos}}</td>
+                          <td>{{item.numerooperacion}}</td>
+                          <td>{{item.fecha}}</td>
+                          <td>{{item.paquete}}</td>
+                          <td>
+                            <div v-bind:id="item.idinversionista" v-if="item.tipo==='1'">
+                              INICIAL
+                            </div>
+                            <button v-bind:id="item.idinversionista" v-on:click="ingresarPaquete" type="button" name="button" v-if="item.tipo===null">
+                              INACTIVO
+                            </button>
+                          </td>
                         </tr>
                       </table>
                     </div>
@@ -70,21 +83,66 @@
   <script type="text/javascript" src="../vendor/framewoks/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="../vendor/js/panel.js"></script>
   <script type="text/javascript" src="../vendor/alertifyjs/alertify.min.js"></script>
-  <script type="text/javascript">
-    $('#agregar').click(function(){
-      $.ajax({
-        url: '../app/control/c-inversion.php',
-        type:'POST',
-        data:{operacion:"registrarInversion",idinversionista:$('#idinversionista').val(),paquete:$('#paquete').val()},
-        success: function(response){
-          if (response=='correcto') {
-            alertify.success('Correcto, Ingresando ...');
+  <script type="text/javascript" src="../vendor/framewoks/vue.min.js">
 
-          }else {
-            alertify.error(response);
-          }
+  </script>
+  <script type="text/javascript">
+    var vuejs=new Vue({
+      el:'#app',
+      data:{
+        idinversionista:0,
+        paquete:0,
+        numerooperacion:'',
+        items:[]
+      },
+      methods: {
+        actualizar: function (event) {
+          $.ajax({
+            url: '../app/control/c-inversionista.php',
+            type:'POST',
+            dataType: "json",
+            data:{operacion:"listarInversionistas"},
+            success: function(response){
+              vuejs.items=response;
+              console.log(response);
+            }
+          });
+        },
+
+        ingresarPaquete:function(event){
+          alertify.prompt("SAM","Ingresar Paquete.", "0.00",
+            function(evt, value ){vuejs.paquete=value;vuejs.idinversionista=event.target.id;
+              setTimeout(function () {
+                alertify.prompt("Ingresar Numero de transaccion.", "",
+                  function(evt, value ){vuejs.numerooperacion=value;vuejs.insertar();},
+                  function(){alertify.error('Cancelado');});
+              }, 200);
+            },
+            function(){alertify.error('Cancelado');});
+        },
+
+        insertar: function(event){
+          $.ajax({
+            url: '../app/control/c-inversion.php',
+            type:'POST',
+            data:{operacion:"registrarInversion",idinversionista:vuejs.idinversionista,paquete:vuejs.paquete,numerooperacion:vuejs.numerooperacion},
+            success: function(response){
+              if (response) {
+                alertify.success('Registrado inversion inicial');
+              }else {
+                alertify.error(response);
+              }
+              vuejs.actualizar();
+            }
+          });
         }
-      });
+
+      }
+
     });
+    vuejs.actualizar();
+
+
+
   </script>
 </html>

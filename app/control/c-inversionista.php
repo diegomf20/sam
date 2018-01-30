@@ -60,6 +60,11 @@
           echo $e->getMessage();
         }
         break;
+      case 'listarInversionistas':
+        $lista=$sinversionista->listarInversionistas();
+        echo json_encode($lista);
+        break;
+
       case 'cambiarContrasenia':
         try {
           $contrasenia=$_REQUEST['contrasenia'];

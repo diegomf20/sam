@@ -4,15 +4,17 @@
  */
 class sinversion
 {
-  function insertarInversion($idinversionista,$paquete,$tipo){
+  function insertarInversion($idinversionista,$paquete,$numerooperacion,$tipo){
     $db=new baseDatos();
     try {
       $conexion=$db->conectar();
-      $sql='INSERT INTO tb_inversion(idinversionista,paquete,tipo) VALUES (:idinversionista,:paquete,:tipo)';
+      $sql='INSERT INTO tb_inversion(idinversionista,paquete,numerooperacion,fecha,tipo) VALUES (:idinversionista,:paquete,:numerooperacion,:fecha,:tipo)';
       $sentencia=$conexion->prepare($sql);
       $sentencia->bindParam(':idinversionista',$idinversionista);
       $sentencia->bindParam(':paquete',$paquete);
       $sentencia->bindParam(':tipo',$tipo);
+      $sentencia->bindParam(':numerooperacion',$numerooperacion);
+      $sentencia->bindParam(':fecha',date("Y-m-d"));
       $sentencia->execute();
       $id=$conexion->lastInsertId();
       if ($tipo==1) {//inicial
