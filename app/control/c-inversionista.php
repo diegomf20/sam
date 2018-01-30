@@ -64,6 +64,10 @@
         $lista=$sinversionista->listarInversionistas();
         echo json_encode($lista);
         break;
+      case 'listarDatosInversionistas':
+        $lista=$sinversionista->listarDatosInversionistas();
+        echo json_encode($lista);
+        break;
 
       case 'cambiarContrasenia':
         try {

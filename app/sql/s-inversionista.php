@@ -101,6 +101,19 @@ class sinversionista
        throw $e;
      }
    }
+   function listarDatosInversionistas(){
+     $db=new baseDatos();
+     try {
+       $conexion=$db->conectar();
+       $sql='SELECT * FROM tb_inversionista ORDER BY tb_inversionista.`idinversionista` DESC';
+       $sentencia=$conexion->prepare($sql);
+       $sentencia->execute();
+       $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+       return $resultados;
+     } catch (PDOException $e) {
+       throw $e;
+     }
+   }
 
   /**
    * Actualizaciones de datos del inversionista

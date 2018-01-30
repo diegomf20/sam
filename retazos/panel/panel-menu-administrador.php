@@ -20,6 +20,12 @@
           <p>INVERSIONES</p>
         </a>
       </li>
+      <li class=<?php if($pagina=="CLIENTES") echo "activo";?>>
+        <a href="clientes.php">
+          <i class="fa fa-bar-chart"></i>
+          <p>CLIENTES</p>
+        </a>
+      </li>
     </ul>
   </div>
 </div>
