@@ -1,5 +1,5 @@
 <?php
-  $pagina='INVERSIONES';
+  $pagina='INVERSION RENOVACIÓN';
   session_start();
   $administrador=$_SESSION['administrador'];
   $administrador['nombres'];
@@ -61,11 +61,11 @@
                           <td>{{item.fecha}}</td>
                           <td>{{item.paquete}}</td>
                           <td>
-                            <div v-bind:id="item.idinversionista" v-if="item.tipo==='1'">
-                              INICIAL
+                            <div v-bind:id="item.idinversionista" v-if="item.tipo==='2'">
+                              RENOVADO
                             </div>
-                            <button v-bind:id="item.idinversionista" v-on:click="ingresarPaquete" type="button" name="button" v-if="item.tipo===null">
-                              INACTIVO
+                            <button v-bind:id="item.idinversionista" v-on:click="insertarRenovacion" type="button" name="button" v-if="item.tipo===null">
+                              RENOVAR
                             </button>
                           </td>
                         </tr>
@@ -98,10 +98,10 @@
       methods: {
         actualizar: function (event) {
           $.ajax({
-            url: '../app/control/c-inversionista.php',
+            url: '../app/control/c-consultas.php',
             type:'POST',
             dataType: "json",
-            data:{operacion:"listarInversionistas"},
+            data:{operacion:"consultaInversionRenovacion"},
             success: function(response){
               vuejs.items=response;
               console.log(response);
@@ -109,40 +109,28 @@
           });
         },
 
-        ingresarPaquete:function(event){
-          alertify.prompt("SAM","Ingresar Paquete.", "0.00",
-            function(evt, value ){vuejs.paquete=value;vuejs.idinversionista=event.target.id;
-              setTimeout(function () {
-                alertify.prompt("Ingresar Numero de transaccion.", "",
-                  function(evt, value ){vuejs.numerooperacion=value;vuejs.insertar();},
-                  function(){alertify.error('Cancelado');});
-              }, 200);
+        insertarRenovacion:function(event){
+          alertify.prompt("Ingresar Numero de transaccion.", "",
+            function(evt, value ){
+              $.ajax({
+                url: '../app/control/c-inversion.php',
+                type:'POST',
+                data:{operacion:"registrarRenovacion",idinversionista:event.target.id,numerooperacion:value},
+                success: function(response){
+                  alert(response);
+                  if (response) {
+                    alertify.success('Registrado Renovación');
+                  }else {
+                    alertify.error(response);
+                  }
+                  vuejs.actualizar();
+                }
+              });
             },
             function(){alertify.error('Cancelado');});
-        },
-
-        insertar: function(event){
-          $.ajax({
-            url: '../app/control/c-inversion.php',
-            type:'POST',
-            data:{operacion:"registrarInversion",idinversionista:vuejs.idinversionista,paquete:vuejs.paquete,numerooperacion:vuejs.numerooperacion},
-            success: function(response){
-              if (response) {
-                alertify.success('Registrado inversion inicial');
-              }else {
-                alertify.error(response);
-              }
-              vuejs.actualizar();
-            }
-          });
         }
-
       }
-
     });
     vuejs.actualizar();
-
-
-
   </script>
 </html>

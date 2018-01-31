@@ -7,6 +7,7 @@ class sinversion
   function insertarInversion($idinversionista,$paquete,$numerooperacion,$tipo){
     $db=new baseDatos();
     try {
+      $fecha=date("Y-m-d");
       $conexion=$db->conectar();
       $sql='INSERT INTO tb_inversion(idinversionista,paquete,numerooperacion,fecha,tipo) VALUES (:idinversionista,:paquete,:numerooperacion,:fecha,:tipo)';
       $sentencia=$conexion->prepare($sql);
@@ -14,7 +15,7 @@ class sinversion
       $sentencia->bindParam(':paquete',$paquete);
       $sentencia->bindParam(':tipo',$tipo);
       $sentencia->bindParam(':numerooperacion',$numerooperacion);
-      $sentencia->bindParam(':fecha',date("Y-m-d"));
+      $sentencia->bindParam(':fecha',$fecha);
       $sentencia->execute();
       $id=$conexion->lastInsertId();
       if ($tipo==1) {//inicial
@@ -52,6 +53,20 @@ class sinversion
       }
     } catch (PDOException $e) {
       echo $e->getMessage();
+    }
+  }
+  function obtenerPaquete($idinversionista){
+    $db=new baseDatos();
+    try {
+      $conexion=$db->conectar();
+      $sql='SELECT paquete FROM tb_inversion WHERE idinversionista=:idinversionista';
+      $sentencia=$conexion->prepare($sql);
+      $sentencia->bindParam(':idinversionista',$idinversionista);
+      $sentencia->execute();
+      $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+      return $resultados[0];
+    } catch (PDOException $e) {
+      throw $e;
     }
   }
 }

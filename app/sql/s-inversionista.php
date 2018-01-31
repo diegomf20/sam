@@ -85,7 +85,7 @@ class sinversionista
        throw $e;
      }
    }
-
+   
    function listarInversionistas(){
      $db=new baseDatos();
      try {

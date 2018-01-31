@@ -15,5 +15,17 @@
           echo $e->getMessage();
         }
         break;
+      case 'registrarRenovacion':
+        try {
+          $resultado=$sinversion->obtenerPaquete($_REQUEST['idinversionista']);
+          $paquete=$resultado['paquete'];
+          $sinversion->insertarInversion($_REQUEST['idinversionista'],$paquete,$_REQUEST['numerooperacion'],2);
+          echo true;
+        } catch (Exception $e) {
+          echo $e->getMessage();
+        }
+        break;
+
     }
+
   }

@@ -20,10 +20,16 @@
           <p>PAGO INICIAL</p>
         </a>
       </li>
-      <li class=<?php if($pagina=="INVERSIONES") echo "activo";?>>
-        <a href="inversiones.php">
+      <li class=<?php if($pagina=="INVERSION INICIAL") echo "activo";?>>
+        <a href="inversion-inicial.php">
           <i class="fa fa-bar-chart"></i>
-          <p>INVERSIONES</p>
+          <p>INVERSION INICIAL</p>
+        </a>
+      </li>
+      <li class=<?php if($pagina=="INVERSION RENOVACIÓN") echo "activo";?>>
+        <a href="inversion-renovacion.php">
+          <i class="fa fa-bar-chart"></i>
+          <p>INVERSION RENOVACIÓN</p>
         </a>
       </li>
       <li class=<?php if($pagina=="CLIENTES") echo "activo";?>>
