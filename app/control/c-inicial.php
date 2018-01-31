@@ -3,17 +3,16 @@
     /**
      * includes
      */
-     
 
      include '../db.php';
-     include '../sql/s-consultas.php';
-     $sconsultas=new sconsultas();
+     include '../sql/s-inicial.php';
+     $sinicial=new sinicial();
      $operacion=$_REQUEST['operacion'];
      switch ($operacion) {
-       case 'consultaPagoInicial':
+       case 'insertarPagoInicial':
          try {
-           $datos=$sconsultas->consultaPagoInicial();
-           echo json_encode($datos);
+           $datos=$sinicial->insertarPagoAfiliacion($_REQUEST['idinversionista']);
+           echo true;
          } catch (Exception $e) {
            echo $e->getMessage();
          }

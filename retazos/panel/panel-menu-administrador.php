@@ -14,6 +14,12 @@
   </div>
   <div class="menu-opciones">
     <ul>
+      <li class=<?php if($pagina=="PAGO INICIAL") echo "activo";?>>
+        <a href="pago-inicial.php">
+          <i class="fa fa-ticket"></i>
+          <p>PAGO INICIAL</p>
+        </a>
+      </li>
       <li class=<?php if($pagina=="INVERSIONES") echo "activo";?>>
         <a href="inversiones.php">
           <i class="fa fa-bar-chart"></i>
@@ -22,7 +28,7 @@
       </li>
       <li class=<?php if($pagina=="CLIENTES") echo "activo";?>>
         <a href="clientes.php">
-          <i class="fa fa-bar-chart"></i>
+          <i class="fa fa-address-book-o"></i>
           <p>CLIENTES</p>
         </a>
       </li>
