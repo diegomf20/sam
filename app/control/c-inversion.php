@@ -3,6 +3,7 @@
     include '../db.php';
     include '../sql/s-inversion.php';
     include '../sql/s-inversionista.php';
+    include '../sql/s-afiliado.php';
     include '../logica/operaciones.php';
     $sinversion=new sinversion();
     $operacion=$_REQUEST['operacion'];

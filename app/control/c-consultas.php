@@ -3,10 +3,10 @@
     /**
      * includes
      */
-
-
      include '../db.php';
+     include '../logica/operaciones.php';
      include '../sql/s-consultas.php';
+
      $sconsultas=new sconsultas();
      $operacion=$_REQUEST['operacion'];
      switch ($operacion) {
@@ -18,6 +18,7 @@
            echo $e->getMessage();
          }
          break;
+
        case 'consultaInversionRenovacion':
           try {
             $datos=$sconsultas->consultaInversionRenovacion();
@@ -26,5 +27,14 @@
             echo $e->getMessage();
           }
           break;
+
+        case 'consultaRetiros':
+           try {
+             $datos=$sconsultas->consultaRetiros();
+             echo json_encode($datos);
+           } catch (Exception $e) {
+             echo $e->getMessage();
+           }
+           break;
      }
    }

@@ -33,4 +33,24 @@ class sconsultas
       throw $e->getMessage();
     }
   }
+
+  function consultaRetiros(){
+    $db=new baseDatos();
+    try {
+      $operacion=new operaciones();
+      $fecha=$operacion->obtenerDiaFiltro();
+      $conexion=$db->conectar();
+      $sql='SELECT * FROM `tb_retiros`
+      INNER JOIN tb_inversion ON tb_retiros.idinversion=tb_inversion.idinversion
+      INNER JOIN tb_inversionista ON tb_inversion.idinversionista=tb_inversionista.idinversionista
+      WHERE `fechaasignada`=:fecha and estado=0';
+      $sentencia=$conexion->prepare($sql);
+      $sentencia->bindParam(':fecha',$fecha);
+            $sentencia->execute();
+      $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+      return $resultados;
+    } catch (PDOException $e) {
+      throw $e->getMessage();
+    }
+  }
 }

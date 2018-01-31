@@ -133,10 +133,10 @@ html,body{
 .txt-rojo{color: #fb404b}
 
 table{font-weight: 700}
-h1{ font-size: 30px; font-weight: 400 }
-h2{ font-size: 25px; font-weight: 700 }
-h3{ font-size: 22px; font-weight: 400 }
-h4{ font-size: 18px; font-weight: 300 }
+h1{ font-size: 25px; font-weight: 400 }
+h2{ font-size: 20px; font-weight: 700 }
+h3{ font-size: 18px; font-weight: 400 }
+h4{ font-size: 16px; font-weight: 300 }
 h5{}
 h2,h3,h4{margin: 0}
 /*Extras de plantillas*/

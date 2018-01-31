@@ -25,6 +25,8 @@ class sinversion
       }
       $sinversionista=new sinversionista();
       $sinversionista->cambiarDiaPago($idinversionista);
+      $safiliado=new safiliado();
+      $safiliado->cambiarEstado($idinversionista);
     } catch (PDOException $e) {
       echo 'insertar inversion:'.$e->getMessage();
     }

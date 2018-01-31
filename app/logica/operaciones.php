@@ -36,8 +36,20 @@ class operaciones
     }
     return $dia;
   }
-
-
-
+  /**
+   * obtiene la fecha filtro para saber a quienes se les corresponde
+   * pagar en esta fecha
+   */
+  function obtenerDiaFiltro(){
+    $dia=(int)date('d');
+    if (1 <= $dia && $dia <= 9) {
+      $dia=1;
+    }elseif (10 <=$dia && $dia <= 19) {
+      $dia=10;
+    }elseif (20 <=$dia && $dia <= 31) {
+      $dia=20;
+    }
+    return date('Y-m-').$dia;
+  }
 
 }
