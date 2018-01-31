@@ -90,9 +90,9 @@ class sinversionista
      $db=new baseDatos();
      try {
        $conexion=$db->conectar();
-       $sql='SELECT tb_inversionista.`idinversionista`,`nombres`,`apellidos`,tb_inversion.fecha as fecha ,numerooperacion,paquete,tipo
+       $sql='SELECT tb_inversionista.`idinversionista`,`nombres`,`apellidos`,td.fecha as fecha ,numerooperacion,paquete,tipo
        FROM tb_inicial INNER JOIN tb_inversionista ON tb_inicial.idinversionista=tb_inversionista.idinversionista
-       LEFT JOIN tb_inversion ON tb_inversionista.idinversionista=tb_inversion.idinversionista 
+       LEFT JOIN (SELECT * from tb_inversion WHERE tipo=1) as td ON tb_inversionista.idinversionista=td.idinversionista
        ORDER BY tb_inversionista.`idinversionista` DESC';
        $sentencia=$conexion->prepare($sql);
        $sentencia->execute();
