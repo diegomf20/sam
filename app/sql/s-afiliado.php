@@ -47,6 +47,10 @@ class safiliado
       throw $e;
     }
   }
+  /**
+   * agrega un nivel con estado 1 (activo)
+   */
+
   function agregarNivel($idinversionista,$idafiliado,$nivel,$estado,$fecha){
     $db=new baseDatos();
     try {

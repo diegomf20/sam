@@ -9,6 +9,9 @@
     <!--scripts y css generales-->
     <?php include 'retazos/generales/css.php'; ?>
     <!--fin scripts y css generales-->
+    <style id="estilos">
+
+    </style>
   </head>
   <body>
     <div id="app" class="panel">
@@ -100,7 +103,23 @@
             <div class="col-sm-12">
               <div class="tarjeta">
                 <div class="body">
-
+                  <div class="row" v-bind:style="{display: grid; grid-template-columns: repeat( arbol.length , 1fr)}">
+                    <div class="centrar"  v-for="arboles in arbol">
+                      <div class="arbol">
+                          <div class="arbol-img">
+                            <img src="vendor/img/usuario.jpg">
+                          </div>
+                          <div class="arbol-nombre">
+                            <h5>{{arboles.nombres}}</h5>
+                          </div>
+                      </div>
+                      <div class="row arbol2">
+                        <div class="centrar" v-for="arboles2 in arboles.arbol">
+                          {{arboles2.nombres}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -111,4 +130,44 @@
   </body>
   <?php include 'retazos/generales/script.php' ?>
   <script type="text/javascript" src="vendor/js/tablero.js"></script>
+
+  <script type="text/javascript">
+    var vuejs=new Vue({
+      el:'#app',
+      data:{
+        arbol:[]
+      },
+      methods: {
+        actualizar: function (event) {
+          $.ajax({
+            url: 'app/control/c-consultas.php',
+            type:'POST',
+            dataType: "json",
+            data:{operacion:"consultaArbol"},
+            success: function(response){
+              vuejs.arbol=response;
+              var nivel1=vuejs.arbol.length;
+              $('#estilos').html(
+                '.arbol1{'+
+                'display: grid;grid-template-columns: repeat('+nivel1+', 1fr);'+
+                '}'+
+              '');
+              $('#estilos').append(
+                '.arbol2{'+
+                'display: grid;grid-template-columns: repeat('+nivel1+', 1fr);'+
+                '}'+
+              '');
+              console.log(response);
+            }
+          });
+        }
+      }
+    });
+
+
+    vuejs.actualizar();
+
+
+
+  </script>
 </html>

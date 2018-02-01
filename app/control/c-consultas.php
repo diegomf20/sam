@@ -36,5 +36,16 @@
              echo $e->getMessage();
            }
            break;
+         case 'consultaArbol':
+            try {
+              session_start();
+              $inversionista=$_SESSION['inversionista'];
+              $idinversionista=$inversionista['idinversionista'];
+              $datos=$sconsultas->consultaArbol($idinversionista,1);
+              echo json_encode($datos);
+            } catch (Exception $e) {
+              echo $e->getMessage();
+            }
+            break;
      }
    }

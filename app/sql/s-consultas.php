@@ -53,4 +53,31 @@ class sconsultas
       throw $e->getMessage();
     }
   }
+
+  function consultaArbol($idinversionista,$level){
+    $db=new baseDatos();
+    try {
+      $operacion=new operaciones();
+      $fecha=$operacion->obtenerDiaFiltro();
+      $conexion=$db->conectar();
+      $sql='SELECT tb1.idinversionista,idafiliado,tb2.nombres
+            FROM tb_inversionista as tb1 INNER JOIN tb_afiliacion on tb1.idinversionista=tb_afiliacion.idinversionista
+            INNER JOIN tb_inversionista as tb2 ON tb_afiliacion.idafiliado=tb2.idinversionista
+            WHERE nivel=1 AND tb1.idinversionista=:idinversionista';
+      $sentencia=$conexion->prepare($sql);
+      $sentencia->bindParam(':idinversionista',$idinversionista);
+      $sentencia->execute();
+      $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+      $level++;
+      if ($level<4) {
+        for ($i=0; $i <count($resultados) ; $i++) {
+          $resultados[$i]['arbol']=$this->consultaArbol($resultados[$i]['idafiliado'],$level);
+        }
+      }
+      return $resultados;
+    } catch (PDOException $e) {
+      throw $e->getMessage();
+    }
+  }
+
 }
