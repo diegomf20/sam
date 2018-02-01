@@ -242,7 +242,6 @@
             }
           });
         },
-
         actualizarEstado:function(event){
           var ides=(event.target.id).split("-");
           var idinversionista=ides[0];

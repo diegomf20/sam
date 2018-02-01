@@ -1,7 +1,4 @@
 <?php
-/**
- *
- */
 class sconsultas
 {
   function consultaPagoInicial(){
@@ -51,13 +48,14 @@ class sconsultas
               '( SELECT 0,0,descripcion, monto, idinversionista, null,null,"" as banco,"" as numero from tb_bono_afiliacion '.
               'where fecha=:fecha AND estado=0 ) ) as tb '.
             'GROUP by tb.idinversionista';
+
       $sentencia=$conexion->prepare($sql);
       $sentencia->bindParam(':fecha',$fecha);
-            $sentencia->execute();
+      $sentencia->execute();
       $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
       return $resultados;
     } catch (PDOException $e) {
-      throw $e->getMessage();
+      throw $e;
     }
   }
 
