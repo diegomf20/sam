@@ -149,15 +149,20 @@
               vuejs.arbol=response;
               //asiganr rama
               var id=1;
-              var rama=vuejs.arbol.length;
+              var rama=Number(vuejs.arbol.length);
               var grid='';
-              grid=".rama"+rama+"{display: grid;grid-template-columns: repeat("+rama+", 1fr)}";
+              grid=".rama"+id+"{display: grid;grid-template-columns: repeat("+rama+", 1fr)}";
+              $('#estilos').append(grid);
 
-              $('#estilos').append(
-                '.arbol2{'+
-                'display: grid;grid-template-columns: repeat('+nivel1+', 1fr);'+
-                '}'+
-              '');
+              for (var i = 0; i < rama; i++) {
+                var ramaNivel2
+                alert(i);
+                var obj=vuejs.arbol[i];
+                id=obj.idafiliado;
+                ramaNivel2=obj.arbol.length;
+                grid=".rama"+id+"{display: grid;grid-template-columns: repeat("+ramaNivel2+", 1fr)}";
+                $('#estilos').append(grid);
+              }
               console.log(response);
             }
           });
