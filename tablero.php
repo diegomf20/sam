@@ -103,7 +103,7 @@
             <div class="col-sm-12">
               <div class="tarjeta">
                 <div class="body">
-                  <div class="row" v-bind:style="{display: grid; grid-template-columns: repeat( arbol.length , 1fr)}">
+                  <div class="rama1">
                     <div class="centrar"  v-for="arboles in arbol">
                       <div class="arbol">
                           <div class="arbol-img">
@@ -113,7 +113,7 @@
                             <h5>{{arboles.nombres}}</h5>
                           </div>
                       </div>
-                      <div class="row arbol2">
+                      <div :class="'rama'+ arboles.idafiliado ">
                         <div class="centrar" v-for="arboles2 in arboles.arbol">
                           {{arboles2.nombres}}
                         </div>
@@ -145,13 +145,14 @@
             dataType: "json",
             data:{operacion:"consultaArbol"},
             success: function(response){
+              //asignado datos
               vuejs.arbol=response;
-              var nivel1=vuejs.arbol.length;
-              $('#estilos').html(
-                '.arbol1{'+
-                'display: grid;grid-template-columns: repeat('+nivel1+', 1fr);'+
-                '}'+
-              '');
+              //asiganr rama
+              var id=1;
+              var rama=vuejs.arbol.length;
+              var grid='';
+              grid=".rama"+rama+"{display: grid;grid-template-columns: repeat("+rama+", 1fr)}";
+
               $('#estilos').append(
                 '.arbol2{'+
                 'display: grid;grid-template-columns: repeat('+nivel1+', 1fr);'+
