@@ -10,7 +10,27 @@
     <?php include 'retazos/generales/css.php'; ?>
     <!--fin scripts y css generales-->
     <style id="estilos">
-
+      .arbol-img-lg{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+        margin-right: auto;
+        margin-left: auto;
+        border:3px solid #2489c5;
+      }
+      .arbol-img-sm{
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+        margin-right: auto;
+        margin-left: auto;
+        border:3px solid #2489c5;
+      }
+      .arbol-img-lg img{width: 100%}
     </style>
   </head>
   <body>
@@ -103,19 +123,40 @@
             <div class="col-sm-12">
               <div class="tarjeta">
                 <div class="body">
+                  <div  class="rama0 centrar">
+                    <div class="arbol">
+                        <div class="arbol-img-lg" style="background-image: url('vendor/img/usuario.jpg')"></div>
+                        <div class="arbol-nombre">
+                          <h5><?php echo $inversionista['nombres'] ?></h5>
+                        </div>
+                    </div>
+                  </div>
                   <div class="rama1">
                     <div class="centrar"  v-for="arboles in arbol">
                       <div class="arbol">
-                          <div class="arbol-img">
-                            <img src="vendor/img/usuario.jpg">
-                          </div>
+                          <div class="arbol-img-lg" style="background-image: url('vendor/img/usuario.jpg')"></div>
                           <div class="arbol-nombre">
                             <h5>{{arboles.nombres}}</h5>
                           </div>
                       </div>
                       <div :class="'rama'+ arboles.idafiliado ">
                         <div class="centrar" v-for="arboles2 in arboles.arbol">
-                          {{arboles2.nombres}}
+                          <div class="arbol">
+                              <div class="arbol-img-sm" style="background-image: url('vendor/img/usuario.jpg')"></div>
+                              <div class="arbol-nombre">
+                                <h5>{{arboles2.nombres}}</h5>
+                              </div>
+                          </div>
+                          <div :class="'rama'+ arboles.idafiliado ">
+                            <div class="centrar" v-for="arboles3 in arboles2.arbol">
+                              <div class="arbol">
+                                  <div class="arbol-img-sm" style="background-image: url('vendor/img/usuario.jpg')"></div>
+                                  <div class="arbol-nombre">
+                                    <h5>{{arboles3.nombres}}</h5>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -156,7 +197,6 @@
 
               for (var i = 0; i < rama; i++) {
                 var ramaNivel2
-                alert(i);
                 var obj=vuejs.arbol[i];
                 id=obj.idafiliado;
                 ramaNivel2=obj.arbol.length;
