@@ -57,11 +57,11 @@ class operaciones
   function obtenerDiaFiltroAnterior(){
     $dia=(int)date('d');
     if (1 <= $dia && $dia <= 9) {
-      $dia=1;
+      $dia=2;
     }elseif (10 <=$dia && $dia <= 19) {
-      $dia=10;
+      $dia=11;
     }elseif (20 <=$dia && $dia <= 31) {
-      $dia=20;
+      $dia=21;
     }
     return date("Y-m-d", strtotime(date('Y-m-')."$dia - 1 months"));
   }
