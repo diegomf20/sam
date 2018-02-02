@@ -13,9 +13,11 @@
        case 'actualizarMontoPago':
          try {
            //rango de fecha actual
-
+           $operacion=new operaciones();
+           $fecha=$operacion->obtenerDiaFiltro();
            //obtiene a quienes se les va a pagar en esta fecha indicada
-           $datos=$sconsultas->listarInversionistaCuota();
+           $datos=$sconsultas->listarInversionistaCuota($fecha);
+           
            echo json_encode($datos);
          } catch (Exception $e) {
            echo $e->getMessage();

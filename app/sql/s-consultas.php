@@ -100,15 +100,10 @@ class sconsultas
     }
   }
 
-  function listarInversionistaCuota(){
+  function listarInversionistaCuota($fecha){
     $db=new baseDatos();
     try {
-
       $conexion=$db->conectar();
-
-      $operacion=new operaciones();
-      $fecha=$operacion->obtenerDiaFiltro();
-
       $sql='SELECT tb1.idinversionista,tb1.nombres,tb2.paquete,tb3.idinversion,tb3.cuota
           FROM tb_inversionista AS tb1 INNER JOIN tb_inversion AS tb2 on tb1.idinversionista=tb2.idinversionista
           INNER JOIN tb_retiros AS tb3 on tb3.idinversion=tb2.idinversion
