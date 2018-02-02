@@ -62,7 +62,7 @@
                       <i class="fa fa-money" aria-hidden="true"></i>
                     </div>
                     <div class="col-7">
-                      <button class="control">ACTUALIZAR</button>
+                      <button v-on:click="actualizarMontos" class="control">ACTUALIZAR</button>
                     </div>
                   </div>
                 </div>
@@ -154,8 +154,18 @@
             }
           });
         },
+        actualizarMontos: function (event) {
+          $.ajax({
+            url: '../app/control/c-pagos.php',
+            type:'POST',
+            data:{operacion:"actualizarMontoCuota"},
+            success: function(response){
+              console.log(response);
+            }
+          });
+        },
 
-        ingresarPaquete:function(event){
+        ingresarRetiro:function(event){
           alertify.prompt("SAM","Ingresar Paquete.", "0.00",
             function(evt, value ){vuejs.paquete=value;vuejs.idinversionista=event.target.id;
               setTimeout(function () {

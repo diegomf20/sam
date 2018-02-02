@@ -76,7 +76,7 @@ class sconsultas
       }
       return $resultados;
     } catch (PDOException $e) {
-      throw $e->getMessage();
+      throw $e;
     }
   }
 
@@ -87,20 +87,22 @@ class sconsultas
       $sql='SELECT paquete , nivel from tb_inversion as tb1
           inner join tb_afiliacion as tb2 on tb1.idinversionista = tb2.idafiliado
           inner join tb_inversionista as tb3 on tb2.idinversionista=tb3.idinversionista
-          WHERE tb3.idinversionista=:idinversionista and tb1.fecha BETWEEN :$fechainicio  and :$fechafinal';
+          WHERE tb3.idinversionista=:idinversionista and tb1.fecha BETWEEN :fechainicio  and :fechafinal';
       $sentencia=$conexion->prepare($sql);
       $sentencia->bindParam(':idinversionista',$idinversionista);
-      $sentencia->bindParam(':$fechainicio',$fechainicio);
-      $sentencia->bindParam(':$fechafinal',$fechafinal);
+      $sentencia->bindParam(':fechainicio',$fechainicio);
+      $sentencia->bindParam(':fechafinal',$fechafinal);
       $sentencia->execute();
       $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
       return $resultados;
     } catch (PDOException $e) {
-      throw $e->getMessage();
+
+      throw $e;
     }
   }
 
   function listarInversionistaCuota($fecha){
+    
     $db=new baseDatos();
     try {
       $conexion=$db->conectar();
@@ -109,12 +111,12 @@ class sconsultas
           INNER JOIN tb_retiros AS tb3 on tb3.idinversion=tb2.idinversion
           WHERE tb3.fechaasignada=:fecha';
       $sentencia=$conexion->prepare($sql);
-      $sentencia->bindParam(':$fecha',$fecha);
+      $sentencia->bindParam(':fecha',$fecha);
       $sentencia->execute();
       $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
       return $resultados;
     } catch (PDOException $e) {
-      throw $e->getMessage();
+      throw $e;
     }
   }
 

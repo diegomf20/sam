@@ -13,26 +13,25 @@
      //
 
      $db=new baseDatos();
-     $estado=0;
+
      try {
        $conexion=$db->conectar();
        $sql='UPDATE tb_retiros SET descripcion=:descripcion, monto=:monto  WHERE idinversion=:idinversion and cuota=:cuota';
        $sentencia=$conexion->prepare($sql);
        $sentencia->bindParam(':descripcion',$descripcion);
        $sentencia->bindParam(':monto', $monto);
-       $sentencia->bindParam(':idinversionista',$idinversion);
+       $sentencia->bindParam(':idinversion',$idinversion);
        $sentencia->bindParam(':cuota',$cuota);
        for ($i=0; $i <count($datos) ; $i++) {
          $dato= $datos[$i];
-         $idinversion= $dato['idinversion'];
+         $descripcion= $dato['descripcion'];
          $monto= $dato['monto'];
-         $estado= $dato['estado'];
+         $idinversion= $dato['idinversion'];
          $cuota= $dato['cuota'];
-
          $sentencia->execute();
        }
-
      } catch (PDOException $e) {
+       echo "hola";
        throw $e;
      }
    }
