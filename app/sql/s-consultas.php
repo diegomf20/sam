@@ -80,4 +80,22 @@ class sconsultas
     }
   }
 
+  function obtenerPaquetePago($idinversionista, $fechainicio, $fechafinal){
+    $db=new baseDatos();
+    try {
+      $operacion=new operaciones();
+      $conexion=$db->conectar();
+      $sql='SELECT paquete , nivel from tb_inversion as tb1
+          inner join tb_afiliacion as tb2 on tb1.idinversionista = tb2.idafiliado
+          inner join tb_inversionista as tb3 on tb2.idinversionista=tb3.idinversionista
+          WHERE tb3.idinversionista=:idinversionista and tb1.fecha BETWEEN :$fechainicio  and :$fechafinal'
+      $sentencia=$conexion->prepare($sql);
+      $sentencia->bindParam(':idinversionista',$idinversionista);
+      $sentencia->bindParam(':$fechainicio',$fechainicio);
+      $sentencia->bindParam(':$fechafinal',$fechafinal);
+      $sentencia->execute();
+      $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+
 }
