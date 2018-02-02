@@ -194,39 +194,51 @@ class sinversionista
 
   function obtenerRango($idinversionista)
   {
-      $db= new baseDatos();
-      try {
-        $conexion=$db->conectar();
-        $sql='SELECT count(idafiliado) FROM `tb_afiliacion` where idinversionista=:idinversionista and nivel=1 ';
-        $sentencia=$conexion->prepare($sql);
-        $sentencia->bindParam(':idinversionista',$idinversionista);
-        $sentencia->execute();
-        $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
-        return $resultados[0];
-      } catch (PDOException $e) {
-        throw $e;
-      }
+     $db= new baseDatos();
+     try {
+       $conexion=$db->conectar();
+       $sql='SELECT count(idafiliado) as cantidad FROM `tb_afiliacion` where idinversionista=:idinversionista and nivel=1 ';
+       $sentencia=$conexion->prepare($sql);
+       $sentencia->bindParam(':idinversionista',$idinversionista);
+       $sentencia->execute();
+       $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+       return $resultados[0];
+     } catch (PDOException $e) {
+       throw $e;
+     }
   }
 
- //incompleto
-  function actualizarRango($idinversionista)
+
+  function actualizar($idinversionista)
   {
     $db=new baseDatos();
     $cantAfialdo= $this->obtenerRango($idinversionista);
+    $cant=$cantAfialdo['cantidad'];
+    $rango=0;
+
+    if ($cant>=2 && $cant <5) {
+      $rango=1;
+    }elseif ($cant>=5 && $cant <7) {
+      $rango = 2;
+    }elseif ($cant>=7 && $cant<10) {
+      $rango = 3;
+    }else {
+      $rango=4;
+    }
 
     try {
       $conexion=$db->conectar();
       $sql='UPDATE tb_inversionista
-            SET rango=:rango
+            SET rango=:rango,numeroafiliados=:numeroafiliados
             WHERE idinversionista=:idinversionista';
       $sentencia=$conexion->prepare($sql);
       $sentencia->bindParam(':idinversionista',$idinversionista);
       $sentencia->bindParam(':rango',$rango);
+      $sentencia->bindParam(':numeroafiliados', $cant);
       $sentencia->execute();
     } catch (PDOException $e) {
       throw $e;
     }
   }
-
 
 }

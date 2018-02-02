@@ -35,6 +35,10 @@ class safiliado
       $sentencia->bindParam(':fecha',$fecha);
       $sentencia->execute();
       $idinversionista=$this->buscarAfiliado($idafiliado);//id afiliador a nivel 1
+      //Palo
+        $rango=new sinversionista();
+        $rango-> actualizar($idinversionista);
+      //
       $idinversionista=$this->buscarAfiliado($idinversionista);//id afiliado al nivel 2
       if ($idinversionista!=0) {
         $this->agregarNivel($idinversionista,$idafiliado,2,$estado,$fecha);
