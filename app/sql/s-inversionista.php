@@ -85,7 +85,7 @@ class sinversionista
        throw $e;
      }
    }
-   
+
    function listarInversionistas(){
      $db=new baseDatos();
      try {
@@ -191,5 +191,42 @@ class sinversionista
       throw $e;
     }
   }
+
+  function obtenerRango($idinversionista)
+  {
+      $db= new baseDatos();
+      try {
+        $conexion=$db->conectar();
+        $sql='SELECT count(idafiliado) FROM `tb_afiliacion` where idinversionista=:idinversionista and nivel=1 ';
+        $sentencia=$conexion->prepare($sql);
+        $sentencia->bindParam(':idinversionista',$idinversionista);
+        $sentencia->execute();
+        $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+        return $resultados[0];
+      } catch (PDOException $e) {
+        throw $e;
+      }
+  }
+
+ //incompleto
+  function actualizarRango($idinversionista)
+  {
+    $db=new baseDatos();
+    $cantAfialdo= $this->obtenerRango($idinversionista);
+
+    try {
+      $conexion=$db->conectar();
+      $sql='UPDATE tb_inversionista
+            SET rango=:rango
+            WHERE idinversionista=:idinversionista';
+      $sentencia=$conexion->prepare($sql);
+      $sentencia->bindParam(':idinversionista',$idinversionista);
+      $sentencia->bindParam(':rango',$rango);
+      $sentencia->execute();
+    } catch (PDOException $e) {
+      throw $e;
+    }
+  }
+
 
 }
