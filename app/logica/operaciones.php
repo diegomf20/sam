@@ -25,6 +25,8 @@ class operaciones
     }
     return date("Y-m-d", strtotime(date('Y-m-')."$dia + $cantidadSumada months"));
   }
+
+
   function obtenerDiaPago(){
     $dia=(int)date('d');
     if (2 <= $dia && $dia <= 10) {
@@ -52,4 +54,58 @@ class operaciones
     return date('Y-m-').$dia;
   }
 
+  function obtenerDiaFiltroAnterior(){
+    $dia=(int)date('d');
+    if (1 <= $dia && $dia <= 9) {
+      $dia=1;
+    }elseif (10 <=$dia && $dia <= 19) {
+      $dia=10;
+    }elseif (20 <=$dia && $dia <= 31) {
+      $dia=20;
+    }
+    return date("Y-m-d", strtotime(date('Y-m-')."$dia - 1 months"));
+  }
+
+  /**
+   * obtener la comision de afiliar a mas personas al negocio , entra parametros array y rango de inversionista
+   */
+   function obtenerComision($paquetes,$rango){
+     $comision=0.00;
+     if (rango==1) {
+       for ($i=0; $i < count($paquetes); $i++) {
+         $paquete=$paquetes[$i];
+         if ($paquete['nivel']==1) {
+           $comision+=$paquete['paquete']*0.08;
+         }
+       }
+     }elseif (rango==2) {
+       for ($i=0; $i < count($paquetes); $i++) {
+         $paquete=$paquetes[$i];
+         if ($paquete['nivel']==1) {
+           $comision+=$paquete['paquete']*0.1;
+         }
+       }
+     }elseif (rango==3) {
+       for ($i=0; $i < count($paquetes); $i++) {
+         $paquete=$paquetes[$i];
+         if ($paquete['nivel']==1) {
+           $comision+=$paquete['paquete']*0.1;
+         }elseif ($paquete['nivel']==2) {
+           $comision+=$paquete['paquete']*0.05;
+         }
+       }
+     }elseif (rango==4) {
+       for ($i=0; $i < count($paquetes); $i++) {
+         $paquete=$paquetes[$i];
+         if ($paquete['nivel']==1) {
+           $comision+=$paquete['paquete']*0.1;
+         }elseif ($paquete['nivel']==2) {
+           $comision+=$paquete['paquete']*0.05;
+         }elseif ($paquete['nivel']==3) {
+           $comision+=$paquete['paquete']*0.03;
+         }
+       }
+     }
+     return $comision;
+   }
 }

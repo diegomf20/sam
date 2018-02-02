@@ -83,7 +83,6 @@ class sconsultas
   function obtenerPaquetePago($idinversionista, $fechainicio, $fechafinal){
     $db=new baseDatos();
     try {
-      $operacion=new operaciones();
       $conexion=$db->conectar();
       $sql='SELECT paquete , nivel from tb_inversion as tb1
           inner join tb_afiliacion as tb2 on tb1.idinversionista = tb2.idafiliado
@@ -95,6 +94,33 @@ class sconsultas
       $sentencia->bindParam(':$fechafinal',$fechafinal);
       $sentencia->execute();
       $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+      return $resultados;
+    } catch (PDOException $e) {
+      throw $e->getMessage();
+    }
+  }
+
+  function listarInversionistaCuota(){
+    $db=new baseDatos();
+    try {
+
+      $conexion=$db->conectar();
+
+      $operacion=new operaciones();
+      $fecha=$operacion->obtenerDiaFiltro();
+
+      $sql='SELECT tb1.idinversionista,tb1.nombres,tb3.idinversion,tb3.cuota
+          FROM tb_inversionista AS tb1 INNER JOIN tb_inversion AS tb2 on tb1.idinversionista=tb2.idinversionista
+          INNER JOIN tb_retiros AS tb3 on tb3.idinversion=tb2.idinversion
+          WHERE tb3.fechaasignada=:fecha'
+      $sentencia=$conexion->prepare($sql);
+      $sentencia->bindParam(':$fecha',$fecha);
+      $sentencia->execute();
+      $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+      return $resultados;
+    } catch (PDOException $e) {
+      throw $e->getMessage();
+    }
   }
 
 
