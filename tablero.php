@@ -16,19 +16,59 @@
 
      ?>
     <style id="estilos">
-      .centrar:first-child:before{
+      .rama:before{
         content: "a";
+        display: block;
         color: transparent;
-        height:10px;
-        border: 1px dashed #111;
+        height: 30px;
+        border-top: 2px dashed blue;
+        margin-bottom: 0;
       }
-      .centrar:first-child:after{
+
+      .rama:first-child:before{
         content: "a";
-        position: absolute;
+        display: block;
+        color: transparent;
+        height: 30px;
+        width: 50%;
+        margin-left: 50%;
+        border-top: 2px dashed blue;
+        border-left: 2px dashed blue;
+        border-top-left-radius: 15px;
+        margin-bottom: 0;
+      }
+      .rama:last-child:before{
+        content: "a";
+        display: block;
+        color: transparent;
+        height: 30px;
+        width: 50%;
+        margin-right: 50%;
+        border-top: 2px dashed blue;
+        border-right:  2px dashed blue;
+        border-top-right-radius: 15px;
+        margin-bottom: 0;
+      }
+      .rama:after{
+        content: "a";
         color: transparent;
         display: block;
         width: 10px;
         border: 1px dashed #111;
+      }
+      .rama:only-child:before{
+        content: "a";
+        display: block;
+        color: transparent;
+        height: 30px;
+        width: 50%;
+        margin-left: 50%;
+        border-top:0px;
+        border-left: 2px dashed blue;
+        border-right: 0px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        margin-bottom: 0;
       }
       .arbol-img-lg{
         width: 100px;
@@ -140,7 +180,7 @@
           </div>
           <!--fin Resumenes-->
           <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-12 centrar">
               <div class="tarjeta">
                 <div class="body">
                   <div  class="rama0 centrar">
@@ -152,7 +192,7 @@
                     </div>
                   </div>
                   <div class="rama1">
-                    <div class="centrar"  v-for="arboles in arbol">
+                    <div class="rama"  v-for="arboles in arbol">
                       <div class="arbol">
                           <div class="arbol-img-lg" style="background-image: url('vendor/img/usuario.jpg')"></div>
                           <div class="arbol-nombre">
@@ -160,15 +200,15 @@
                           </div>
                       </div>
                       <div :class="'rama'+ arboles.idafiliado ">
-                        <div class="centrar" v-for="arboles2 in arboles.arbol">
+                        <div class="rama" v-for="arboles2 in arboles.arbol">
                           <div class="arbol">
                               <div class="arbol-img-sm" style="background-image: url('vendor/img/usuario.jpg')"></div>
                               <div class="arbol-nombre">
                                 <h5>{{arboles2.nombres}}</h5>
                               </div>
                           </div>
-                          <div :class="'rama'+ arboles.idafiliado ">
-                            <div class="centrar" v-for="arboles3 in arboles2.arbol">
+                          <div :class="'rama'+ arboles2.idafiliado ">
+                            <div class="rama" v-for="arboles3 in arboles2.arbol">
                               <div class="arbol">
                                   <div class="arbol-img-sm" style="background-image: url('vendor/img/usuario.jpg')"></div>
                                   <div class="arbol-nombre">
@@ -216,12 +256,19 @@
               $('#estilos').append(grid);
 
               for (var i = 0; i < rama; i++) {
-                var ramaNivel2
+                var ramaNivel2;
                 var obj=vuejs.arbol[i];
                 id=obj.idafiliado;
                 ramaNivel2=obj.arbol.length;
                 grid=".rama"+id+"{display: grid;grid-template-columns: repeat("+ramaNivel2+", 1fr)}";
                 $('#estilos').append(grid);
+                for (var j = 0; j < ramaNivel2; j++) {
+                    var obj2=obj.arbol[j];
+                    id=obj2.idafiliado;
+                    var ramaNivel3=obj2.arbol.length;
+                    grid=".rama"+id+"{display: grid;grid-template-columns: repeat("+ramaNivel3+", 1fr)}";
+                    $('#estilos').append(grid);
+                }
               }
               console.log(response);
             }
