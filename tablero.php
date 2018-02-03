@@ -9,7 +9,27 @@
     <!--scripts y css generales-->
     <?php include 'retazos/generales/css.php'; ?>
     <!--fin scripts y css generales-->
+    <?php
+      //https://code.tutsplus.com/es/tutorials/the-30-css-selectors-you-must-memorize--net-16048
+      //
+
+
+     ?>
     <style id="estilos">
+      .centrar:first-child:before{
+        content: "a";
+        color: transparent;
+        height:10px;
+        border: 1px dashed #111;
+      }
+      .centrar:first-child:after{
+        content: "a";
+        position: absolute;
+        color: transparent;
+        display: block;
+        width: 10px;
+        border: 1px dashed #111;
+      }
       .arbol-img-lg{
         width: 100px;
         height: 100px;
