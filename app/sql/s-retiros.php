@@ -39,15 +39,31 @@
      $db=new baseDatos();
      try {
        $conexion=$db->conectar();
-       $sql='SELECT cuota,numerooperacion,fechaasignada,descripcion, monto,estado
-            FROM tb_inversion INNER JOIN tb_retiros ON tb_inversion.idinversion=tb_retiros.idinversion
-            WHERE fechaasignada<=:fecha AND idinversionista=:idinversionista';
+       $sql='SELECT cuota,tb2.numerooperacion,fechaasignada,descripcion, monto,estado
+            FROM tb_inversion as tb1 INNER JOIN tb_retiros as tb2 ON tb1.idinversion=tb2.idinversion
+            WHERE fechaasignada<=:fecha AND idinversionista=:idinversionista
+            ORDER BY cuota DESC';
        $sentencia=$conexion->prepare($sql);
        $sentencia->bindParam(':idinversionista',$idinversionista);
        $sentencia->bindParam(':fecha', $fecha);
        $sentencia->execute();
        $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
        return $resultados;
+     } catch (PDOException $e) {
+       throw $e;
+     }
+   }
+
+   function actualizarEstado($idinversion,$cuota,$numerooperacion){
+     $db=new baseDatos();
+     try {
+       $conexion=$db->conectar();
+       $sql='UPDATE tb_retiros SET numerooperacion=:numerooperacion, estado=1  WHERE idinversion=:idinversion and cuota=:cuota';
+       $sentencia=$conexion->prepare($sql);
+       $sentencia->bindParam(':numerooperacion',$numerooperacion);
+       $sentencia->bindParam(':idinversion',$idinversion);
+       $sentencia->bindParam(':cuota',$cuota);
+       $sentencia->execute();
      } catch (PDOException $e) {
        throw $e;
      }

@@ -98,8 +98,8 @@
                           <td>{{item.descripcion}}</td>
                           <td>{{item.monto}}</td>
                           <td>
-                            <button v-bind:id="item.idinversionista" v-on:click="ingresarRetiro" type="button" name="button" >
-                              INACTIVO
+                            <button v-bind:id="item.idinversion+'-'+item.cuota" v-on:click="actualizarEstado" v-if="item.monto!=null">
+                              Pagar
                             </button>
                           </td>
                         </tr>
@@ -136,10 +136,8 @@
     var vuejs=new Vue({
       el:'#app',
       data:{
-        idinversionista:0,
-        paquete:0,
-        numerooperacion:'',
-        items:[]
+        items:[],
+
       },
       methods: {
         actualizar: function (event) {
@@ -166,32 +164,34 @@
           });
         },
 
-        ingresarRetiro:function(event){
-          alertify.prompt("SAM","Ingresar Paquete.", "0.00",
-            function(evt, value ){vuejs.paquete=value;vuejs.idinversionista=event.target.id;
-              setTimeout(function () {
-                alertify.prompt("Ingresar Numero de transaccion.", "",
-                  function(evt, value ){vuejs.numerooperacion=value;vuejs.insertar();},
-                  function(){alertify.error('Cancelado');});
-              }, 200);
+        actualizarEstado:function(event){
+          var ides=(event.target.id).split("-");
+          var idinversion=ides[0];
+          var cuota=ides[1];
+          alertify.prompt("SAM","Ingresar Numero de transaccion.", "",
+            function(evt, value ){
+              var numerooperacion=value;
+              //insertar desde ajax
+              $.ajax({
+                url: '../app/control/c-pagos.php',
+                type:'POST',
+                data:{operacion:"actualizarEstado",idinversion:idinversion,cuota:cuota,numerooperacion:numerooperacion},
+                success: function(response){
+                  alert(response);
+                  if (response) {
+                    alertify.success('Registrado Pago a Inversionista');
+                  }else {
+                    alertify.error(response);
+                  }
+                  vuejs.actualizar();
+                }
+              });
             },
             function(){alertify.error('Cancelado');});
         },
 
         insertar: function(event){
-          $.ajax({
-            url: '../app/control/c-inversion.php',
-            type:'POST',
-            data:{operacion:"registrarInversion",idinversionista:vuejs.idinversionista,paquete:vuejs.paquete,numerooperacion:vuejs.numerooperacion},
-            success: function(response){
-              if (response) {
-                alertify.success('Registrado inversion inicial');
-              }else {
-                alertify.error(response);
-              }
-              vuejs.actualizar();
-            }
-          });
+
         }
       }
     });

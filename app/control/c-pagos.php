@@ -8,7 +8,6 @@
      include '../sql/s-consultas.php';
      include '../sql/s-retiros.php';
 
-
      $operacion=$_REQUEST['operacion'];
      switch ($operacion) {
        case 'actualizarMontoCuota':
@@ -44,6 +43,19 @@
            echo $e->getMessage();
          }
          break;
+
+      case 'actualizarEstado':
+        $idinversion=$_REQUEST['idinversion'];
+        $cuota=$_REQUEST['cuota'];
+        $numerooperacion=$_REQUEST['numerooperacion'];
+        try {
+          $sretiro=new sretiro();
+          $sretiro->actualizarEstado($idinversion,$cuota,$numerooperacion);
+          echo true;
+        } catch (Exception $e) {
+          echo $e->getMessage();
+        }
+        break;
       case 'consultaRetiros2':
         session_start();
         $inversionista=$_SESSION['inversionista'];
@@ -54,7 +66,7 @@
           $sretiro=new sretiro();
           echo json_encode($sretiro->listarRetiros($idinversionista,$fecha));
         } catch (ErrorException $e) {
-          echo "{'error':'$e->getMessage()' }";
+          echo "[{'error':'$e->getMessage()' }]";
         }
         break;
      }
