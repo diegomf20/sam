@@ -241,4 +241,21 @@ class sinversionista
     }
   }
 
+  function actulizarCuotaretirada($idinversionista, $cuotaretirada){
+    $db=new baseDatos();
+
+    try {
+      $conexion=$db->conectar();
+      $sql='UPDATE tb_inversionista
+            SET cuotaretirada=:cuotaretirada
+            WHERE idinversionista=:idinversionista';
+      $sentencia=$conexion->prepare($sql);
+      $sentencia->bindParam(':idinversionista',$idinversionista);
+      $sentencia->bindParam(':cuotaretirada', $cuotaretirada);
+      $sentencia->execute();
+    } catch (PDOException $e) {
+      throw $e;
+    }
+  }
+
 }

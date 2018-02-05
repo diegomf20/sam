@@ -7,6 +7,7 @@
      include '../logica/operaciones.php';
      include '../sql/s-consultas.php';
      include '../sql/s-retiros.php';
+     include '../sql/s-inversionista.php';
 
      $operacion=$_REQUEST['operacion'];
      switch ($operacion) {
@@ -52,7 +53,9 @@
 
         try {
           $sretiro=new sretiro();
+          $sinversionista= new sinversionista();
           $sretiro->actualizarEstado($idinversion,$cuota,$numerooperacion);
+          $sinversionista->actulizarCuotaretirada($idinversionista,$cuota);
           echo true;
         } catch (Exception $e) {
           echo $e->getMessage();
