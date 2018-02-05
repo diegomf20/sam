@@ -132,7 +132,11 @@ html,body{
 .txt-azul{color: #0090d9}
 .txt-rojo{color: #fb404b}
 
-table{font-weight: 700}
+
+.table{
+  font-size: 14px;
+  font-weight: 400;
+}
 h1{ font-size: 25px; font-weight: 400 }
 h2{ font-size: 20px; font-weight: 700 }
 h3{ font-size: 18px; font-weight: 400 }

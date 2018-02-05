@@ -19,9 +19,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!--fin scripts y css generales-->
     <style>
-      .table{
-        font-size: 12px
-      }
+
     </style>
   </head>
   <body>
@@ -86,12 +84,14 @@
                 <div class="body">
                   <div class="row">
                     <div class="col-sm-7">
+                      <h5 class="centrar">Procesando</h5>
                       <table class="table table-bordered table-striped">
+
                         <tr>
-                          <td>NOMBRE Y APELLIDOS</td>
-                          <td>DESCRIPCION</td>
-                          <td>MONTO</td>
-                          <td>ESTADO</td>
+                          <th>NOMBRE Y APELLIDOS</th>
+                          <th>DESCRIPCION</th>
+                          <th>MONTO</th>
+                          <th>ESTADO</th>
                         </tr>
                         <tr v-for="item in items">
                           <td>{{item.nombres}} {{item.apellidos}}</td>
@@ -106,10 +106,11 @@
                       </table>
                     </div>
                     <div class="col-sm-5">
+                      <h5 class="centrar">PAGADO</h5>
                       <table class="table table-bordered table-striped">
                         <tr>
-                          <td>NOMBRE Y APELLIDOS</td>
-                          <td>NUMERO DE OPERACION</td>
+                          <th>NOMBRE Y APELLIDOS</th>
+                          <th>NUMERO DE OPERACION</th>
                         </tr>
                         <tr v-for="item in items2">
                           <td>{{item.nombres}} {{item.apellidos}}</td>

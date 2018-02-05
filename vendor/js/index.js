@@ -20,10 +20,10 @@ $('#registrar').click(function(){
 $(document).on("scroll", function(){
 	var desplazamientoActual = $(document).scrollTop();
 	if(desplazamientoActual > 45){
-		$('#nav').addClass('navbar-dark');
+		$('#nav').addClass('navbar-grey');
 	}
 	if(desplazamientoActual < 45){
-		$('#nav').removeClass('navbar-dark');
+		$('#nav').removeClass('navbar-grey');
 	}
 });
 

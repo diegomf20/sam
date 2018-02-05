@@ -5,27 +5,37 @@
 	<link rel="stylesheet" href="vendor/framewoks/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 	<link rel="stylesheet" href="vendor/alertifyjs/css/alertify.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Rammetto+One" rel="stylesheet">
 	<link rel="stylesheet" href="vendor/css/index.css">
 	<link rel="stylesheet" href="vendor/css/forms.css">
 </head>
 <body lang="es">
 		<nav id="nav" class="navbar navbar-expand-sm  fixed-top">
-			<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-index" >
-        <span class="sr-only">Boton</span><i class="fa fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="nav-index">
-				<ul class="nav navbar-nav">
-          <li><a class="page-scroll" href="#como-funciona">&iquest;COMO FUNCIONA?</a></li>
-					<li><a class="page-scroll" href="#como-funciona">NOSOTROS</a></li>
-					<li><a class="page-scroll" href="#contactenos">CONTACTANOS</a></li>
-					<li><a class="page-scroll" href="login.php">LOGIN</a></li>
-        </ul>
-		  </div>
+			<div class="container">
+				<a class="navbar-brand" href="index.php">SAM</a>
+				<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-index" >
+	        <span class="sr-only">Boton</span><i class="fa fa-bars"></i>
+	      </button>
+	      <div class="collapse navbar-collapse" id="nav-index">
+					<ul class="nav navbar-nav">
+	          <li><a class="page-scroll" href="#como-funciona">&iquest;COMO FUNCIONA?</a></li>
+						<li><a class="page-scroll" href="#paquetes">PAQUETES</a></li>
+						<li><a class="page-scroll" href="#contactenos">CONTACTANOS</a></li>
+						<li><a class="page-scroll" href="login.php">LOGIN</a></li>
+	        </ul>
+			  </div>
+			</div>
 		</nav>
 		<div class="inicio">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-6">
+						<div class="titulo">
+							<h1>SAM</h1>
+							<hr>
+							<h4>Sociedad de Ayuda Mutua</h4>
+						</div>
+
 					</div>
 					<div class="col-lg-6">
 
@@ -56,7 +66,7 @@
 				</div>
 		</div>
 	</div>
-		<section>
+		<section class="gris">
 		  <div class=container>
 		    <h1>¿Que es SAM?</h1>
 		    <p>
@@ -77,6 +87,59 @@
 		    </p>
 		  </div>
 		</section>
+		<section id=paquetes>
+		  <div class=container>
+		    <h1>PAQUETES DE INVERSIÓN</h1>
+				<table class="table">
+					<tr>
+						<td>Paquetes</td>
+						<td>1° Mes</td>
+						<td>2° Mes</td>
+						<td>3° Mes</td>
+						<td>4° Mes</td>
+						<td>5° Mes</td>
+						<td>6° Mes</td>
+					</tr>
+					<tr>
+						<td>$ 200</td>
+						<td>$ 40</td>
+						<td>$ 40</td>
+						<td>$ 40</td>
+						<td>$ 40</td>
+						<td>$ 40</td>
+						<td>$ 40</td>
+					</tr>
+					<tr>
+						<td>$ 300</td>
+						<td>$ 60</td>
+						<td>$ 60</td>
+						<td>$ 60</td>
+						<td>$ 60</td>
+						<td>$ 60</td>
+						<td>$ 60</td>
+					</tr>
+					<tr>
+						<td>$ 500</td>
+						<td>$ 100</td>
+						<td>$ 100</td>
+						<td>$ 100</td>
+						<td>$ 100</td>
+						<td>$ 100</td>
+						<td>$ 100</td>
+					</tr>
+					<tr>
+						<td>$ 1000</td>
+						<td>$ 200</td>
+						<td>$ 200</td>
+						<td>$ 200</td>
+						<td>$ 200</td>
+						<td>$ 200</td>
+						<td>$ 200</td>
+					</tr>
+				</table>
+		  </div>
+		</section>
+		<section></section>
 </body>
 <script type="text/javascript" src="vendor/framewoks/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="vendor/framewoks/bootstrap/js/bootstrap.min.js"></script>

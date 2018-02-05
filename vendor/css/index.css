@@ -1,19 +1,53 @@
 .inicio{
-  padding-top: 200px;
-  padding-bottom: 210px;
-  background-image: url('../img/fondo.jpg');
+  position: relative;
+  padding-top: 70px;
+  padding-bottom: 50px;
+  background-image: url('../img/rubik.jpg');
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: auto 130%;
+  background-size: auto auto;
 }
+@media (min-width: 990px){
+  .inicio{
+    position: relative;
+    padding-top: 200px;
+    padding-bottom: 200px;
+    background-size: 100% auto;
+  }
+}
+/*
+.inicio::after{
+  content: " ";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: red;
+  z-index: 2;
+}
+*/
 
+.navbar{
+  background-color: #fff;
+}
+.navbar-toggler{
+  background-color: #000;
+  color:#fff;
+}
 .registrar{
+  margin-top: 50px;
   border-radius: 10px;
   background-color: #fff;
-  width: 360px;
+  width: 280px;
   margin-left: auto;
   margin-right: auto;
   padding: 20px;
+}
+@media (min-width: 880px){
+  .registrar{
+    margin-top:0px;
+    width: 360px;
+  }
 }
 .login{
   margin-top: 20px;
@@ -30,15 +64,49 @@
   font-size: 40px;
   margin-bottom: 10px
 }
+.titulo{
+  text-align: center;
+}
+.titulo h1{
+  font-family: 'Rammetto One';
+  color: #ffc20a;
+  font-size: 50px
+}
+.titulo h4{
+  color: #fff;
+  font-size:15px
+}
+.titulo hr{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100px;
+  color: #FFF;
+  border: 1px solid;
+}
+@media (min-width: 880px){
+  .titulo h1{
+    font-size: 100px
+  }
+  .titulo h4{
+    font-size: 30px
+  }
+}
+.gris{
+  background-color: #eee;
+}
+section{
+  padding-top: 30px;
+  padding-bottom: 30px
 
+}
 
 /*nAV BAR*/
 .nav{margin-right: auto;margin-left: auto}
 .nav li{ padding-left: 20px;padding-right: 20px}
-.nav a{text-decoration: none;font-weight: 400;color: #999}
+.nav a,.navbar-brand{text-decoration: none;font-weight: 500;color: #444}
 .nav a:hover{color:#ffc20a }
 
-.navbar-dark{background-color: #111;transition: 0.5s}
+.navbar-grey{background-color: #fff;transition: 0.8s}
 
 
 /*Alertas de codign out*/
