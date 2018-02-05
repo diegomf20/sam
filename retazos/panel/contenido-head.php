@@ -7,7 +7,7 @@
       <i class="fa fa-cube"></i>
     </div>
     <div class="head-titulo"><?php echo $pagina ?></div>
-    <a class="head-salir" href="login.php">
+    <a class="head-salir" href="cerrar.php">
       <i class="fa fa-sign-out" aria-hidden="true"></i> Salir
     </a>
   </div>
