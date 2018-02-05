@@ -45,9 +45,11 @@
          break;
 
       case 'actualizarEstado':
+        $idinversionista=$_REQUEST['idinversionista'];
         $idinversion=$_REQUEST['idinversion'];
         $cuota=$_REQUEST['cuota'];
         $numerooperacion=$_REQUEST['numerooperacion'];
+
         try {
           $sretiro=new sretiro();
           $sretiro->actualizarEstado($idinversion,$cuota,$numerooperacion);

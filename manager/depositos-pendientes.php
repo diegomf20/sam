@@ -98,7 +98,7 @@
                           <td>{{item.descripcion}}</td>
                           <td>{{item.monto}}</td>
                           <td>
-                            <button v-bind:id="item.idinversion+'-'+item.cuota" v-on:click="actualizarEstado" v-if="item.monto!=null">
+                            <button v-bind:id="item.idinversionista+'-'+item.idinversion+'-'+item.cuota" v-on:click="actualizarEstado" v-if="item.monto!=null">
                               Pagar
                             </button>
                           </td>
@@ -190,8 +190,9 @@
 
         actualizarEstado:function(event){
           var ides=(event.target.id).split("-");
-          var idinversion=ides[0];
-          var cuota=ides[1];
+          var idinversionista=ides[0];
+          var idinversion=ides[1];
+          var cuota=ides[2];
           alertify.prompt("SAM","Ingresar Numero de transaccion.", "",
             function(evt, value ){
               var numerooperacion=value;
@@ -199,7 +200,13 @@
               $.ajax({
                 url: '../app/control/c-pagos.php',
                 type:'POST',
-                data:{operacion:"actualizarEstado",idinversion:idinversion,cuota:cuota,numerooperacion:numerooperacion},
+                data:{
+                  operacion:"actualizarEstado",
+                  idinversionista:idinversionista,
+                  idinversion:idinversion,
+                  cuota:cuota,
+                  numerooperacion:numerooperacion
+                },
                 success: function(response){
                   if (response) {
                     alertify.success('Registrado Pago a Inversionista');
