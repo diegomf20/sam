@@ -16,12 +16,15 @@
 
      ?>
     <style id="estilos">
+      .rama{
+        position: relative;
+      }
       .rama:before{
         content: "a";
         display: block;
         color: transparent;
         height: 30px;
-        border-top: 2px dashed blue;
+        border-top: 2px dashed #2489c5;
         margin-bottom: 0;
       }
 
@@ -32,8 +35,8 @@
         height: 30px;
         width: 50%;
         margin-left: 50%;
-        border-top: 2px dashed blue;
-        border-left: 2px dashed blue;
+        border-top: 2px dashed #2489c5;
+        border-left: 2px dashed #2489c5;
         border-top-left-radius: 15px;
         margin-bottom: 0;
       }
@@ -44,17 +47,24 @@
         height: 30px;
         width: 50%;
         margin-right: 50%;
-        border-top: 2px dashed blue;
-        border-right:  2px dashed blue;
+        border-top: 2px dashed #2489c5;
+        border-right:  2px dashed #2489c5;
         border-top-right-radius: 15px;
         margin-bottom: 0;
       }
-      .rama:after{
-        content: "a";
-        color: transparent;
-        display: block;
-        width: 10px;
-        border: 1px dashed #111;
+      .rama:after {
+          margin-left: calc(50% - 1px);
+          top: 0;
+          position: absolute;
+          content: "a";
+          color: transparent;
+          display: block;
+          width: 30px;
+          height: 30px;
+          border-left: 2px dashed #2489c5;
+      }
+      .rama:first-child:after,.rama:last-child:after,.rama:only-child:after{
+        border: none;
       }
       .rama:only-child:before{
         content: "a";
@@ -64,15 +74,15 @@
         width: 50%;
         margin-left: 50%;
         border-top:0px;
-        border-left: 2px dashed blue;
+        border-left: 2px dashed #2489c5;
         border-right: 0px;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
         margin-bottom: 0;
       }
       .arbol-img-lg{
-        width: 100px;
-        height: 100px;
+        width: 90px;
+        height: 90px;
         border-radius: 50%;
         background-size: 100% auto;
         background-repeat: no-repeat;
@@ -181,7 +191,7 @@
           <!--fin Resumenes-->
           <div class="row">
             <div class="col-sm-12 centrar">
-              <div class="tarjeta">
+              <div class="tarjeta negro">
                 <div class="body">
                   <div  class="rama0 centrar">
                     <div class="arbol">
@@ -212,7 +222,7 @@
                               <div class="arbol">
                                   <div class="arbol-img-sm" style="background-image: url('vendor/img/usuario.jpg')"></div>
                                   <div class="arbol-nombre">
-                                    <h5>{{arboles3.nombres}}</h5>
+                                    <h6>{{arboles3.nombres}}</h6>
                                   </div>
                               </div>
                             </div>

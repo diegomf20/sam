@@ -38,37 +38,14 @@
                             <th>MONTO</th>
                             <th>ESTADO</th>
                         </tr>
-                        <tr>
-                          <td>1122145</td>
-                          <td>4</td>
-                          <td>10/12/2017</td>
-                          <td>Cuota N° 4 por Inversion</td>
-                          <td class="txt-azul">$ 50</td>
-                          <td class="txt-rojo">PROCESANDO</td>
-                        </tr>
-                        <tr>
-                          <td>1122145</td>
-                          <td>3</td>
-                          <td>10/12/2017</td>
-                          <td>Cuota N° 3 por Inversion + comisión por afiliado</td>
-                          <td class="txt-azul">$ 60</td>
-                          <td class="txt-verde">PAGADO</td>
-                        </tr>
-                        <tr>
-                          <td>1122145</td>
-                          <td>2</td>
-                          <td>10/12/2017</td>
-                          <td>Cuota N° 2 por Inversion</td>
-                          <td class="txt-azul">$ 50</td>
-                          <td class="txt-verde">PAGADO</td>
-                        </tr>
-                        <tr>
-                          <td>1122145</td>
-                          <td>1</td>
-                          <td>10/11/2017</td>
-                          <td>Cuota N° 1 por Inversion</td>
-                          <td class="txt-azul">$ 50</td>
-                          <td class="txt-verde">PAGADO</td>
+                        <tr v-for="fila in tabla">
+                          <td>{{fila.numerooperacion}}</td>
+                          <td>{{fila.cuota}}</td>
+                          <td>{{fila.fechaasignada}}</td>
+                          <td>{{fila.descripcion}}</td>
+                          <td class="txt-azul">$ {{fila.monto}}</td>
+                          <td class="txt-rojo" v-if="fila.estado==0">PROCESANDO</td>
+                          <td class="txt-verde" v-else>PAGADO</td>
                         </tr>
                       </table>
                     </div>
@@ -81,5 +58,27 @@
       </div>
     </div>
     <?php include 'retazos/generales/script.php'; ?>
+
+    <script type="text/javascript">
+      var vuejs=new Vue({
+        el:'#app',
+        data:{tabla:[]},
+        methods:{
+          listar: function(){
+            $.ajax({
+              url: 'app/control/c-pagos.php',
+              type: 'POST',
+              dataType:'json',
+              data:{operacion:"consultaRetiros2"},
+              success: function(response){
+                vuejs.tabla=response;
+                console.log(response);
+              }
+            });
+          }
+        }
+      });
+      vuejs.listar();
+    </script>
   </body>
 </html>

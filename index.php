@@ -18,7 +18,7 @@
           <li><a class="page-scroll" href="#como-funciona">&iquest;COMO FUNCIONA?</a></li>
 					<li><a class="page-scroll" href="#como-funciona">NOSOTROS</a></li>
 					<li><a class="page-scroll" href="#contactenos">CONTACTANOS</a></li>
-					<li><a class="page-scroll" href="#profesor">LOGIN</a></li>
+					<li><a class="page-scroll" href="login.php">LOGIN</a></li>
         </ul>
 		  </div>
 		</nav>

@@ -98,7 +98,7 @@
                           <td>{{item.descripcion}}</td>
                           <td>{{item.monto}}</td>
                           <td>
-                            <button v-bind:id="item.idinversionista" v-on:click="ingresarPaquete" type="button" name="button" >
+                            <button v-bind:id="item.idinversionista" v-on:click="ingresarRetiro" type="button" name="button" >
                               INACTIVO
                             </button>
                           </td>
@@ -161,6 +161,7 @@
             data:{operacion:"actualizarMontoCuota"},
             success: function(response){
               console.log(response);
+              vuejs.actualizar();
             }
           });
         },

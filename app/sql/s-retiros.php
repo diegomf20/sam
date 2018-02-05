@@ -31,10 +31,25 @@
          $sentencia->execute();
        }
      } catch (PDOException $e) {
-       echo "hola";
+       throw $e;
+     }
+   }
+   function listarRetiros($idinversionista,$fecha)
+   {
+     $db=new baseDatos();
+     try {
+       $conexion=$db->conectar();
+       $sql='SELECT cuota,numerooperacion,fechaasignada,descripcion, monto,estado
+            FROM tb_inversion INNER JOIN tb_retiros ON tb_inversion.idinversion=tb_retiros.idinversion
+            WHERE fechaasignada<=:fecha AND idinversionista=:idinversionista';
+       $sentencia=$conexion->prepare($sql);
+       $sentencia->bindParam(':idinversionista',$idinversionista);
+       $sentencia->bindParam(':fecha', $fecha);
+       $sentencia->execute();
+       $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+       return $resultados;
+     } catch (PDOException $e) {
        throw $e;
      }
    }
  }
-
- ?>

@@ -44,6 +44,18 @@
            echo $e->getMessage();
          }
          break;
+      case 'consultaRetiros2':
+        session_start();
+        $inversionista=$_SESSION['inversionista'];
+        $idinversionista=$inversionista['idinversionista'];
+        $fecha=date('Y-m-d');
 
+        try {
+          $sretiro=new sretiro();
+          echo json_encode($sretiro->listarRetiros($idinversionista,$fecha));
+        } catch (ErrorException $e) {
+          echo "{'error':'$e->getMessage()' }";
+        }
+        break;
      }
    }
