@@ -28,7 +28,7 @@
              $paquetenivel=$sconsultas->obtenerPaquetePago($fila['idinversionista'],$fechaAnterior,$fecha);
              //se obtiene el monto de la comision por inversionista
              if (count($paquetenivel)>0&& $fila['rango']!=0) {
-               $descripcion=" - $descripcion comision por afiliado";
+               $descripcion="$descripcion -  comision por afiliado";
                $monto=$monto+$operacion->obtenerComision($paquetenivel,$fila['rango']);
              }
              //se agregan dos columnas ... un monto y su decripcion de dicho monto

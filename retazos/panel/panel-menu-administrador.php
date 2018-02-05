@@ -32,6 +32,12 @@
           <p>INVERSION RENOVACIÓN</p>
         </a>
       </li>
+      <li class=<?php if($pagina=="DEPOSITOS PENDIENTES") echo "activo";?>>
+        <a href="depositos-pendientes.php">
+          <i class="fa fa-bar-chart"></i>
+          <p>DEPOSITOS PENDIENTES</p>
+        </a>
+      </li>
       <li class=<?php if($pagina=="CLIENTES") echo "activo";?>>
         <a href="clientes.php">
           <i class="fa fa-address-book-o"></i>

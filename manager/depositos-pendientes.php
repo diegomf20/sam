@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-7">
                       <h3>FECHA</h3>
-                      <h2 id="txt-inversion">2018-02-01</h2>
+                      <h2 id="txt-inversion">{{fecha}}</h2>
                     </div>
                   </div>
                 </div>
@@ -111,7 +111,7 @@
                           <td>NOMBRE Y APELLIDOS</td>
                           <td>NUMERO DE OPERACION</td>
                         </tr>
-                        <tr v-for="item in items">
+                        <tr v-for="item in items2">
                           <td>{{item.nombres}} {{item.apellidos}}</td>
                           <td>{{item.numerooperacion}}</td>
                         </tr>
@@ -136,10 +136,22 @@
     var vuejs=new Vue({
       el:'#app',
       data:{
+        fecha:"",
         items:[],
-
+        items2:[]
       },
       methods: {
+        fechaPago: function(){
+          $.ajax({
+            url: '../app/control/c-consultas.php',
+            type:'POST',
+            data:{operacion:"fechaPago"},
+            success: function(response){
+              vuejs.fecha=response;
+              console.log(response);
+            }
+          });
+        },
         actualizar: function (event) {
           $.ajax({
             url: '../app/control/c-consultas.php',
@@ -148,6 +160,18 @@
             data:{operacion:"consultaRetiros"},
             success: function(response){
               vuejs.items=response;
+              console.log(response);
+            }
+          });
+        },
+        actualizar2: function (event) {
+          $.ajax({
+            url: '../app/control/c-consultas.php',
+            type:'POST',
+            dataType: "json",
+            data:{operacion:"consultaRetirosPagados"},
+            success: function(response){
+              vuejs.items2=response;
               console.log(response);
             }
           });
@@ -177,27 +201,23 @@
                 type:'POST',
                 data:{operacion:"actualizarEstado",idinversion:idinversion,cuota:cuota,numerooperacion:numerooperacion},
                 success: function(response){
-                  alert(response);
                   if (response) {
                     alertify.success('Registrado Pago a Inversionista');
                   }else {
                     alertify.error(response);
                   }
                   vuejs.actualizar();
+                  vuejs.actualizar2();
                 }
               });
             },
             function(){alertify.error('Cancelado');});
-        },
-
-        insertar: function(event){
-
         }
       }
     });
+    vuejs.fechaPago();
     vuejs.actualizar();
-
-
+    vuejs.actualizar2();
 
   </script>
 </html>

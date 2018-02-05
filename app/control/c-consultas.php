@@ -36,6 +36,14 @@
              echo $e->getMessage();
            }
            break;
+        case 'consultaRetirosPagados':
+            try {
+              $datos=$sconsultas->consultaRetirosPagados();
+              echo json_encode($datos);
+            } catch (Exception $e) {
+              echo $e->getMessage();
+            }
+            break;
          case 'consultaArbol':
             try {
               session_start();
@@ -46,6 +54,10 @@
             } catch (Exception $e) {
               echo $e->getMessage();
             }
+            break;
+          case 'fechaPago':
+            $operacion=new operaciones();
+            echo $operacion->obtenerDiaFiltro();
             break;
      }
    }

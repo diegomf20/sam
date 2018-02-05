@@ -54,6 +54,26 @@ class sconsultas
     }
   }
 
+  function consultaRetirosPagados(){
+    $db=new baseDatos();
+    try {
+      $operacion=new operaciones();
+      $fecha=$operacion->obtenerDiaFiltro();
+      $conexion=$db->conectar();
+      $sql='SELECT nombres,apellidos,tb1.numerooperacion
+            FROM tb_retiros as tb1 INNER JOIN tb_inversion as tb2 ON tb1.idinversion=tb2.idinversion
+            INNER JOIN tb_inversionista AS tb3 ON tb2.idinversionista=tb3.idinversionista
+            WHERE fechaasignada=:fecha and estado=1';
+      $sentencia=$conexion->prepare($sql);
+      $sentencia->bindParam(':fecha',$fecha);
+            $sentencia->execute();
+      $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+      return $resultados;
+    } catch (PDOException $e) {
+      throw $e->getMessage();
+    }
+  }
+
   function consultaArbol($idinversionista,$level){
     $db=new baseDatos();
     try {
@@ -102,7 +122,7 @@ class sconsultas
   }
 
   function listarInversionistaCuota($fecha){
-    
+
     $db=new baseDatos();
     try {
       $conexion=$db->conectar();
