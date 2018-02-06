@@ -252,6 +252,7 @@ class sinversionista
       $sentencia=$conexion->prepare($sql);
       $sentencia->bindParam(':idinversionista',$idinversionista);
       $sentencia->bindParam(':cuotaretirada', $cuotaretirada);
+      echo $cuotaretirada;
       $sentencia->execute();
     } catch (PDOException $e) {
       throw $e;
