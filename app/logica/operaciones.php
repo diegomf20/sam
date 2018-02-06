@@ -108,4 +108,31 @@ class operaciones
      }
      return $comision;
    }
+
+   function obtenerDescripcion($paquetes,$rango){
+     $descripcion="";
+     if ($rango==1||$rango==2) {
+       for ($i=0; $i < count($paquetes); $i++) {
+         $paquete=$paquetes[$i];
+         if ($paquete['nivel']==1) {
+           $descripcion="$descripcion ". $paquete['nombres'] . ",";
+         }
+       }
+     }elseif ($rango==3) {
+       for ($i=0; $i < count($paquetes); $i++) {
+         $paquete=$paquetes[$i];
+         if ($paquete['nivel']==1||$paquete['nivel']==2) {
+           $descripcion="$descripcion ". $paquete['nombres'] . ",";
+         }
+       }
+     }elseif ($rango==4) {
+       for ($i=0; $i < count($paquetes); $i++) {
+         $paquete=$paquetes[$i];
+         if ($paquete['nivel']==1||$paquete['nivel']==2||$paquete['nivel']==3) {
+           $descripcion="$descripcion ". $paquete['nombres'] . ",";
+         }
+       }
+     }
+     return $descripcion;
+   }
 }

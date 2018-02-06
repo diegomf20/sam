@@ -40,10 +40,10 @@ class sconsultas
       $operacion=new operaciones();
       $fecha=$operacion->obtenerDiaFiltro();
       $conexion=$db->conectar();
-      $sql='SELECT * FROM `tb_retiros`
-      INNER JOIN tb_inversion ON tb_retiros.idinversion=tb_inversion.idinversion
-      INNER JOIN tb_inversionista ON tb_inversion.idinversionista=tb_inversionista.idinversionista
-      WHERE `fechaasignada`=:fecha and estado=0';
+      $sql='SELECT tb1.idinversion,tb1.cuota,tb1.descripcion,(tb1.monto+ ifnull(tb1.bono, 0.0 )) as monto ,tb3.idinversionista,tb3.nombres,tb3.apellidos
+            FROM tb_retiros AS tb1 INNER JOIN tb_inversion AS tb2 ON tb1.idinversion=tb2.idinversion
+            INNER JOIN tb_inversionista AS tb3 ON tb2.idinversionista=tb3.idinversionista
+            WHERE `fechaasignada`=:fecha and estado=0';
       $sentencia=$conexion->prepare($sql);
       $sentencia->bindParam(':fecha',$fecha);
             $sentencia->execute();
@@ -104,10 +104,11 @@ class sconsultas
     $db=new baseDatos();
     try {
       $conexion=$db->conectar();
-      $sql='SELECT paquete , nivel from tb_inversion as tb1
-          inner join tb_afiliacion as tb2 on tb1.idinversionista = tb2.idafiliado
-          inner join tb_inversionista as tb3 on tb2.idinversionista=tb3.idinversionista
-          WHERE tb3.idinversionista=:idinversionista and tb1.fecha BETWEEN :fechainicio  and :fechafinal';
+      $sql='SELECT paquete,nivel,tb4.nombres,tb4.apellidos
+            from tb_inversion as tb1 inner join tb_afiliacion as tb2 on tb1.idinversionista = tb2.idafiliado
+            inner join tb_inversionista as tb3 on tb2.idinversionista=tb3.idinversionista
+            inner join tb_inversionista as tb4 on tb4.idinversionista=tb2.idafiliado
+            WHERE tb3.idinversionista=:idinversionista and tb1.fecha BETWEEN :fechainicio  and :fechafinal';
       $sentencia=$conexion->prepare($sql);
       $sentencia->bindParam(':idinversionista',$idinversionista);
       $sentencia->bindParam(':fechainicio',$fechainicio);

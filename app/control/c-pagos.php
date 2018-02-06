@@ -23,16 +23,18 @@
            for ($i=0; $i < count($lista); $i++) {
              //lee una fila de todo el arreglo bidimensional
              $fila=$lista[$i];
-             $descripcion='Cuota N '.$fila['cuota'];
-             $monto=$fila['paquete']*0.2;
+             $descripcion='Bono de Regalia N '.$fila['cuota'];//descripcion de la cuota
+             $monto=$fila['paquete']*0.2;//monto de bono de regalia
+             $bono=0;//bono por afiliar a otras personas en los distintos niveles
              //obtiene una lista de paquetes y el nivel en q estan
              $paquetenivel=$sconsultas->obtenerPaquetePago($fila['idinversionista'],$fechaAnterior,$fecha);
              //se obtiene el monto de la comision por inversionista
              if (count($paquetenivel)>0&& $fila['rango']!=0) {
-               $descripcion="$descripcion -  comision por afiliado";
-               $monto=$monto+$operacion->obtenerComision($paquetenivel,$fila['rango']);
+               $descripcion="$descripcion -  Bono por Afiliado:".$operacion->obtenerDescripcion($paquetenivel,$fila['rango']);
+               $bono=$operacion->obtenerComision($paquetenivel,$fila['rango']);
              }
              //se agregan dos columnas ... un monto y su decripcion de dicho monto
+             $lista[$i]['bono']=$bono;
              $lista[$i]['monto']=$monto;
              $lista[$i]['descripcion']=$descripcion;
            }

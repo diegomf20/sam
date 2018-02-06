@@ -9,6 +9,14 @@
   <!--scripts y css generales-->
   <?php include 'retazos/generales/css.php'; ?>
   <!--fin scripts y css generales-->
+  <style >
+    table .fa{
+      font-size: 20px
+    }
+    .derecha{
+      text-align: right;
+    }
+  </style>
 </head>
   <body>
     <div id="app" class="panel">
@@ -32,20 +40,20 @@
                       <table class="table table-bordered table-striped">
                         <tr>
                             <th>N° DE OPERACION</th>
-                            <th>CUOTA</th>
                             <th>FECHA ASIGNADA</th>
                             <th>DESCRIPCIÓN</th>
                             <th>MONTO</th>
                             <th>ESTADO</th>
                         </tr>
                         <tr v-for="fila in tabla">
-                          <td>{{fila.numerooperacion}}</td>
-                          <td>{{fila.cuota}}</td>
+                          <td v-if="fila.cuota!=0">{{fila.numerooperacion}}</td>
+                          <td class="derecha" v-else="fila.cuota!=0" ><i class="fa fa-arrow-right"></i></td>
                           <td>{{fila.fechaasignada}}</td>
-                          <td>{{fila.descripcion}}</td>
+                          <td  v-if="fila.cuota!=0">{{fila.descripcion.split('-')[0]}}</td>
+                          <td  v-else="fila.cuota!=0">{{fila.descripcion.split('-')[1]}}</td>
                           <td class="txt-azul">$ {{fila.monto}}</td>
-                          <td class="txt-rojo" v-if="fila.estado==0">PROCESANDO</td>
-                          <td class="txt-verde" v-else>PAGADO</td>
+                          <td class="txt-rojo centrar" v-if="fila.estado==0"><i class="fa fa-clock-o"></i></td>
+                          <td class="txt-verde centrar" v-else><i class="fa fa-check-circle-o"></i></td>
                         </tr>
                       </table>
                     </div>
