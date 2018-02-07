@@ -17,6 +17,8 @@
     <!--fuentes-->
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,700,300">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css">
     <!--fin scripts y css generales-->
   </head>
   <body>
@@ -45,15 +47,18 @@
                 <div class="body">
                   <div class="row">
                     <div class="col-sm-12">
-                      <table class="table table-bordered table-striped">
-                        <tr>
-                          <td>ID</td>
-                          <td>NOMBRE Y APELLIDOS</td>
-                          <td>NUMERO DE OPERACION</td>
-                          <td>FECHA</td>
-                          <td>PAQUETE</td>
-                          <td>ESTADO</td>
-                        </tr>
+                      <table id="tabla" width=100% class="table table-bordered table-striped">
+                        <thead>
+                          <tr>
+                            <td>ID</td>
+                            <td>NOMBRE Y APELLIDOS</td>
+                            <td>NUMERO DE OPERACION</td>
+                            <td>FECHA</td>
+                            <td>PAQUETE</td>
+                            <td>ESTADO</td>
+                          </tr>
+                        </thead>
+                        <tbody>
                         <tr v-for="item in items">
                           <td>{{item.idinversionista}}</td>
                           <td>{{item.nombres}} {{item.apellidos}}</td>
@@ -69,6 +74,7 @@
                             </button>
                           </td>
                         </tr>
+                      </tbody>
                       </table>
                     </div>
                   </div>
@@ -86,6 +92,7 @@
   <script type="text/javascript" src="../vendor/framewoks/vue.min.js">
 
   </script>
+  <script type="text/javascript" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
   <script type="text/javascript">
     var vuejs=new Vue({
       el:'#app',
@@ -104,6 +111,15 @@
             data:{operacion:"consultaInversionRenovacion"},
             success: function(response){
               vuejs.items=response;
+              setTimeout(function () {
+                $('#tabla').DataTable({
+                  responsive: true,
+                  columnDefs: [
+                      { responsivePriority: 1, targets: 0 },
+                      { responsivePriority: 2, targets: -1 }
+                  ]
+                });
+              }, 10);
               console.log(response);
             }
           });
@@ -134,3 +150,6 @@
     vuejs.actualizar();
   </script>
 </html>
+<!--http://meridadesignblog.com/como-crear-tablas-responsivas-con-css/
+http://fooplugins.github.io/FooTable/index.html
+-->

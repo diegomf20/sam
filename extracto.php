@@ -49,8 +49,8 @@
                           <td v-if="fila.cuota!=0">{{fila.numerooperacion}}</td>
                           <td class="derecha" v-else="fila.cuota!=0" ><i class="fa fa-arrow-right"></i></td>
                           <td>{{fila.fechaasignada}}</td>
-                          <td  v-if="fila.cuota!=0">{{fila.descripcion.split('-')[0]}}</td>
-                          <td  v-else="fila.cuota!=0">{{fila.descripcion.split('-')[1]}}</td>
+                          <td  v-if="fila.cuota!=0">{{fila.descripcion}}</td>
+                          <td  v-else="fila.cuota!=0">{{fila.descripcion}}</td>
                           <td class="txt-azul">$ {{fila.monto}}</td>
                           <td class="txt-rojo centrar" v-if="fila.estado==0"><i class="fa fa-clock-o"></i></td>
                           <td class="txt-verde centrar" v-else><i class="fa fa-check-circle-o"></i></td>

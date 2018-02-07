@@ -6,6 +6,7 @@
      include '../db.php';
      include '../logica/operaciones.php';
      include '../sql/s-consultas.php';
+     include '../sql/s-actualizar.php';
 
      $sconsultas=new sconsultas();
      $operacion=$_REQUEST['operacion'];
@@ -57,7 +58,9 @@
             break;
           case 'fechaPago':
             $operacion=new operaciones();
-            echo $operacion->obtenerDiaFiltro();
+            $sactualizar=new sactualizar();
+            echo $operacion->obtenerDiaFiltro().'/'.$sactualizar->confirmarActualizar($operacion->obtenerDiaFiltro());
+
             break;
      }
    }

@@ -10,28 +10,29 @@
      $monto=0.0;
      $idinversion=0;
      $cuota=0;
-     $bono=0;
      //
 
      $db=new baseDatos();
 
      try {
        $conexion=$db->conectar();
-       $sql='UPDATE tb_retiros SET descripcion=:descripcion, monto=:monto , bono=:bono WHERE idinversion=:idinversion and cuota=:cuota';
+       $sql='UPDATE tb_retiros SET descripcion=:descripcion, monto=:monto  WHERE idinversion=:idinversion and cuota=:cuota';
        $sentencia=$conexion->prepare($sql);
        $sentencia->bindParam(':descripcion',$descripcion);
        $sentencia->bindParam(':monto', $monto);
        $sentencia->bindParam(':idinversion',$idinversion);
        $sentencia->bindParam(':cuota',$cuota);
-       $sentencia->bindParam(':bono',$bono);
        for ($i=0; $i <count($datos) ; $i++) {
          $dato= $datos[$i];
          $descripcion= $dato['descripcion'];
          $monto= $dato['monto'];
          $idinversion= $dato['idinversion'];
          $cuota= $dato['cuota'];
-         $bono=$dato['bono'];
          $sentencia->execute();
+
+         $sbono=new sbonoafiliacion();
+         $sbono->insertarBonoAfiliacion($dato['idinversionista'],$dato['fecha'],$dato['lista']);
+
        }
      } catch (PDOException $e) {
        throw $e;
@@ -45,12 +46,12 @@
        $sql='SELECT * from
               ((SELECT cuota,tb2.numerooperacion,fechaasignada,descripcion, monto,estado
                 FROM tb_inversion as tb1 INNER JOIN tb_retiros as tb2 ON tb1.idinversion=tb2.idinversion
-                WHERE fechaasignada<=:fecha AND idinversionista=:idinversionista)
+                WHERE fechaasignada<="2018-02-7" AND idinversionista=1)
               union all
-                (SELECT 0,null,fechaasignada,descripcion, bono,null
-                  FROM tb_inversion as tb1 INNER JOIN tb_retiros as tb2 ON tb1.idinversion=tb2.idinversion
-                  WHERE fechaasignada<=:fecha AND idinversionista=:idinversionista AND bono!=0)) AS tb
-                  ORDER BY tb.fechaasignada DESC,tb.cuota DESC';
+                (SELECT 0,null,fecha,descripcion, monto,estado
+                  FROM tb_bono_afiliacion
+                  WHERE fecha<="2018-02-7" AND idinversionista=1 )) AS tb 
+              ORDER BY tb.fechaasignada DESC,tb.cuota DESC';
        $sentencia=$conexion->prepare($sql);
        $sentencia->bindParam(':idinversionista',$idinversionista);
        $sentencia->bindParam(':fecha', $fecha);
