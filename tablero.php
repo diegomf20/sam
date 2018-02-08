@@ -81,8 +81,8 @@
         margin-bottom: 0;
       }
       .arbol-img-lg{
-        width: 90px;
-        height: 90px;
+        width: 60px;
+        height: 60px;
         border-radius: 50%;
         background-size: 100% auto;
         background-repeat: no-repeat;
@@ -90,9 +90,12 @@
         margin-left: auto;
         border:3px solid #2489c5;
       }
+      .arbol h6{
+        font-size: 12px
+      }
       .arbol-img-sm{
-        width: 80px;
-        height: 80px;
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
         background-size: 100% auto;
         background-repeat: no-repeat;
@@ -197,7 +200,7 @@
                     <div class="arbol">
                         <div class="arbol-img-lg" style="background-image: url('vendor/img/usuario.jpg')"></div>
                         <div class="arbol-nombre">
-                          <h5><?php echo $inversionista['nombres'] ?></h5>
+                          <h6><?php echo $inversionista['nombres'] ?></h6>
                         </div>
                     </div>
                   </div>
@@ -206,7 +209,7 @@
                       <div class="arbol">
                           <div class="arbol-img-lg" style="background-image: url('vendor/img/usuario.jpg')"></div>
                           <div class="arbol-nombre">
-                            <h5>{{arboles.nombres}}</h5>
+                            <h6>{{arboles.nombres}}</h6>
                           </div>
                       </div>
                       <div :class="'rama'+ arboles.idafiliado ">
@@ -214,7 +217,7 @@
                           <div class="arbol">
                               <div class="arbol-img-sm" style="background-image: url('vendor/img/usuario.jpg')"></div>
                               <div class="arbol-nombre">
-                                <h5>{{arboles2.nombres}}</h5>
+                                <h6>{{arboles2.nombres}}</h6>
                               </div>
                           </div>
                           <div :class="'rama'+ arboles2.idafiliado ">
@@ -243,6 +246,11 @@
   <script type="text/javascript" src="vendor/js/tablero.js"></script>
 
   <script type="text/javascript">
+    function  abrir(){
+      $('#btn1').click();
+    }
+
+    abrir();
     var vuejs=new Vue({
       el:'#app',
       data:{

@@ -40,10 +40,16 @@ class sconsultas
       $operacion=new operaciones();
       $fecha=$operacion->obtenerDiaFiltro();
       $conexion=$db->conectar();
-      $sql='SELECT tb1.idinversion,tb1.cuota,tb1.descripcion,(tb1.monto+ ifnull(tb1.bono, 0.0 )) as monto ,tb3.idinversionista,tb3.nombres,tb3.apellidos
-            FROM tb_retiros AS tb1 INNER JOIN tb_inversion AS tb2 ON tb1.idinversion=tb2.idinversion
-            INNER JOIN tb_inversionista AS tb3 ON tb2.idinversionista=tb3.idinversionista
-            WHERE `fechaasignada`=:fecha and estado=0';
+      $sql='SELECT sum(idinversion) as idinversion,SUM(tb.cuota) as cuota,GROUP_CONCAT(tb.descripcion) as descripcion,SUM(tb.monto) as monto, tb.idinversionista, GROUP_CONCAT(nombres) AS nombres, GROUP_CONCAT(apellidos) AS apellidos
+            from (
+              (SELECT tb1.idinversion,tb1.cuota,tb1.descripcion,monto ,tb3.idinversionista,tb3.nombres,tb3.apellidos
+                FROM tb_retiros AS tb1 INNER JOIN tb_inversion AS tb2 ON tb1.idinversion=tb2.idinversion
+                INNER JOIN tb_inversionista AS tb3 ON tb2.idinversionista=tb3.idinversionista
+                WHERE `fechaasignada`=:fecha and estado=0)
+            UNION
+              SELECT 0,0,descripcion, monto, idinversionista, null,null from tb_bono_afiliacion
+              where fecha=:fecha AND estado=0) as tb 
+            GROUP by tb.idinversionista';
       $sentencia=$conexion->prepare($sql);
       $sentencia->bindParam(':fecha',$fecha);
             $sentencia->execute();

@@ -16,6 +16,35 @@
     .derecha{
       text-align: right;
     }
+    @media screen and (max-width: 700px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+        }
+        tr:first-child { display: none; }
+        td{
+          position: relative;
+        }
+        .table tr{
+          border: 1px solid #dee2e6;
+        }
+        .table td{
+          border: none;
+          padding-left: 150px;
+        }
+        td:before {
+            color: #111;
+            content: '';
+            display: block;
+            left: 15px;
+            position: absolute;
+        }
+      td:nth-child(1):before { content: 'OPERACION:'; }
+      td:nth-child(2):before { content: 'FECHA:'; }
+      td:nth-child(3):before { content: 'DESCRIPCIÓN:'; }
+      td:nth-child(4):before { content: 'MONTO:'; }
+      td:nth-child(5):before { content: 'ESTADO:'; }
+    }
+
   </style>
 </head>
   <body>
@@ -37,20 +66,19 @@
                 <div class="body">
                   <div class="row">
                     <div class="col-12">
-                      <table class="table table-bordered table-striped">
+                      <table class="table table-bordered ">
                         <tr>
-                            <th>N° DE OPERACION</th>
-                            <th>FECHA ASIGNADA</th>
+                            <th>OPERACION</th>
+                            <th>FECHA</th>
                             <th>DESCRIPCIÓN</th>
                             <th>MONTO</th>
                             <th>ESTADO</th>
                         </tr>
                         <tr v-for="fila in tabla">
-                          <td v-if="fila.cuota!=0">{{fila.numerooperacion}}</td>
-                          <td class="derecha" v-else="fila.cuota!=0" ><i class="fa fa-arrow-right"></i></td>
+                          <td >{{fila.numerooperacion}}</td>
                           <td>{{fila.fechaasignada}}</td>
-                          <td  v-if="fila.cuota!=0">{{fila.descripcion.split('-')[0]}}</td>
-                          <td  v-else="fila.cuota!=0">{{fila.descripcion.split('-')[1]}}</td>
+                          <td  v-if="fila.cuota!=0">{{fila.descripcion}}</td>
+                          <td  v-else="fila.cuota!=0">{{fila.descripcion}}</td>
                           <td class="txt-azul">$ {{fila.monto}}</td>
                           <td class="txt-rojo centrar" v-if="fila.estado==0"><i class="fa fa-clock-o"></i></td>
                           <td class="txt-verde centrar" v-else><i class="fa fa-check-circle-o"></i></td>

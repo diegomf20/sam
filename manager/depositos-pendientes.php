@@ -10,6 +10,7 @@
     <title>SAM-<?php echo $pagina ?></title>
     <!--scripts y css generales-->
     <!--diseño-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="../vendor/framewoks/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../vendor/css/panel.css">
     <link rel="stylesheet" href="../vendor/css/forms.css">
@@ -19,7 +20,9 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!--fin scripts y css generales-->
     <style>
-
+      .table{
+        font-size: 12px;
+      }
     </style>
   </head>
   <body>
@@ -60,12 +63,13 @@
                       <i class="fa fa-money" aria-hidden="true"></i>
                     </div>
                     <div class="col-7">
-                      <button v-on:click="actualizarMontos" class="control">ACTUALIZAR</button>
+                      <button v-if="estadoBoton==0" v-on:click="actualizarMontos" class="control">ACTUALIZAR</button>
+                      <h3 v-else>MONTOS ASIGNADOS</h3>
                     </div>
                   </div>
                 </div>
                 <div class="footer">
-                  <h3 class=centrar>ACTUALIZAR MONTOS</h3>
+                  <h3  class=centrar>ACTUALIZAR MONTOS</h3>
                 </div>
               </div>
             </div>
@@ -138,6 +142,7 @@
       el:'#app',
       data:{
         fecha:"",
+        estadoBoton:0,
         items:[],
         items2:[]
       },
@@ -148,7 +153,8 @@
             type:'POST',
             data:{operacion:"fechaPago"},
             success: function(response){
-              vuejs.fecha=response;
+              vuejs.fecha=response.split('/')[0];
+              vuejs.estadoBoton=response.split('/')[1];
               console.log(response);
             }
           });
@@ -184,6 +190,7 @@
             data:{operacion:"actualizarMontoCuota"},
             success: function(response){
               console.log(response);
+              vuejs.fechaPago();
               vuejs.actualizar();
             }
           });
@@ -209,6 +216,7 @@
                   numerooperacion:numerooperacion
                 },
                 success: function(response){
+                  console.log(response);
                   if (response) {
                     alertify.success('Registrado Pago a Inversionista');
                   }else {

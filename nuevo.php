@@ -66,8 +66,6 @@
       </div>
     </div>
     <?php include 'retazos/generales/script.php'; ?>
-    <script type="text/javascript" src="vendor/js/nuevo.js">
 
-    </script>
   </body>
 </html>
