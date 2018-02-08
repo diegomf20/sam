@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 
     <!-- lib estadisticas-->
-    <link rel="stylesheet" href="../vendor/morris/morris.css">
+     <link rel="stylesheet" href="../vendor/css/morris.css">
     <!--fin scripts y css generales-->
     <style>
 
@@ -36,7 +36,8 @@
           <?php include '../retazos/panel/contenido-head.php' ?>
           <!--Fin Encabezado-->
           <!--cuerpo de la pagina-->
-          <div class="row">
+<!-- cuadros-->
+        <!-- <div class="row">
             <div class="col-xl-3 col-md-8">
               <div class="tarjeta">
                 <div class="body totales rojo">
@@ -73,7 +74,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           <!-- <div class="col-xl-3 col-md-6">
             <div class="tarjeta">
               <div class="body totales azul">
@@ -90,6 +91,42 @@
                 <h3 class=centrar>UTILIDADES </h3>
               </div>
             </div>  -->
+
+            <div class="row">
+                     <div class="col-lg-12">
+                         <div class="panel panel-default">
+                             <div class="panel-heading">
+                                 <i class="fa fa-bar-chart-o fa-fw"></i> Gráfica
+                             </div>
+                             <div class="panel-body">
+                                 <div class="row">
+                                     <div class="col-xs-12 col-sm-2">
+                                         <div class="row">
+                                             <div class="col-xs-4 col-sm-12 form-group">
+                                                 <select class="form-control" id="cbperiodo">
+                                                     <option value="0">MENSUAL</option>
+                                                     <option value="1">ANUAL</option>
+                                                 </select>
+                                             </div>
+                                             <div class="col-xs-4 col-sm-12 form-group">
+                                                 <input class="form-control" type="number" name="txtanio" id="txtanio" min="2018" value="">
+                                             </div>
+                                             <div class="col-xs-8 col-sm-12 form-group">
+                                                 <button class="form-control btn-primar" onclick="datos();" >Actualizar</button>
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="col-xs-12 col-sm-10">
+                                         <div id="morris-area-mes"></div>
+                                     </div>
+                                     <div class="col-xs-12 col-sm-10">
+                                         <div id="morris-area-anio"></div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
           </div>
         </div>
           <!--fin Resumenes-->
@@ -153,7 +190,15 @@
   <script type="text/javascript" src="../vendor/js/panel.js"></script>
   <script type="text/javascript" src="../vendor/alertifyjs/alertify.min.js"></script>
   <script type="text/javascript" src="../vendor/framewoks/vue.min.js"> </script>
-  <script type="text/javascript" src="../vendor/morris/morris.min.js"> </script>
+  <!--morris-->
+<!--  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script> -->
+  <script type="text/javascript" src="../vendor/framewoks/raphael-min.js"> </script>
+  <script type="text/javascript" src="../vendor/framewoks/morris.min.js"> </script>
+  <script type="text/javascript" src="../vendor/js/estadisticas.js"> </script>
+  <!--fin morris-->
+<!--
   <script type="text/javascript">
     var vuejs=new Vue({
       el:'#app',
@@ -182,21 +227,25 @@
             type:'POST',
             dataType: "json",
             data:{operacion:"totalpagado"},
-            console.log("afuera")
             success: function(response){
             //  inversion =response[0];
-              //vuejs.items2=response[0];
-              console.log("entre al resultado")
+              vuejs.items2=response[0];
               console.log(response);
             }
           });
         }
 
-
       }
     });
+
+    }
+
+
+    }
+
     vuejs.montoinvertido();
     vuejs.montopagado();
 
-  </script>
+  </script>  -->
+
 </html>
