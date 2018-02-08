@@ -10,6 +10,7 @@
     <title>SAM-<?php echo $pagina ?></title>
     <!--scripts y css generales-->
     <!--diseño-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="../vendor/framewoks/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../vendor/css/panel.css">
     <link rel="stylesheet" href="../vendor/css/forms.css">
@@ -215,6 +216,7 @@
                   numerooperacion:numerooperacion
                 },
                 success: function(response){
+                  console.log(response);
                   if (response) {
                     alertify.success('Registrado Pago a Inversionista');
                   }else {

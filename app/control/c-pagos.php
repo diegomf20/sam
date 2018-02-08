@@ -59,14 +59,15 @@
         $idinversion=$_REQUEST['idinversion'];
         $cuota=$_REQUEST['cuota'];
         $numerooperacion=$_REQUEST['numerooperacion'];
-
+         $operacion=new operaciones();
+        $fecha=$operacion->obtenerDiaFiltro();
         try {
           $sretiro=new sretiro();
           $sinversionista= new sinversionista();
           $sretiro->actualizarEstado($idinversion,$cuota,$numerooperacion);
           $sinversionista->actulizarCuotaretirada($idinversionista,$cuota);
           $bono=new sbonoafiliacion();
-          $bono->actualizarBonoAfiliacion($idinversionista);
+          $bono->actualizarBonoAfiliacion($idinversionista,$numerooperacion,$fecha);
           echo true;
         } catch (Exception $e) {
           echo $e->getMessage();

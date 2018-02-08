@@ -3,12 +3,18 @@ html,body{
   background-color: #eee;
   height: 100%;
   margin: 0;
+  overflow-x: hidden;
 }
 .centrar{
   text-align: center
 }
+.menu-scroll{
+  position: relative;
+  height: 100%;
+  overflow-y: scroll;
+}
 
-.panel{height: 100%;position: relative}
+.panel{height: 100%;position: relative;}
 .menu{
   color: #fff;
   background-image: url('../img/fondo.jpg');
@@ -23,7 +29,14 @@ html,body{
 .menu-visible{left: 0}
 .contenido{margin-left: 0;height: 100%;overflow-y: scroll;}
 .contenido-deslizar{transform: translate3d(260px,0,0);}
-#menu-boton{float: left;}
+#menu-boton{
+  float: left;
+  background-color: #FFF;
+  border:1px solid #000;
+  font-size: 32px;
+  border-radius: 5px;
+  margin-right: 5px;
+}
 
 @media (min-width: 992px){
   #menu-boton{display: none}
@@ -31,7 +44,7 @@ html,body{
   .contenido{margin-left: 260px;transform: translate3d(0,0,0)}
 }
 
-.menu::before{ content:""; position:absolute; top:0; left:0; width:100%; height:100%; opacity: 0.77; background:#000 }
+.menu::before{ content:"";display: block; position:absolute; top:0; left:0; width:100%; height:100%; opacity: 0.77; background:#000 }
 
 .menu-logo{ position: relative; padding-top: 10px; padding-bottom: 10px }
 .menu-logo .logo-momentaneo{ font-size: 40px; margin: 0; color:#efb810; text-align: center }
@@ -47,15 +60,13 @@ html,body{
   font-size: 16px;
 }
 .menu-opciones{
-  height: calc(100% - 290px);
+
   position: relative;
   padding-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
-  overflow-y: hidden;
 }
 .menu-opciones:hover{
-  overflow-y: scroll;
 }
 
 

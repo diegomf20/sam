@@ -2,6 +2,8 @@
 <html>
 <head>
 	<title>SAM</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
 	<link rel="stylesheet" href="vendor/framewoks/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 	<link rel="stylesheet" href="vendor/alertifyjs/css/alertify.min.css">

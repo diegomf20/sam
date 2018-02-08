@@ -8,6 +8,7 @@
   <head>
     <meta charset="utf-8">
     <title>SAM-<?php echo $pagina ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!--scripts y css generales-->
     <!--diseño-->
     <link rel="stylesheet" href="../vendor/framewoks/bootstrap/css/bootstrap.min.css">
@@ -19,6 +20,8 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css">
     <!--fin scripts y css generales-->
   </head>
   <body>
@@ -50,7 +53,7 @@
                       <table id="tabla" width="100%" class="display responsive nowrap" cellspacing="0" width="100%">
                         <thead>
                           <tr>
-                            <td>ID</td>
+                            <td></td>
                             <td>NOMBRE Y APELLIDOS</td>
                             <td>FECHA</td>
                             <td>AFILIACION</td>
@@ -62,7 +65,7 @@
                           <td>{{item.nombres}} {{item.apellidos}}</td>
                           <td>{{item.fecha}}</td>
                           <td>
-                            <button v-bind:id="item.idinversionista" v-on:click="insertarPago" v-if="item.fecha===null">
+                            <button name=pagar  v-bind:id="item.idinversionista"  v-on:click="insertarPago" v-if="item.fecha===null">
                               PAGAR
                             </button>
                             <div v-bind:id="item.idinversionista" v-else>
@@ -88,7 +91,11 @@
 
   </script>
   <script type="text/javascript" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="//cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js">
+
+  </script>
   <script type="text/javascript">
+
     var vuejs=new Vue({
       el:'#app',
       data:{
@@ -110,8 +117,8 @@
                 $('#tabla').DataTable({
                   responsive: true,
                   columnDefs: [
-                      { responsivePriority: 1, targets: 0 },
-                      { responsivePriority: 2, targets: -1 }
+                      { responsivePriority: 0, targets: 0 },
+                      { responsivePriority: 1, targets: 1 }
                   ]
                 });
               }, 10);
@@ -122,6 +129,7 @@
         },
 
         insertarPago:function(event){
+          alert('HOLA');
           alertify.confirm("SAM","Confirmar pago de afiliación.",
             function(){
               $.ajax({

@@ -30,16 +30,18 @@ class sbonoafiliacion
       throw $e;
     }
   }
-  function actualizarBonoAfiliacion($idinversionista)
+  function actualizarBonoAfiliacion($idinversionista,$numerooperacion,$fecha)
   {
     $db=new baseDatos();
 
     try {
       $conexion=$db->conectar();
-      $sql='UPDATE tb_bono_afiliacion SET estado=1
-            WHERE idinversionista=:idinversionista';
+      $sql='UPDATE tb_bono_afiliacion SET estado=1,numerooperacion=:numerooperacion
+            WHERE idinversionista=:idinversionista AND fecha=:fecha';
       $sentencia=$conexion->prepare($sql);
       $sentencia->bindParam(':idinversionista',$idinversionista);
+      $sentencia->bindParam(':numerooperacion',$numerooperacion);
+      $sentencia->bindParam(':fecha', $fecha);
       $sentencia->execute();
     } catch (PDOException $e) {
       throw $e;

@@ -9,6 +9,7 @@
     <meta charset="utf-8">
     <title>SAM-<?php echo $pagina ?></title>
     <!--scripts y css generales-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!--diseño-->
     <link rel="stylesheet" href="../vendor/framewoks/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../vendor/css/panel.css">
@@ -157,10 +158,5 @@
       }
     });
     vuejs.actualizar();
-
-
-
-
-
   </script>
 </html>
