@@ -109,7 +109,7 @@
                                                  </select>
                                              </div>
                                              <div class="col-xs-4 col-sm-12 form-group">
-                                                 <input class="form-control" type="number" name="txtanio" id="txtanio" min="2018" value="">
+                                                 <input class="form-control" type="number" name="txtanio" id="txtanio" min="2017" value="">
                                              </div>
                                              <div class="col-xs-8 col-sm-12 form-group">
                                                  <button class="form-control btn-primar" onclick="datos();" >Actualizar</button>

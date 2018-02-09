@@ -8,17 +8,13 @@ $(document).ready(
 var morrisMes= Morris.Area({
     element: 'morris-area-mes',
     behaveLikeLine: true,
-    data: [
-        {anio: '10', inversion: 324, pagado: 4546},
-        {anio: '11', inversion: 22, pagado: 43},
-        {anio: '12', inversion: 2453, pagado: 454},
-    ],
-    xkey: 'anio',
-    ykeys: ['inversion','pagado'],
-    labels: ['inversion','pagado'],
+    data: [],
+    xkey: 'mes',
+    ykeys: ['inversion','pagado'],//, 'compras'
+    labels: ['inversion','pagado'],//, 'compras'
     resize:true,
-    lineColors: ['#009688','#f0ad4e'],
-    ymax: 'auto[20000]',
+    lineColors: ['#009688','#f0ad4e'],//,'#286090'
+    ymax: 'auto[2500]',
     ymin:'auto[0]',
     xLabels:'month',
     xLabelFormat: function(date){
@@ -41,75 +37,85 @@ var morrisMes= Morris.Area({
 var morrisAnio= Morris.Area({
     element: 'morris-area-anio',
     behaveLikeLine: true,
-    data: [],
+    data: [
+    /*  {anio: '2010 ', inversion: 334, pagado: 227},
+      {anio: '2011 ', inversion: 356, pagado: 223},
+      {anio: '2012 ', inversion: 332, pagado: 56}, */
+
+
+    ],
     xkey: 'anio',
     ykeys: ['inversion','pagado'],//, 'compras'
     labels: ['inversion','pagado'],//, 'compras'
     resize:true,
     lineColors: ['#009688','#f0ad4e'],//,'#286090'
-    ymax: 'auto[120000]',
+    ymax: 'auto[12000]',
     ymin:'auto[0]',
-    xLabels:'year'
+    //xLabels:'year'
 });
+
 
 function datos(){
   $.ajax({
     url: '../app/control/c-estadisticas.php',
     type:'POST',
-    //dataType: "json",
-  //  data:{operacion:"graficamensual", anio:$("#txtanio").val()},
-    data:{operacion:"graficamensual", anio:2017},
+    dataType: "json",
+    data:{operacion:"graficamensual", anio:$("#txtanio").val()},
 
-
-    success: function(response){
-    //  inversion =response[0];
-      //vuejs.items2=response[0];
-        
-      console.log("adentro");
-      console.log(response);
+    success: function(resultado){
+    console.log(resultado);
+    morrisMes.setData(resultado);
     }
   });
-
-
 }
 
-/*function graficar(){
-if ($('#cbperiodo').val()==0) {
-
-    $('#txtanio').prop('disabled',false);
-    $('#morris-area-mes').prop('hidden',false);
-    $('#morris-area-anio').prop('hidden',true);
-
-    var data=new Array();
-
-    $.ajax({
-      url:'app/control/c-estadisticas.php',
-      type:'POST',
-      //dataType: "json",
-      data:{operacion:'graficamensual' },
-      success: function(resultado){
-
-        console.log(resultado);
-        //morrisMes.setData(resultado);
-      }
-  });
-
-}else{
-        $('#txtanio').prop('disabled',true);
-        $('#morris-area-mes').prop('hidden',true);
-        $('#morris-area-anio').prop('hidden',false);
-        var data2=new Array();
-        $.ajax({
-
-            url: 'app/control/c-estadisticas.php',
-            type: 'POST',
-            data:{operacion:'graficaanual' },
-            success: function(resultado){
-              console.log(resultado);
-                morrisAnio.setData(data2);
-            }
-        });
+function datos2(){
+  $.ajax({
+    url: '../app/control/c-estadisticas.php',
+    type:'POST',
+    dataType: "json",
+    data:{operacion:'grafica'},
+    success: function(response){
+      console.log("adentro");
+      console.log(response);
+      morrisAnio.setData(response);
     }
+  });
+}
 
+function graficar(){
+  if ($('#cbperiodo').val()==0) {
 
-}*/
+      $('#txtanio').prop('disabled',false);
+      $('#morris-area-mes').prop('hidden',false);
+      $('#morris-area-anio').prop('hidden',true);
+
+      $.ajax({
+        url: '../app/control/c-estadisticas.php',
+        type:'POST',
+        dataType: "json",
+        data:{operacion:"graficamensual", anio:$("#txtanio").val()},
+        success: function(response){
+        console.log(response);
+        morrisMes.setData(response);
+        }
+      });
+
+  }else{
+          $('#txtanio').prop('disabled',true);
+          $('#morris-area-mes').prop('hidden',true);
+          $('#morris-area-anio').prop('hidden',false);
+
+          $.ajax({
+            url: '../app/control/c-estadisticas.php',
+            type:'POST',
+            dataType: "json",
+            data:{operacion:'grafica'},
+            success: function(response){
+              console.log("adentro");
+              console.log(response);
+              morrisAnio.setData(response);
+            }
+          });
+      }
+}

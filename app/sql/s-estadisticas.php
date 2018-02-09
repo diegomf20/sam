@@ -65,7 +65,7 @@
 
     function pagadomensual($anio){
         $db = new baseDatos();
-        
+
 
         try {
           $conexion= $db->conectar();

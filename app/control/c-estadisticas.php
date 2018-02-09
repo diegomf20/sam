@@ -5,7 +5,6 @@ if (isset($_REQUEST['operacion'])) {
   include '../db.php';
   $sestadisticas = new sestadisticas();
   $operacion=$_REQUEST['operacion'];
-  $anio=$_REQUEST['anio'];
   switch ($operacion) {
 
     case 'totalinvertido':
@@ -28,45 +27,86 @@ if (isset($_REQUEST['operacion'])) {
 
     case 'graficamensual':
       try {
+        $anio=$_REQUEST['anio'];
         $invertidomensual= $sestadisticas->invertidomensual($anio);
         $pagadomensual = $sestadisticas->pagadomensual($anio);
 
         $datos=[];
-        for ($i=1; $i <=12 ; $i++) {
-          $dato = ['mes'=>$i, 'inversion'=>0, 'pagado'=>0];
-          array_push($datos,$dato);
+        for ($i=0; $i <12 ; $i++) {
+          $dato = ['mes'=>(string)($i+1), 'inversion'=>0, 'pagado'=>0];
+        //  array_push($datos,$dato);
+         $datos[$i]=$dato;
         }
 
 
-        for ($i=1; $i <=12 ; $i++) {
-          
+        for ($i=0; $i <12 ; $i++) {
            for ($j=0; $j <count($invertidomensual); $j++) {
              $invertido=$invertidomensual[$j];
-            // echo $i."-".$invertido['mes']." ";
-             if ($i==$invertido['mes']) {
-              // echo $invertido['mes']." holi";
-                 $dato = ['mes'=>$invertido['mes'], 'inversion'=>$invertido['total'], 'pagado'=>0];
-                 $datos[$i]=$dato;
+             if (($i+1)==$invertido['mes']) {
+                 $dato = ['mes'=>(string)$invertido['mes'], 'inversion'=>(int)$invertido['total'], 'pagado'=>0];
+                 $datos[($i)]=$dato;
                  break;
              }
-
            }
+        }
 
-          //  $datos=['mes'=>$dato['mes'], 'inversion'=>$dato['inversion'], 'pagado' =>$dato['pagado']];
-         }
+
+        for ($i=0; $i <12 ; $i++) {
+          $fila=$datos[$i];
+          //var_dump($fila);
+          for ($j=0; $j < count($pagadomensual) ; $j++) {
+            $pagado=$pagadomensual[$j];
+            //var_dump($pagado);
+            if ($fila['mes']==$pagado['mes']) {
+              $dato = ['mes'=>(string)$fila['mes'], 'inversion'=>(int)$fila['inversion'], 'pagado'=>(int)$pagado['total']];
+              $datos[($i)]=$dato;
+              break;
+            }
+          }
+        }
+
+        for ($i=0; $i <12 ; $i++) {
+          for ($j=0; $j <count($datos); $j++) {
+            $fila=$datos[$i];
+              if ($fila['mes']==($i+1)) {
+                $dato = ['mes'=>(string)($anio."-".$fila['mes']), 'inversion'=>(int)$fila['inversion'], 'pagado'=>(int)$fila['pagado']];
+                $datos[($i)]=$dato;
+              }
+          }
+        }
 
         echo json_encode($datos);
       } catch (Exception $e) {
         echo $e->getMessage();
       }
+
       break;
 
-    case 'graficaanual':
+    case 'grafica':
+    echo "aqui";
       try {
         $invertidoanual= $sestadisticas->inversionAnio();
         $pagadoanual = $sestadisticas->pagadoAnio();
+      //  var_dump($pagadoanual);
       //  $invertidoanual[0]['pagado']=$pagadoanual[0]['total'];
-        echo json_encode($invertidoanual);
+
+        for ($i=0; $i < count($invertidoanual) ; $i++) {
+          $fila = $invertidoanual[$i];
+          for ($j=0; $j < count($pagadoanual); $j++) {
+            $pago = $pagadoanual[$j];
+            if ($fila['anio']==$pago['anio']) {
+                $dato=['anio'=>$fila['anio'], 'inversion'=>(int)$fila['total'], 'pagado'=> (int)$pago['total'] ];
+                $datos2[$i]=$dato;
+                break;
+            }else {
+                $dato=['anio'=>$fila['anio'], 'inversion'=>(int)$fila['total'], 'pagado'=> 0 ];
+                $datos2[$i]=$dato;
+            }
+          }
+        }
+        var_dump($datos2);
+
+        echo json_encode($datos2);
       } catch (\Exception $e) {
           echo $e->getMessage();
       }
