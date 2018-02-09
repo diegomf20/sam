@@ -23,6 +23,41 @@
       .table{
         font-size: 12px;
       }
+      .btn-registrar{
+        padding: 5px;
+        font-size: 14px;
+        color: #fff;
+        background-color: #2489c5;
+        border:1px solid #111;
+      }
+      @media screen and (max-width: 700px) {
+        .tabla-responsiva th,.tabla-responsiva td,.tabla-responsiva tr {
+          display: block;
+        }
+        .tabla-responsiva tr:first-child { display: none; }
+        .tabla-responsiva td{
+          position: relative;
+        }
+        .tabla-responsiva tr{
+          border: 1px solid #dee2e6;
+        }
+        .tabla-responsiva td{
+          border: none;
+          padding-left: 120px;
+        }
+        .tabla-responsiva td:before {
+            color: #111;
+            content: '';
+            display: block;
+            left: 15px;
+            position: absolute;
+            font-weight: 700;
+        }
+        .tabla-responsiva td:nth-child(1):before { content: 'Nombre:'; }
+        .tabla-responsiva td:nth-child(2):before { content: 'Descripción:'; }
+        .tabla-responsiva td:nth-child(3):before { content: 'Monto:'; }
+        .tabla-responsiva td:nth-child(4):before { content: 'Estado:'; }
+      }
     </style>
   </head>
   <body>
@@ -88,8 +123,8 @@
                 <div class="body">
                   <div class="row">
                     <div class="col-sm-7">
-                      <h5 class="centrar">Procesando</h5>
-                      <table class="table table-bordered table-striped">
+                      <h5 class="centrar">PROCESANDO</h5>
+                      <table class="table tabla-responsiva table-bordered table-striped">
 
                         <tr>
                           <th>NOMBRE Y APELLIDOS</th>
@@ -100,10 +135,10 @@
                         <tr v-for="item in items">
                           <td>{{item.nombres}} {{item.apellidos}}</td>
                           <td>{{item.descripcion}}</td>
-                          <td>{{item.monto}}</td>
+                          <td>$ {{item.monto}}</td>
                           <td>
-                            <button v-bind:id="item.idinversionista+'-'+item.idinversion+'-'+item.cuota" v-on:click="actualizarEstado" v-if="item.monto!=null">
-                              Pagar
+                            <button v-bind:id="item.idinversionista+'-'+item.idinversion+'-'+item.cuota" v-on:click="actualizarEstado" v-if="item.monto!=null" class=btn-registrar>
+                              <i class="fa fa-save"></i> Pagar
                             </button>
                           </td>
                         </tr>
@@ -114,7 +149,7 @@
                       <table class="table table-bordered table-striped">
                         <tr>
                           <th>NOMBRE Y APELLIDOS</th>
-                          <th>NUMERO DE OPERACION</th>
+                          <th>OPERACION</th>
                         </tr>
                         <tr v-for="item in items2">
                           <td>{{item.nombres}} {{item.apellidos}}</td>

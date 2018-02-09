@@ -6,21 +6,8 @@
 ?>
 <html>
   <head>
-    <meta charset="utf-8">
     <title>SAM-<?php echo $pagina ?></title>
-    <!--scripts y css generales-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <!--diseño-->
-    <link rel="stylesheet" href="../vendor/framewoks/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../vendor/css/panel.css">
-    <link rel="stylesheet" href="../vendor/css/forms.css">
-    <link rel="stylesheet" href="../vendor/alertifyjs/css/alertify.min.css">
-    <!--fuentes-->
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,700,300">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css">
-    <!--fin scripts y css generales-->
+    <?php include 'sectores/head.php'; ?>
   </head>
   <body>
     <div id="app" class="panel">
@@ -70,7 +57,7 @@
                             <div v-bind:id="item.idinversionista" v-if="item.tipo==='1'">
                               INICIAL
                             </div>
-                            <button v-bind:id="item.idinversionista" v-on:click="ingresarPaquete" type="button" name="button" v-if="item.tipo===null">
+                            <button v-bind:id="item.idinversionista" v-on:click="ingresarPaquete" type="button" name="button" v-if="item.tipo===null" class="btn-registrar">
                               INACTIVO
                             </button>
                           </td>
@@ -86,77 +73,8 @@
       </div>
     </div>
   </body>
-  <script type="text/javascript" src="../vendor/framewoks/jquery-3.3.1.min.js"></script>
-  <script type="text/javascript" src="../vendor/js/panel.js"></script>
-  <script type="text/javascript" src="../vendor/alertifyjs/alertify.min.js"></script>
-  <script type="text/javascript" src="../vendor/framewoks/vue.min.js">
+  <?php include 'sectores/script.php'; ?>
+  <script type="text/javascript" src="../vendor/js/m-inversion-inicial.js">
 
-  </script>
-  <script type="text/javascript" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-  <script type="text/javascript">
-    var vuejs=new Vue({
-      el:'#app',
-      data:{
-        idinversionista:0,
-        paquete:0,
-        numerooperacion:'',
-        items:[]
-      },
-      methods: {
-        actualizar: function (event) {
-          $.ajax({
-            url: '../app/control/c-inversionista.php',
-            type:'POST',
-            dataType: "json",
-            data:{operacion:"listarInversionistas"},
-            success: function(response){
-              vuejs.items=response;
-              console.log(response);
-            },
-            complete: function(xhr, status){
-              setTimeout(function () {
-                $('#tabla').DataTable({
-                  responsive:true,
-                  columnDefs: [
-                      { responsivePriority: 1, targets: 0 },
-                      { responsivePriority: 2, targets: -1 }
-                  ]
-                });
-              }, 10);
-
-            }
-          });
-        },
-
-        ingresarPaquete:function(event){
-          alertify.prompt("SAM","Ingresar Paquete.", "0.00",
-            function(evt, value ){vuejs.paquete=value;vuejs.idinversionista=event.target.id;
-              setTimeout(function () {
-                alertify.prompt("Ingresar Numero de transaccion.", "",
-                  function(evt, value ){vuejs.numerooperacion=value;vuejs.insertar();},
-                  function(){alertify.error('Cancelado');});
-              }, 200);
-            },
-            function(){alertify.error('Cancelado');});
-        },
-
-        insertar: function(event){
-          $.ajax({
-            url: '../app/control/c-inversion.php',
-            type:'POST',
-            data:{operacion:"registrarInversion",idinversionista:vuejs.idinversionista,paquete:vuejs.paquete,numerooperacion:vuejs.numerooperacion},
-            success: function(response){
-              if (response) {
-                alertify.success('Registrado inversion inicial');
-              }else {
-                alertify.error(response);
-              }
-              vuejs.actualizar();
-            }
-          });
-        }
-      }
-    });
-    vuejs.actualizar();
   </script>
 </html>

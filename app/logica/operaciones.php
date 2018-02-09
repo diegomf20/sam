@@ -92,8 +92,13 @@ class operaciones
        for ($i=0; $i < count($paquetes); $i++) {
          $paquete=$paquetes[$i];
          if ($paquete['nivel']==1) {
-           $descripcion="Bono de afiliacion nivel ".$paquete['nivel']." (".$paquete['nombres']. " " . $paquete['apellidos']." )";
-           $comision=$paquete['paquete']*0.08;
+           if ($paquete['tipo']==1) {
+             $descripcion="Bono de afiliacion nivel ".$paquete['nivel']." (".$paquete['nombres']. " " . $paquete['apellidos']." )";
+             $comision=$paquete['paquete']*0.08;
+           }elseif($paquete['tipo']==2){
+             $descripcion="Bono de afiliacion por Renovación nivel ".$paquete['nivel']." (".$paquete['nombres']. " " . $paquete['apellidos']." )";
+             $comision=$paquete['paquete']*0.04;
+           }
            $comisiondescripcion=["descripcion"=>$descripcion,"comision"=>$comision];
            array_push($listacomisiondescripcion,$comisiondescripcion);
          }
@@ -102,8 +107,13 @@ class operaciones
        for ($i=0; $i < count($paquetes); $i++) {
          $paquete=$paquetes[$i];
          if ($paquete['nivel']==1) {
-           $descripcion="Bono de afiliacion nivel ".$paquete['nivel']." (".$paquete['nombres']. " " . $paquete['apellidos']." )";
-           $comision=$paquete['paquete']*0.1;
+           if ($paquete['tipo']==1) {
+             $descripcion="Bono de afiliacion nivel ".$paquete['nivel']." (".$paquete['nombres']. " " . $paquete['apellidos']." )";
+             $comision=$paquete['paquete']*0.1;
+           }elseif($paquete['tipo']==2){
+             $descripcion="Bono de afiliacion por Renovación nivel ".$paquete['nivel']." (".$paquete['nombres']. " " . $paquete['apellidos']." )";
+             $comision=$paquete['paquete']*0.05;
+           }
            $comisiondescripcion=["descripcion"=>$descripcion,"comision"=>$comision];
            array_push($listacomisiondescripcion,$comisiondescripcion);
          }
@@ -112,13 +122,23 @@ class operaciones
        for ($i=0; $i < count($paquetes); $i++) {
          $paquete=$paquetes[$i];
          if ($paquete['nivel']==1) {
-           $descripcion="Bono de afiliacion nivel ".$paquete['nivel']." (".$paquete['nombres']. " " . $paquete['apellidos']." )";
-           $comision=$paquete['paquete']*0.1;
+           if ($paquete['tipo']==1) {
+             $descripcion="Bono de afiliacion nivel ".$paquete['nivel']." (".$paquete['nombres']. " " . $paquete['apellidos']." )";
+             $comision=$paquete['paquete']*0.1;
+           }elseif($paquete['tipo']==2){
+             $descripcion="Bono de afiliacion por Renovación nivel ".$paquete['nivel']." (".$paquete['nombres']. " " . $paquete['apellidos']." )";
+             $comision=$paquete['paquete']*0.05;
+           }
            $comisiondescripcion=["descripcion"=>$descripcion,"comision"=>$comision];
            array_push($listacomisiondescripcion,$comisiondescripcion);
          }elseif ($paquete['nivel']==2) {
-           $descripcion="Bono de afiliacion nivel ".$paquete['nivel']." (".$paquete['nombres']. " " . $paquete['apellidos']." )";
-           $comision=$paquete['paquete']*0.05;
+           if ($paquete['tipo']==1) {
+             $descripcion="Bono de afiliacion nivel ".$paquete['nivel']." (".$paquete['nombres']. " " . $paquete['apellidos']." )";
+             $comision=$paquete['paquete']*0.05;
+           }elseif($paquete['tipo']==2){
+             $descripcion="Bono de afiliacion por Renovación nivel ".$paquete['nivel']." (".$paquete['nombres']. " " . $paquete['apellidos']." )";
+             $comision=$paquete['paquete']*0.03;
+           }
            $comisiondescripcion=["descripcion"=>$descripcion,"comision"=>$comision];
            array_push($listacomisiondescripcion,$comisiondescripcion);
          }
@@ -127,18 +147,33 @@ class operaciones
        for ($i=0; $i < count($paquetes); $i++) {
          $paquete=$paquetes[$i];
          if ($paquete['nivel']==1) {
-           $descripcion="Bono de afiliacion nivel ".$paquete['nivel']." (".$paquete['nombres']. " " . $paquete['apellidos']." )";
-           $comision=$paquete['paquete']*0.1;
+           if ($paquete['tipo']==1) {
+             $descripcion="Bono de afiliacion nivel ".$paquete['nivel']." (".$paquete['nombres']. " " . $paquete['apellidos']." )";
+             $comision=$paquete['paquete']*0.1;
+           }elseif($paquete['tipo']==2){
+             $descripcion="Bono de afiliacion por Renovación nivel ".$paquete['nivel']." (".$paquete['nombres']. " " . $paquete['apellidos']." )";
+             $comision=$paquete['paquete']*0.05;
+           }
            $comisiondescripcion=["descripcion"=>$descripcion,"comision"=>$comision];
            array_push($listacomisiondescripcion,$comisiondescripcion);
          }elseif ($paquete['nivel']==2) {
-           $descripcion="Bono de afiliacion nivel ".$paquete['nivel']." (".$paquete['nombres']. " " . $paquete['apellidos']." )";
-           $comision=$paquete['paquete']*0.05;
+           if ($paquete['tipo']==1) {
+             $descripcion="Bono de afiliacion nivel ".$paquete['nivel']." (".$paquete['nombres']. " " . $paquete['apellidos']." )";
+             $comision=$paquete['paquete']*0.05;
+           }elseif($paquete['tipo']==2){
+             $descripcion="Bono de afiliacion por Renovación nivel ".$paquete['nivel']." (".$paquete['nombres']. " " . $paquete['apellidos']." )";
+             $comision=$paquete['paquete']*0.03;
+           }
            $comisiondescripcion=["descripcion"=>$descripcion,"comision"=>$comision];
            array_push($listacomisiondescripcion,$comisiondescripcion);
          }elseif ($paquete['nivel']==3) {
-           $descripcion="Bono de afiliacion nivel ".$paquete['nivel']." (".$paquete['nombres']. " " . $paquete['apellidos']." )";
-           $comision=$paquete['paquete']*0.03;
+           if ($paquete['tipo']==1) {
+             $descripcion="Bono de afiliacion nivel ".$paquete['nivel']." (".$paquete['nombres']. " " . $paquete['apellidos']." )";
+             $comision=$paquete['paquete']*0.03;
+           }elseif($paquete['tipo']==2){
+             $descripcion="Bono de afiliacion por Renovación nivel ".$paquete['nivel']." (".$paquete['nombres']. " " . $paquete['apellidos']." )";
+             $comision=$paquete['paquete']*0.01;
+           }
            $comisiondescripcion=["descripcion"=>$descripcion,"comision"=>$comision];
            array_push($listacomisiondescripcion,$comisiondescripcion);
          }

@@ -6,23 +6,8 @@
 ?>
 <html>
   <head>
-    <meta charset="utf-8">
     <title>SAM-<?php echo $pagina ?></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <!--scripts y css generales-->
-    <!--diseño-->
-    <link rel="stylesheet" href="../vendor/framewoks/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../vendor/css/panel.css">
-    <link rel="stylesheet" href="../vendor/css/forms.css">
-    <link rel="stylesheet" href="../vendor/alertifyjs/css/alertify.min.css">
-    <!--fuentes-->
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,700,300">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="//cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css">
-    <!--fin scripts y css generales-->
+    <?php include 'sectores/head.php'; ?>
   </head>
   <body>
     <div id="app" class="panel">
@@ -50,7 +35,7 @@
                 <div class="body">
                   <div class="row">
                     <div class="col-sm-8">
-                      <table id="tabla" width="100%" class="display responsive nowrap" cellspacing="0" width="100%">
+                      <table id="tabla" width="100%" class="" >
                         <thead>
                           <tr>
                             <td></td>
@@ -65,7 +50,7 @@
                           <td>{{item.nombres}} {{item.apellidos}}</td>
                           <td>{{item.fecha}}</td>
                           <td>
-                            <button name=pagar  v-bind:id="item.idinversionista"  v-on:click="insertarPago" v-if="item.fecha===null">
+                            <button name=pagar  v-bind:id="item.idinversionista"  v-on:click="insertarPago" v-if="item.fecha===null" class="btn-registrar">
                               PAGAR
                             </button>
                             <div v-bind:id="item.idinversionista" v-else>
@@ -84,78 +69,6 @@
       </div>
     </div>
   </body>
-  <script type="text/javascript" src="../vendor/framewoks/jquery-3.3.1.min.js"></script>
-  <script type="text/javascript" src="../vendor/js/panel.js"></script>
-  <script type="text/javascript" src="../vendor/alertifyjs/alertify.min.js"></script>
-  <script type="text/javascript" src="../vendor/framewoks/vue.min.js">
-
-  </script>
-  <script type="text/javascript" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-  <script type="text/javascript" src="//cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js">
-
-  </script>
-  <script type="text/javascript">
-
-    var vuejs=new Vue({
-      el:'#app',
-      data:{
-        idinversionista:0,
-        paquete:0,
-        numerooperacion:'',
-        items:[]
-      },
-      methods: {
-        actualizar: function (event) {
-          $.ajax({
-            url: '../app/control/c-consultas.php',
-            type:'POST',
-            dataType: "json",
-            data:{operacion:"consultaPagoInicial"},
-            success: function(response){
-              vuejs.items=response;
-              setTimeout(function () {
-                $('#tabla').DataTable({
-                  responsive: true,
-                  columnDefs: [
-                      { responsivePriority: 0, targets: 0 },
-                      { responsivePriority: 1, targets: 1 }
-                  ]
-                });
-              }, 10);
-
-              console.log(response);
-            }
-          });
-        },
-
-        insertarPago:function(event){
-          alert('HOLA');
-          alertify.confirm("SAM","Confirmar pago de afiliación.",
-            function(){
-              $.ajax({
-                url: '../app/control/c-inicial.php',
-                type:'POST',
-                data:{operacion:"insertarPagoInicial",idinversionista:event.target.id},
-                success: function(response){
-                  if (response) {
-                    alertify.success('Registrado pago inicial');
-                  }else {
-                    alertify.error(response);
-                  }
-                  vuejs.actualizar();
-                }
-              });
-            },
-            function(){
-              alertify.error('Cancel');
-            });
-        }
-      }
-
-    });
-    vuejs.actualizar();
-
-
-
-  </script>
+  <?php include 'sectores/script.php'; ?>
+  <script type="text/javascript" src="../vendor/js/m-pago-inicial.js"></script>
 </html>
