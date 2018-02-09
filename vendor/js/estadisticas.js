@@ -73,7 +73,7 @@ function datos2(){
   $.ajax({
     url: '../app/control/c-estadisticas.php',
     type:'POST',
-    dataType: "json",
+    //dataType: "json",
     data:{operacion:'grafica'},
     success: function(response){
       console.log("adentro");

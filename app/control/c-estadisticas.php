@@ -83,6 +83,8 @@ if (isset($_REQUEST['operacion'])) {
       break;
 
     case 'grafica':
+
+    $datos2=[];
     echo "aqui";
       try {
         $invertidoanual= $sestadisticas->inversionAnio();
