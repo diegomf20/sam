@@ -1,4 +1,5 @@
 <div class="menu">
+  <div class="menu-scroll">
   <div class="menu-logo">
     <h1 class="logo-momentaneo">SAM</h1>
   </div>
@@ -16,25 +17,25 @@
     <ul>
       <li class=<?php if($pagina=="PAGO INICIAL") echo "activo";?>>
         <a href="pago-inicial.php">
-          <i class="fa fa-ticket"></i>
+          <i class="fa fa-flag-checkered"></i>
           <p>PAGO INICIAL</p>
         </a>
       </li>
       <li class=<?php if($pagina=="INVERSION INICIAL") echo "activo";?>>
         <a href="inversion-inicial.php">
-          <i class="fa fa-bar-chart"></i>
+          <i class="fa fa-money"></i>
           <p>INVERSION INICIAL</p>
         </a>
       </li>
       <li class=<?php if($pagina=="INVERSION RENOVACIÓN") echo "activo";?>>
         <a href="inversion-renovacion.php">
-          <i class="fa fa-bar-chart"></i>
+          <i class="fa fa-history"></i>
           <p>INVERSION RENOVACIÓN</p>
         </a>
       </li>
       <li class=<?php if($pagina=="DEPOSITOS PENDIENTES") echo "activo";?>>
         <a href="depositos-pendientes.php">
-          <i class="fa fa-bar-chart"></i>
+          <i class="fa fa-copy"></i>
           <p>DEPOSITOS PENDIENTES</p>
         </a>
       </li>
@@ -46,4 +47,5 @@
       </li>
     </ul>
   </div>
+</div>
 </div>

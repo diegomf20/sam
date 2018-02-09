@@ -177,3 +177,11 @@ h2,h3,h4{margin: 0}
 .rango-master{
   background-color: #fb404b
 }
+
+.btn-registrar{
+  padding: 5px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #2489c5;
+  border:1px solid #111;
+}

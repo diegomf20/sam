@@ -48,7 +48,7 @@ class sconsultas
                 WHERE `fechaasignada`=:fecha and estado=0)
             UNION
               SELECT 0,0,descripcion, monto, idinversionista, null,null from tb_bono_afiliacion
-              where fecha=:fecha AND estado=0) as tb 
+              where fecha=:fecha AND estado=0) as tb
             GROUP by tb.idinversionista';
       $sentencia=$conexion->prepare($sql);
       $sentencia->bindParam(':fecha',$fecha);
@@ -110,7 +110,7 @@ class sconsultas
     $db=new baseDatos();
     try {
       $conexion=$db->conectar();
-      $sql='SELECT paquete,nivel,tb4.nombres,tb4.apellidos
+      $sql='SELECT paquete,nivel,tb4.nombres,tb4.apellidos,tb1.tipo
             from tb_inversion as tb1 inner join tb_afiliacion as tb2 on tb1.idinversionista = tb2.idafiliado
             inner join tb_inversionista as tb3 on tb2.idinversionista=tb3.idinversionista
             inner join tb_inversionista as tb4 on tb4.idinversionista=tb2.idafiliado
