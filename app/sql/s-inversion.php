@@ -16,19 +16,23 @@ class sinversion
       $sentencia->bindParam(':tipo',$tipo);
       $sentencia->bindParam(':numerooperacion',$numerooperacion);
       $sentencia->bindParam(':fecha',$fecha);
+      //inserta la inversion
       $sentencia->execute();
+      //opctiene el id de esa inversion
       $id=$conexion->lastInsertId();
-      if ($tipo==1) {//inicial
-        $this->insertarRetiros($id,6);
-      }else {//renovacion
-        $this->insertarRetiros($id,3);
-      }
+      //inserta retiros con el Id anterior
       $sinversionista=new sinversionista();
-      $sinversionista->cambiarDiaPago($idinversionista);
-      $safiliado=new safiliado();
-      $safiliado->cambiarEstado($idinversionista);
+      if ($tipo==1) {
+        $this->insertarRetiros($id,6);
+        $sinversionista->cambiarDiaPago($idinversionista);
+        $safiliado=new safiliado();
+        $safiliado->cambiarEstado($idinversionista);
+      }elseif($tipo==2){
+        $inversionista=$sinversionista->buscarClienteId($idinversionista);
+        $diapago=$inversionista['diapago'];
+        $this->insertarRetiros2($id,6,$diapago);
+      }
 
-      
     } catch (PDOException $e) {
       echo 'insertar inversion:'.$e->getMessage();
     }
@@ -59,6 +63,33 @@ class sinversion
       echo $e->getMessage();
     }
   }
+
+  function insertarRetiros2($idinversion,$numerocuotas,$diapago){
+    //variables
+    $operaciones=new operaciones();
+    $db=new baseDatos();
+    try {
+      $conexion=$db->conectar();
+      $sql='INSERT INTO tb_retiros(idinversion,cuota,fechaasignada) VALUES(:idinversion,:cuota,:fechaasignada)';
+      $sentencia=$conexion->prepare($sql);
+      $sentencia->bindParam(':idinversion',$idinversion);
+      $sentencia->bindParam(':cuota',$cuota);
+      $sentencia->bindParam(':fechaasignada',$fechaasignada);
+      /**
+       * el $idinversion sigue siendo el mismo para los execute query
+       *$cuota se le asigna $i +1
+       *$fechaasignada se le suma la cuota para cal
+       */
+      for ($i=0; $i <$numerocuotas ; $i++) {
+        $cuota=$i+1;
+        $fechaasignada=$operaciones->sumarMesAsignadoDiaPago($cuota,$diapago);
+        $sentencia->execute();
+      }
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+    }
+  }
+
   function obtenerPaquete($idinversionista){
     $db=new baseDatos();
     try {
