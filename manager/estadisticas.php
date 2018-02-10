@@ -153,8 +153,7 @@
             url: '../app/control/c-estadisticas.php',
             type:'POST',
             dataType: "json",
-            data:{operacion:"totalpagado"},
-            console.log("afuera")
+            data:{operacion:"totalpagado"},            
             success: function(response){
             //  inversion =response[0];
               vuejs.items2=response[0];
