@@ -109,7 +109,7 @@
         try {
           $conexion= $db->conectar();
 
-          $sql = 'SELECT year(fechaasignada) as anio, SUM(monto)+SUM(bono) as total	from tb_retiros
+          $sql = 'SELECT year(fechaasignada) as anio, SUM(monto)+ifnull(SUM(bono),0.00) as total	from tb_retiros
                   where estado = 1 group by year(fechaasignada) order by year(fechaasignada) asc';
           $sentencia = $conexion->prepare($sql);
           $sentencia-> execute();
