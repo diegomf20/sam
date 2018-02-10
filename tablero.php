@@ -246,6 +246,16 @@
   <script type="text/javascript" src="vendor/js/tablero.js"></script>
 
   <script type="text/javascript">
+    <?php
+      if($inversionista['banco']==null){
+    ?>
+
+      alertify.alert("SAM","Faltan datos bancarios.", function(){
+          alertify.message('OK');
+        });
+    <?php
+      }
+     ?>
     function  abrir(){
       $('#btn1').click();
     }

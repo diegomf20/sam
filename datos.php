@@ -28,8 +28,8 @@
                 </div>
                 <div class="body">
                   <div class="row">
-                    <label class="col-xl-2 col-sm-2 control">E-mail:</label>
-                    <div class="col-xl-3 col-sm-5">
+                    <label class="col-xl-1 col-sm-2 control">E-mail:</label>
+                    <div class="col-xl-4 col-sm-5">
     										<input id="correo" type="text" disabled class="control" value="<?php echo $inversionista['email']?>" placeholder="Ingresar E-mail">
     								</div>
                     <label class="col-xl-2 col-sm-2 control">Contraseña:</label>
@@ -76,7 +76,7 @@
     								<div class="col-xl-8 col-sm-10">
     										<input id="ciudad" type="text" class="control" value="<?php echo $inversionista['ciudad']?>" placeholder="Ciudad/Distrito/Provincia/Departamento">
     								</div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                       <button id="guardar2" class="control boton-default">GUARDAR</button>
                     </div>
                   </div>
@@ -92,15 +92,15 @@
                 </div>
                 <div class="body">
                   <div class="row">
-                    <label class="col-sm-2 control">Nombre del Banco:</label>
-                    <div class="col-sm-3">
+                    <label class="col-sm-2 col-xl-1 control">Banco:</label>
+                    <div class="col-sm-10 col-xl-4">
     										<input id="banco" type="text" class="control" value="<?php echo $inversionista['banco']?>" placeholder="Ingrese Nombre del Banco">
     								</div>
-                    <label class="col-sm-2 control">Número de Cuenta:</label>
-                    <div class="col-sm-2">
+                    <label class="col-sm-2 col-xl-1 control">Cuenta:</label>
+                    <div class="col-sm-10 col-xl-3">
     										<input id="numerocuenta" type="text" class="control" value="<?php echo $inversionista['numerocuenta']?>" placeholder="Ingrese N° de cuenta">
     								</div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4 col-xl-3">
                       <button id="guardar3" class="control boton-default">GUARDAR</button>
                     </div>
                   </div>

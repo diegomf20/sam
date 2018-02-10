@@ -46,11 +46,11 @@
        $sql='SELECT * from
               ((SELECT cuota,tb2.numerooperacion,fechaasignada,descripcion, monto,estado
                 FROM tb_inversion as tb1 INNER JOIN tb_retiros as tb2 ON tb1.idinversion=tb2.idinversion
-                WHERE fechaasignada<="2018-02-7" AND idinversionista=1)
+                WHERE fechaasignada<=:fecha AND idinversionista=:idinversionista)
               union all
                 (SELECT 0,numerooperacion,fecha,descripcion, monto,estado
                   FROM tb_bono_afiliacion
-                  WHERE fecha<="2018-02-7" AND idinversionista=1 )) AS tb
+                  WHERE fecha<=:fecha AND idinversionista=:idinversionista )) AS tb
               ORDER BY tb.fechaasignada DESC,tb.cuota DESC';
        $sentencia=$conexion->prepare($sql);
        $sentencia->bindParam(':idinversionista',$idinversionista);
