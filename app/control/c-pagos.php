@@ -18,6 +18,7 @@
            //rango de fecha actual
            $operacion=new operaciones();
            $fecha=$operacion->obtenerDiaFiltro();
+           $fechaayer=$operacion->obtenerDiaFiltroAyer();
            $fechaAnterior=$operacion->obtenerDiaFiltroAnterior();
            //obtiene a quienes se les va a pagar en esta fecha indicada
            $sconsultas=new sconsultas();
@@ -30,8 +31,10 @@
              $monto=$fila['paquete']*0.2;//monto de bono de regalia
              $bono=0;//bono por afiliar a otras personas en los distintos niveles
              //obtiene una lista de paquetes y el nivel en q estan
-             $paquetenivel=$sconsultas->obtenerPaquetePago($fila['idinversionista'],$fechaAnterior,$fecha);
+             $paquetenivel=$sconsultas->obtenerPaquetePago($fila['idinversionista'],$fechaAnterior,$fechaayer);
+             echo json_encode($paquetenivel)." <------> ".$fila['idinversionista'].$fecha." <------> ";
              //se obtiene el monto de la comision por inversionista
+
              if (count($paquetenivel)>0&& $fila['rango']!=0) {
                $listacomisiondescripcion=$operacion->obtenerComision($paquetenivel,$fila['rango']);
              }
@@ -43,7 +46,7 @@
 
            }
            //se actualizan todos los montos en paquete
-           echo json_encode($lista);
+           //echo json_encode($lista);
            $sretiros=new sretiro();
            $sretiros->actualizarMontoGrupal($lista);
            $sactualizar=new sactualizar();

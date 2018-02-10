@@ -116,15 +116,16 @@ class sconsultas
             inner join tb_inversionista as tb3 on tb2.idinversionista=tb3.idinversionista
             inner join tb_inversionista as tb4 on tb4.idinversionista=tb2.idafiliado
             WHERE tb3.idinversionista=:idinversionista and tb1.fecha BETWEEN :fechainicio  and :fechafinal';
+
       $sentencia=$conexion->prepare($sql);
       $sentencia->bindParam(':idinversionista',$idinversionista);
       $sentencia->bindParam(':fechainicio',$fechainicio);
       $sentencia->bindParam(':fechafinal',$fechafinal);
       $sentencia->execute();
-      $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+      $resultados=$sentencia->fetchAll();
+      echo json_encode($resultados);
       return $resultados;
     } catch (PDOException $e) {
-
       throw $e;
     }
   }

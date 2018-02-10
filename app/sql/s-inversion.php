@@ -4,7 +4,7 @@
  */
 class sinversion
 {
-  function insertarInversion($idinversionista,$paquete,$numerooperacion,$tipo){
+  function insertarInversion($idinversionista,$paquete,$numerooperacion,$tipo,$cuotaretirada){
     $db=new baseDatos();
     try {
       $fecha=date("Y-m-d");
@@ -30,7 +30,7 @@ class sinversion
       }elseif($tipo==2){
         $inversionista=$sinversionista->buscarClienteId($idinversionista);
         $diapago=$inversionista['diapago'];
-        $this->insertarRetiros2($id,6,$diapago);
+        $this->insertarRetiros2($id,6,$diapago,$cuotaretirada);
       }
 
     } catch (PDOException $e) {
@@ -64,7 +64,7 @@ class sinversion
     }
   }
 
-  function insertarRetiros2($idinversion,$numerocuotas,$diapago){
+  function insertarRetiros2($idinversion,$numerocuotas,$diapago,$cuotaretirada){
     //variables
     $operaciones=new operaciones();
     $db=new baseDatos();
@@ -82,6 +82,9 @@ class sinversion
        */
       for ($i=0; $i <$numerocuotas ; $i++) {
         $cuota=$i+1;
+        if ($cuotaretirada==5) {
+          $cuota++;
+        }
         $fechaasignada=$operaciones->sumarMesAsignadoDiaPago($cuota,$diapago);
         $sentencia->execute();
       }

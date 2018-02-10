@@ -27,8 +27,8 @@
         break;
       case 'registrarInversionista':
         $inversionista=[];
-        $nombres=$_REQUEST['nombres'];
-        $apellidos=$_REQUEST['apellidos'];
+        $nombres=strtoupper($_REQUEST['nombres']);
+        $apellidos=strtoupper($_REQUEST['apellidos']);
         $dni=$_REQUEST['dni'];
         $celular=$_REQUEST['celular'];
         $email=$_REQUEST['email'];
@@ -46,8 +46,8 @@
 
       case 'registrarAfiliado':
         $inversionista=[];
-        $nombres=$_REQUEST['nombres'];
-        $apellidos=$_REQUEST['apellidos'];
+        $nombres=strtoupper($_REQUEST['nombres']);
+        $apellidos=strtoupper($_REQUEST['apellidos']);
         $dni=$_REQUEST['dni'];
         $celular=$_REQUEST['celular'];
         $email=$_REQUEST['email'];

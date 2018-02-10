@@ -5,7 +5,6 @@ $('#registrar').click(function(){
     type:'POST',
     data:{operacion:"registrarAfiliado",nombres:$('#nombres').val(),apellidos:$('#apellidos').val(),celular:$('#celular').val(),dni:$('#dni').val(),email:$('#email').val()},
     success: function(response){
-      alert(response);
       if (response) {
         alertify.success('Afiliado Registrado');
         setTimeout(function () {

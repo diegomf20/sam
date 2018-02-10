@@ -10,7 +10,7 @@
     switch ($operacion) {
       case 'registrarInversion':
         try {
-          $sinversion->insertarInversion($_REQUEST['idinversionista'],$_REQUEST['paquete'],$_REQUEST['numerooperacion'],1);
+          $sinversion->insertarInversion($_REQUEST['idinversionista'],$_REQUEST['paquete'],$_REQUEST['numerooperacion'],1,0);
           echo true;
         } catch (Exception $e) {
           echo $e->getMessage();
@@ -19,8 +19,10 @@
       case 'registrarRenovacion':
         try {
           $resultado=$sinversion->obtenerPaquete($_REQUEST['idinversionista']);
+          $sinversionista=new sinversionista();
+          $inversionista=$sinversionista->buscarClienteId($_REQUEST['idinversionista']);
           $paquete=$resultado['paquete'];
-          $sinversion->insertarInversion($_REQUEST['idinversionista'],$paquete,$_REQUEST['numerooperacion'],2);
+          $sinversion->insertarInversion($_REQUEST['idinversionista'],$paquete,$_REQUEST['numerooperacion'],2,$inversionista['cuotaretirada']);
           echo true;
         } catch (Exception $e) {
           echo $e->getMessage();

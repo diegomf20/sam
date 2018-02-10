@@ -250,8 +250,11 @@
       if($inversionista['banco']==null){
     ?>
 
-      alertify.alert("SAM","Faltan datos bancarios.", function(){
-          alertify.message('OK');
+      alertify.alert("SAM","Faltan datos bancarios. Dar click en OK para ir...", function(){
+          alertify.success('REDIRECIONANDO ...');
+          setTimeout(function () {
+              location.href='datos.php';
+          }, 2000);
         });
     <?php
       }
@@ -304,11 +307,6 @@
         }
       }
     });
-
-
     vuejs.actualizar();
-
-
-
   </script>
 </html>

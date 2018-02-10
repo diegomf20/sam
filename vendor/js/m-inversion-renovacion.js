@@ -56,6 +56,7 @@ var vuejs=new Vue({
             type:'POST',
             data:{operacion:"registrarRenovacion",idinversionista:event.target.id,numerooperacion:value},
             success: function(response){
+              console.log(response);
               if (response) {
                 alertify.success('Registrado Renovación');
                 reemplazar('<span>RENOVADO</span>');

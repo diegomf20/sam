@@ -35,7 +35,7 @@
                 <div class="body">
                   <div class="row">
                     <div class="col-sm-8">
-                      <table id="tabla" width="100%" class="" >
+                      <table id="tabla" width="100%" class="table table-bordered table-striped" >
                         <thead>
                           <tr>
                             <td></td>

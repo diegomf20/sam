@@ -222,7 +222,7 @@ class sinversionista
       $rango = 2;
     }elseif ($cant>=7 && $cant<10) {
       $rango = 3;
-    }else {
+    }elseif($cant>=11) {
       $rango=4;
     }
 
