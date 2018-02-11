@@ -2,11 +2,21 @@ var morrisMes= Morris.Area({
     element: 'morris-area-mes',
     behaveLikeLine: true,
     data: [
-        {anio: '2010 Q4', inversion: 334, pagado: 227},
-        {anio: '2011 Q4', inversion: 356, pagado: 223},
-        {anio: '2012 Q4', inversion: 332, pagado: 56},
+      /*
+      {mes: '2018-1', inversion: 334, pagado: 227},
+       {mes: '2018-2', inversion: 332, pagado: 56},
+       {mes: '2018-3', inversion: 334, pagado: 227},
+        {mes: '2018-4', inversion: 356, pagado: 223},
+        {mes: '2018-5', inversion: 332, pagado: 56},
+        {mes: '2018-6', inversion: 334, pagado: 227},
+         {mes: '2018-7', inversion: 356, pagado: 223},
+         {mes: '2018-8', inversion: 332, pagado: 56},
+         {mes: '2018-9', inversion: 356, pagado: 223},
+         {mes: '2018-10', inversion: 334, pagado: 227},
+          {mes: '2018-11', inversion: 356, pagado: 223},
+          {mes: '2018-12', inversion: 332, pagado: 56.56}, */
     ],
-    xkey: 'anio',
+    xkey: 'mes',
     ykeys: ['inversion','pagado'],
     labels: ['inversion','pagado'],
     resize:true,
@@ -30,3 +40,19 @@ var morrisMes= Morris.Area({
         else{return 'Dic';}
     }
 });
+
+function graficar(){
+  $.ajax({
+    url:'../app/control/c-estadisticas.php',
+    type: 'POST',
+    dataType:'json',
+    data:{operacion:"graficamensual", anio:$("#txtanio").val()},
+    success: function(response){
+      console.log(response);
+      morrisMes.setData(response);
+
+    }
+
+  })
+
+}

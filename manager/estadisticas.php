@@ -124,7 +124,7 @@
   <!--morris-->
   <script type="text/javascript" src="../vendor/framewoks/raphael-min.js"> </script>
   <script type="text/javascript" src="../vendor/framewoks/morris.min.js"> </script>
-  <script type="text/javascript" src="../vendor/js/estadisticas.js"> </script>
+  <script type="text/javascript" src="../vendor/js/estadisticas2.js"> </script>
   <!--fin morris-->
   <script type="text/javascript">
     var vuejs=new Vue({
@@ -153,7 +153,7 @@
             url: '../app/control/c-estadisticas.php',
             type:'POST',
             dataType: "json",
-            data:{operacion:"totalpagado"},            
+            data:{operacion:"totalpagado"},
             success: function(response){
             //  inversion =response[0];
               vuejs.items2=response[0];
