@@ -64,7 +64,7 @@
                     </div>
                     <div class="col-7">
                       <h3>  Dolares</h3>
-                      <h2 >{{items2.pago}}</h2>
+                      <h2 >{{items2}}</h2>
                     </div>
                   </div>
                 </div>
@@ -132,7 +132,7 @@
       el:'#app',
       data:{
         items:1,
-        items2:[]
+        items2:1,
       },
       methods: {
         montoinvertido: function(event){
@@ -153,11 +153,11 @@
           $.ajax({
             url: '../app/control/c-estadisticas.php',
             type:'POST',
-            dataType: "json",
+          //  dataType: "json",
             data:{operacion:"totalpagado"},
             success: function(response){
             //  inversion =response[0];
-              vuejs.items2=response[0];
+              vuejs.items2=response;
               console.log("entre al resultado")
               console.log(response);
             }

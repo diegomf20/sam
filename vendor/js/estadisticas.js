@@ -53,9 +53,9 @@ var morrisAnio= Morris.Area({
     element: 'morris-area-anio',
     behaveLikeLine: true,
     data: [
-
+/*
      {anio: '2010 ', inversion: 334, pagado: 227},
-      {anio: '2011 ', inversion: 356, pagado: 223},/*
+      {anio: '2011 ', inversion: 356, pagado: 223},
       {anio: '2012 ', inversion: 332, pagado: 56},*/
     ],
     xkey: 'anio',
@@ -63,7 +63,7 @@ var morrisAnio= Morris.Area({
     labels: ['inversion','pagado'],
     resize:true,
     lineColors: ['#009688','#f0ad4e'],//,'#286090'
-  //  ymax: 'auto[1200]',
+    ymax: 'auto[12000]',
     ymin:'auto[0]',
     xLabels:'year'
 });
