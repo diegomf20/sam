@@ -97,7 +97,7 @@
                                              <input class="form-control" type="number" name="txtanio" id="txtanio" min="2017" value="">
                                          </div>
                                          <div class="col-xs-8 col-sm-12 form-group">
-                                             <button class="form-control btn-primar" onclick="graficar();" >Actualizar</button>
+                                             <button class="form-control btn-primar" onclick="graficar()" >Actualizar</button>
                                          </div>
                                      </div>
                                  </div>
@@ -124,7 +124,8 @@
   <!--morris-->
   <script type="text/javascript" src="../vendor/framewoks/raphael-min.js"> </script>
   <script type="text/javascript" src="../vendor/framewoks/morris.min.js"> </script>
-  <script type="text/javascript" src="../vendor/js/estadisticas2.js"> </script>
+
+  <!--<script type="text/javascript" src="../vendor/js/estadisticas.js"> </script>-->
   <!--fin morris-->
   <script type="text/javascript">
     var vuejs=new Vue({
@@ -170,4 +171,5 @@
     vuejs.montopagado();
 
   </script>
+  <script type="text/javascript" src="../vendor/js/estadisticas.js"> </script>
 </html>

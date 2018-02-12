@@ -99,9 +99,9 @@ if (isset($_REQUEST['operacion'])) {
               break;
             }else {
               $dato = ['anio'=>(string)$fila['anio'], 'inversion'=>(int)$fila['total'], 'pagado'=>0];
-              $datos2[$i]=$dato;
+            //  $datos2[$i]=$dato;
               $dato = ['anio'=>(string)$pago['anio'], 'inversion'=>0, 'pagado'=>(int)$pago['total']];
-              $datos2[$i+1]=$dato;
+              //$datos2[$i+1]=$dato;
             }
           }
         }
