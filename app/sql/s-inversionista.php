@@ -7,6 +7,7 @@ class sinversionista
    */
    function registraInversionista($nombres,$apellidos,$dni,$celular,$email,$imagen,$contrasenia){
      $db=new baseDatos();
+     $sentencia;
      try {
        $conexion=$db->conectar();
        $sql='INSERT INTO tb_inversionista( nombres , apellidos , dni , celular ,email, imagen , contrasenia)'.
@@ -23,7 +24,10 @@ class sinversionista
        $id=$conexion->lastInsertId();
        return $id;
      } catch (PDOException $e) {
-       echo $e->getMessage();
+       $codigo=$sentencia->errorInfo();
+       throw new PDOException($codigo[1]);
+       throw $e;
+
      }
    }
    /**
@@ -47,7 +51,7 @@ class sinversionista
        $id=$conexion->lastInsertId();
        $safiliado=new safiliado();
        $safiliado->registrarAfiliacion($idinversionista,$id,1);
-
+       return $id;
      } catch (PDOException $e) {
        throw $e;
      }
@@ -133,7 +137,22 @@ class sinversionista
       throw $e;
     }
   }
-
+  function cambiarImagen($idinversionista,$imagen)
+  {
+    $db=new baseDatos();
+    try {
+      $conexion=$db->conectar();
+      $sql='UPDATE tb_inversionista
+            SET imagen=:imagen
+            WHERE idinversionista=:idinversionista';
+      $sentencia=$conexion->prepare($sql);
+      $sentencia->bindParam(':idinversionista',$idinversionista);
+      $sentencia->bindParam(':imagen',$imagen);
+      $sentencia->execute();
+    } catch (PDOException $e) {
+      throw $e;
+    }
+  }
   function cambiarDatosPersonales($idinversionista,$nombres,$apellidos,$dni,$celular,$direccion,$ciudad)
   {
     $db=new baseDatos();

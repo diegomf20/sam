@@ -51,8 +51,20 @@ html,body{
 
 .menu-avatar{ position: relative; padding-left: 20px; padding-right: 20px }
 .avatar-separe{ padding-top: 20px; padding-bottom: 20px; border-bottom: 1px solid hsla(0,0%,100%,.3); border-top: 1px solid hsla(0,0%,100%,.3) }
-.avatar-imagen{ width: 106px; margin-left: auto; margin-right: auto }
-.avatar-imagen img{ height: 100px; width: 100px; border-radius: 50%; border: 3px solid hsla(0,0%,100%,.3) }
+.avatar-imagen{
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-size: 100% auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin-right: auto;
+  margin-left: auto;
+  border: 3px solid #111;
+  margin-bottom: 10px;
+  background-color: #fff;
+ }
+.avatar-imagen img{  }
 .avatar-datos h4{
   margin-top: 5px;
   margin-bottom: 10px;

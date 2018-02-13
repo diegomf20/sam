@@ -1,0 +1,36 @@
+.imagen{
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background-size: 100% auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin-right: auto;
+    margin-left: auto;
+    border: 8px solid #bbb;
+    margin-bottom: 10px;
+}
+.avatar form{
+  display: none;
+}
+
+.boton{
+  margin-left: -4px;
+  color: #fff;
+  width: 50%;
+  font-size: 12px;
+  padding: 6px;
+  background-color: #ccc;
+  border: 1px solid #111;
+}
+
+.boton-subir{
+  margin-left: 0;
+  background-color: #2489c5
+}
+.boton-guardar{
+  background-color: #2489c5
+}
+.boton-cancelar{
+  background-color: #EF4136;
+}

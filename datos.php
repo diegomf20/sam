@@ -9,6 +9,7 @@
   <!--scripts y css generales-->
   <?php include 'retazos/generales/css.php'; ?>
   <!--fin scripts y css generales-->
+  <link rel="stylesheet" href="vendor/css/avatar.css">
 </head>
   <body>
     <div id="app" class="panel">
@@ -21,7 +22,32 @@
           <?php include 'retazos/panel/contenido-head.php' ?>
           <!--Fin Encabezado-->
           <div class="row">
-            <div class="col-sm-12">
+            <div class="col-xl-4 col-sm-3">
+
+            </div>
+            <div class="col-xl-4 col-sm-6">
+              <div class="tarjeta">
+                <div class="header">
+                  AVATAR
+                </div>
+                <div class="body">
+                  <div class="avatar">
+                    <div id="img-avatar" class="imagen" style="background-image: url(imagenes/<?php echo $inversionista['imagen']?>)">
+
+                    </div>
+                    <form method="post" id="formulario" enctype="multipart/form-data">
+                      <input type="file" name="file" id="foto">
+                    </form>
+                    <button id="actualizar" class="boton boton-subir"><i class="fa fa-upload"></i> SUBIR</button>
+                    <button id="guardar" class="boton boton-guardar"><i class="fa fa-save"></i> GUARDAR</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-sm-3">
+
+            </div>
+            <div class="col-xl-12 ">
               <div class="tarjeta">
                 <div class="header">
                   INFORMACIÓN DE USUARIO
@@ -32,8 +58,8 @@
                     <div class="col-xl-4 col-sm-5">
     										<input id="correo" type="text" disabled class="control" value="<?php echo $inversionista['email']?>" placeholder="Ingresar E-mail">
     								</div>
-                    <label class="col-xl-2 col-sm-2 control">Contraseña:</label>
-                    <div class="col-xl-2 col-sm-3">
+                    <label class="col-xl-1 col-sm-2 control">Contraseña:</label>
+                    <div class="col-xl-3 col-sm-3">
     										<input id="contrasenia" type="password" class="control" value="<?php echo $inversionista['contrasenia']?>" placeholder="Ingresar Contraseña">
     								</div>
                     <div class="col-xl-3 col-sm-4 col-6">

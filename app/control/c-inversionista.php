@@ -1,8 +1,11 @@
 <?php
   if (isset($_REQUEST['operacion'])) {
     include '../db.php';
+    include '../logica/enviar.php';
     include '../sql/s-inversionista.php';
     include '../sql/s-afiliado.php';
+    include 'phpmailer/PHPMailerAutoload.php';
+
     $sinversionista=new sinversionista();
     $operacion=$_REQUEST['operacion'];
     session_start();
@@ -25,6 +28,7 @@
           echo $e->getMessage();
         }
         break;
+
       case 'registrarInversionista':
         $inversionista=[];
         $nombres=strtoupper($_REQUEST['nombres']);
@@ -35,12 +39,31 @@
         $imagen='usuario.jpg';
         $contrasenia='inversionista';
         try {
-          $id=$sinversionista->registraInversionista($nombres,$apellidos,$dni,$celular,$email,$imagen,$contrasenia);
-          $inversionista=$sinversionista->buscarClienteId($id);
-          $_SESSION['inversionista']=$inversionista;
-          echo "correcto";
+          $enviar=new enviar();
+          if ($enviar->comprobar($email)) {
+            $id=$sinversionista->registraInversionista($nombres,$apellidos,$dni,$celular,$email,$imagen,$contrasenia);
+            $inversionista=$sinversionista->buscarClienteId($id);
+            $_SESSION['inversionista']=$inversionista;
+            $html="<h1>Sr(a) $nombres  $apellidos</h1>
+                  su nombre de usuario y contraseña son:<br>
+                  <br>
+                  Usuario: ".$inversionista['email']."<br>
+                  Contraseña: ".$inversionista['contrasenia']."<br>";
+            $respuesta=$enviar->gmail($html,$email,$nombres);
+            if ($respuesta=="true") {
+              echo "correcto";
+            }else {
+              echo $respuesta;
+            }
+          }else {
+            echo "Email incorrecto";
+          }
         } catch (Exception $e) {
-          echo $e->getMessage();
+          if ($e->getMessage()==1062) {
+            echo "El correo ya esta en uso en SAM";
+          }else {
+            echo $e->getMessage();
+          }
         }
         break;
 
@@ -54,8 +77,24 @@
         $imagen='usuario.jpg';
         $contrasenia='inversionista';
         try {
-          $sinversionista->registrarAfiliado($idinversionista,$nombres,$apellidos,$dni,$celular,$email,$imagen,$contrasenia);
-          echo "true";
+          $enviar=new enviar();
+          if ($enviar->comprobar($email)) {
+            $id=$sinversionista->registrarAfiliado($idinversionista,$nombres,$apellidos,$dni,$celular,$email,$imagen,$contrasenia);
+            $inversionista=$sinversionista->buscarClienteId($id);
+            $html="<h1>Sr(a) $nombres  $apellidos</h1>
+                  su nombre de usuario y contraseña son:<br>
+                  <br>
+                  Usuario: ".$inversionista['email']."<br>
+                  Contraseña: ".$inversionista['contrasenia']."<br>";
+            $respuesta=$enviar->gmail($html,$email,$nombres);
+            if ($respuesta=="true") {
+              echo "correcto";
+            }else {
+              echo $respuesta;
+            }
+          }else {
+            echo "Email incorrecto";
+          }
         } catch (Exception $e) {
           echo $e->getMessage();
         }
@@ -104,9 +143,6 @@
         } catch (Exception $e) {
           echo $e->getMessage();
         }
-        break;
-      default:
-
         break;
     }
   }
