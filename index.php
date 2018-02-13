@@ -33,14 +33,13 @@
 				<div class="row">
 					<div class="col-lg-6">
 						<div class="titulo">
-							<h1>SAM</h1>
+							<h1><img src="vendor/img/logo.png"></h1>
 							<hr>
 							<h4>Sociedad de Ayuda Mutua</h4>
 						</div>
 
 					</div>
 					<div class="col-lg-6">
-
 						<div class="registrar">
 							<h1>Registro Rapido</h1>
 							<div class="row">
@@ -71,19 +70,26 @@
 				</div>
 		</div>
 	</div>
-		<section class="gris">
-		  <div class=container>
+		<section id="noticias" class="gris">
+			<div class="container">
+				<h1>Noticias</h1>
+				<h1><i class="fa fa-angle-down"></i></h1>
+				<img src="vendor/img/baner.jpg">
+			</div>
+		</section>
+		<section>
+			<div class=container>
 		    <h1>¿Que es SAM?</h1>
+				<h1><i class="fa fa-angle-down"></i></h1>
 		    <p>
 		    Es una comunidad de apoyo solidario que se ayudan mutuamente de forma libre
 		    y voluntaria, sin presión ni obligación; unidas entre si para superar la desigualdad
 		    social y generar un nuevo estilo de vida diferente.
 		    </p>
 		  </div>
-		</section>
-		<section>
 		  <div class=container>
 		    <h1>Objetivo</h1>
+				<h1><i class="fa fa-angle-down"></i></h1>
 		    <p>
 		    Ayudar a todos los emprendedores del Perú a impulsar sus negocios a través
 		    de la financiación solidaria que fomenta el emprendimiento del peruano, esto
@@ -95,16 +101,19 @@
 		<section id=paquetes>
 		  <div class=container>
 		    <h1>PAQUETES DE INVERSIÓN</h1>
-				<table class="table">
-					<tr>
-						<td>Paquetes</td>
-						<td>1° Mes</td>
-						<td>2° Mes</td>
-						<td>3° Mes</td>
-						<td>4° Mes</td>
-						<td>5° Mes</td>
-						<td>6° Mes</td>
-					</tr>
+				<h1><i class="fa fa-angle-down"></i></h1>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<td>Paquetes</td>
+							<td>1° Mes</td>
+							<td>2° Mes</td>
+							<td>3° Mes</td>
+							<td>4° Mes</td>
+							<td>5° Mes</td>
+							<td>6° Mes</td>
+						</tr>
+					</thead>
 					<tr>
 						<td>$ 200</td>
 						<td>$ 40</td>
@@ -144,12 +153,91 @@
 				</table>
 		  </div>
 		</section>
-		<section></section>
+		<section id="contactanos" class="gris-claro contactanos">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-4">
+					<div class="preguntas">
+						<h5>¿Tienes una pregunta?</h5>
+						<h5>¿Alguna Solicitud?</h5>
+						<h5>¿Quieres decir Hola?</h5>
+						<p>¡Escríbenos y te responderemos tan pronto podamos!</p>
+					</div>
+					<!--inicio de seccion de redes-->
+					<div class="redes-inf">
+						<div class="row">
+							<div class="col-sm-4 col-4">
+								<span>escríbenos:</span>
+							</div>
+							<div class="col-sm-8 social col-6">
+								<div class="flecha"></div>
+								<div class="nube">999 999 999</div>
+								<a class="" >
+									<i class="fa fa-whatsapp"></i>
+								</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-4 col-4">
+								<span>síguenos:</span>
+							</div>
+							<div class="col-sm-8 social col-6">
+								<a class="" href="#">
+									<i class="fa fa-twitter"></i>
+								</a>
+								<a class="" target="_blank" href="https://www.facebook.com/lucami8?fref=ts">
+									<i class="fa fa-facebook-official"></i>
+								</a>
+								<a class="" target="_blank" href="https://www.instagram.com/lucami8/">
+									<i class="fa fa-instagram"></i>
+								</a>
+								<a class="" target="_blank" href="https://www.behance.net/lucami8">
+									<i class="fa fa-behance"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+					<!--fin de seccion de redes-->
+				</div>
+				<div id="mensajes" class="col-lg-8 col-md-8">
+					<div  class="mensaje">
+						<div class="row form-group has-success">
+							<div class="col-sm-6">
+								<label>Nombre / Name</label>
+								<input id="txtnombre" type="text" name="" class="form-control form-control-warning" placeholder="escriba aquí">
+							</div>
+							<div class="col-sm-6">
+								<label>Correo / email</label>
+								<input id="txtemail" type="email" name="" class="form-control" placeholder="example@correo.com">
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-sm-3"></div>
+							<div class="col-sm-6">
+								<label>Teléfono / Phone</label>
+								<input id="txttelefono" type="text" name="" class="form-control" placeholder="999 999 999">
+							</div>
+							<div class="col-sm-3"></div>
+							<div class="col-sm-12">
+								<label>Mensaje / Message</label>
+								<textarea id="txtmensaje" rows="6" class="form-control"></textarea>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 right">
+								<button id="btnenviar" class="btn btn-black">Enviar</button>
+							</div>
+						</div>
+						<div id="mostrar"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 </body>
 <script type="text/javascript" src="vendor/framewoks/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="vendor/framewoks/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="vendor/alertifyjs/alertify.min.js"></script>
-<script type="text/javascript" src="vendor/js/index.js">
-
-</script>
+<script type="text/javascript" src="vendor/js/index.js"></script>
+<script type="text/javascript" src="vendor/js/enviar.js"></script>
 </html>

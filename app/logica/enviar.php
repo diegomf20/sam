@@ -13,14 +13,14 @@ class enviar
   {
     $mail=new phpmailer();
     $mail->isSMTP();
-    $mail->Host = gethostbyname('smtp.gmail.com');
-    $mail->Port = 587;
+    $mail->Host = gethostbyname('mail.ciwsam.com');
+    $mail->Port = 2525;
     $mail->SMTPOptions = array ('ssl' => array('verify_peer'  => false,'verify_peer_name'  => false,'allow_self_signed' => true));
     $mail->SMTPDebug = 0;
     $mail->SMTPAuth = true;
-    $mail->Username = "diegomf.mendoza@gmail.com";
-    $mail->Password = "stunsd18";
-    $mail->setFrom($email,$nombres);
+    $mail->Username = "admin@ciwsam.com";
+    $mail->Password = "@emailsam";
+    $mail->setFrom("admin@ciwsam.com","SAM"); 
     $mail->AddAddress($email);
     $mail->Subject='SAM - SOCIEDAD DE AYUDA MUTUA';
     $mail->isHTML(true);

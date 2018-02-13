@@ -44,11 +44,9 @@
             $id=$sinversionista->registraInversionista($nombres,$apellidos,$dni,$celular,$email,$imagen,$contrasenia);
             $inversionista=$sinversionista->buscarClienteId($id);
             $_SESSION['inversionista']=$inversionista;
-            $html="<h1>Sr(a) $nombres  $apellidos</h1>
-                  su nombre de usuario y contraseña son:<br>
-                  <br>
-                  Usuario: ".$inversionista['email']."<br>
-                  Contraseña: ".$inversionista['contrasenia']."<br>";
+            $html="<h1>Sr(a) $nombres  $apellidos</h1>".
+                  "su nombre de usuario y contraseña son:<br>".
+                  "<br>"." Usuario: ".$inversionista['email']."<br>"."  Contraseña: ".$inversionista['contrasenia']."<br>";
             $respuesta=$enviar->gmail($html,$email,$nombres);
             if ($respuesta=="true") {
               echo "correcto";
@@ -81,11 +79,9 @@
           if ($enviar->comprobar($email)) {
             $id=$sinversionista->registrarAfiliado($idinversionista,$nombres,$apellidos,$dni,$celular,$email,$imagen,$contrasenia);
             $inversionista=$sinversionista->buscarClienteId($id);
-            $html="<h1>Sr(a) $nombres  $apellidos</h1>
-                  su nombre de usuario y contraseña son:<br>
-                  <br>
-                  Usuario: ".$inversionista['email']."<br>
-                  Contraseña: ".$inversionista['contrasenia']."<br>";
+            $html="<h1>Sr(a) $nombres  $apellidos</h1>".
+                  "su nombre de usuario y contraseña son:<br>".
+                  "<br>"." Usuario: ".$inversionista['email']."<br>"."  Contraseña: ".$inversionista['contrasenia']."<br>";
             $respuesta=$enviar->gmail($html,$email,$nombres);
             if ($respuesta=="true") {
               echo "correcto";
