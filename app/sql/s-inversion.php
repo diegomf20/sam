@@ -9,7 +9,8 @@ class sinversion
     try {
       $fecha=date("Y-m-d");
       $conexion=$db->conectar();
-      $sql='INSERT INTO tb_inversion(idinversionista,paquete,numerooperacion,fecha,tipo) VALUES (:idinversionista,:paquete,:numerooperacion,:fecha,:tipo)';
+      $sql='INSERT INTO tb_inversion(idinversionista,paquete,numerooperacion,fecha,tipo) '.
+            'VALUES (:idinversionista,:paquete,:numerooperacion,:fecha,:tipo)';
       $sentencia=$conexion->prepare($sql);
       $sentencia->bindParam(':idinversionista',$idinversionista);
       $sentencia->bindParam(':paquete',$paquete);

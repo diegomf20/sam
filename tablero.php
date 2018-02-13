@@ -1,4 +1,4 @@
-<?php
+<?php  
   $pagina='TABLERO';
   include 'retazos/generales/session.php'
 ?>

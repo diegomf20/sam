@@ -7,8 +7,8 @@ class sactualizar
     $db=new baseDatos();
     try {
       $conexion=$db->conectar();
-      $sql='INSERT INTO tb_actualizar ( fecha )
-            VALUES (:fecha)';
+      $sql='INSERT INTO tb_actualizar ( fecha )'.
+            'VALUES (:fecha)';
       $sentencia=$conexion->prepare($sql);
       $sentencia->bindParam(':fecha', $fecha);
       $sentencia->execute();

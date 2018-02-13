@@ -11,8 +11,8 @@ class sbonoafiliacion
     $estado=0;
     try {
       $conexion=$db->conectar();
-      $sql='INSERT INTO tb_bono_afiliacion ( idinversionista, fecha, descripcion, monto, estado)
-            VALUES ( :idinversionista, :fecha, :descripcion, :monto, :estado)';
+      $sql='INSERT INTO tb_bono_afiliacion ( idinversionista, fecha, descripcion, monto, estado) '.
+            'VALUES ( :idinversionista, :fecha, :descripcion, :monto, :estado)';
       $sentencia=$conexion->prepare($sql);
       $sentencia->bindParam(':idinversionista',$idinversionista);
       $sentencia->bindParam(':fecha', $fecha);
@@ -36,8 +36,8 @@ class sbonoafiliacion
 
     try {
       $conexion=$db->conectar();
-      $sql='UPDATE tb_bono_afiliacion SET estado=1,numerooperacion=:numerooperacion
-            WHERE idinversionista=:idinversionista AND fecha=:fecha';
+      $sql='UPDATE tb_bono_afiliacion SET estado=1,numerooperacion=:numerooperacion '.
+            'WHERE idinversionista=:idinversionista AND fecha=:fecha';
       $sentencia=$conexion->prepare($sql);
       $sentencia->bindParam(':idinversionista',$idinversionista);
       $sentencia->bindParam(':numerooperacion',$numerooperacion);

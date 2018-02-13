@@ -1,6 +1,8 @@
 <?php
+
   $pagina='DATOS';
-  include 'retazos/generales/session.php'
+  include 'retazos/generales/session.php';
+
 ?>
 <html>
 <head>

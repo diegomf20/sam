@@ -94,10 +94,10 @@ class sinversionista
      $db=new baseDatos();
      try {
        $conexion=$db->conectar();
-       $sql='SELECT tb_inversionista.`idinversionista`,`nombres`,`apellidos`,td.fecha as fecha ,numerooperacion,paquete,tipo
-       FROM tb_inicial INNER JOIN tb_inversionista ON tb_inicial.idinversionista=tb_inversionista.idinversionista
-       LEFT JOIN (SELECT * from tb_inversion WHERE tipo=1) as td ON tb_inversionista.idinversionista=td.idinversionista
-       ORDER BY tb_inversionista.`idinversionista` DESC';
+       $sql='SELECT tb_inversionista.`idinversionista`,`nombres`,`apellidos`,td.fecha as fecha ,numerooperacion,paquete,tipo '.
+       'FROM tb_inicial INNER JOIN tb_inversionista ON tb_inicial.idinversionista=tb_inversionista.idinversionista '.
+       'LEFT JOIN (SELECT * from tb_inversion WHERE tipo=1) as td ON tb_inversionista.idinversionista=td.idinversionista '.
+       'ORDER BY tb_inversionista.`idinversionista` DESC ';
        $sentencia=$conexion->prepare($sql);
        $sentencia->execute();
        $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -142,9 +142,9 @@ class sinversionista
     $db=new baseDatos();
     try {
       $conexion=$db->conectar();
-      $sql='UPDATE tb_inversionista
-            SET imagen=:imagen
-            WHERE idinversionista=:idinversionista';
+      $sql='UPDATE tb_inversionista '.
+            'SET imagen=:imagen '.
+            'WHERE idinversionista=:idinversionista';
       $sentencia=$conexion->prepare($sql);
       $sentencia->bindParam(':idinversionista',$idinversionista);
       $sentencia->bindParam(':imagen',$imagen);
@@ -158,9 +158,9 @@ class sinversionista
     $db=new baseDatos();
     try {
       $conexion=$db->conectar();
-      $sql='UPDATE tb_inversionista
-            SET nombres=:nombres, apellidos=:apellidos, dni=:dni, celular=:celular,direccion=:direccion,ciudad=:ciudad
-            WHERE idinversionista=:idinversionista';
+      $sql='UPDATE tb_inversionista '.
+            'SET nombres=:nombres, apellidos=:apellidos, dni=:dni, celular=:celular,direccion=:direccion,ciudad=:ciudad '.
+            'WHERE idinversionista=:idinversionista ';
       $sentencia=$conexion->prepare($sql);
       $sentencia->bindParam(':idinversionista',$idinversionista);
       $sentencia->bindParam(':nombres',$nombres);
@@ -179,9 +179,9 @@ class sinversionista
     $db=new baseDatos();
     try {
       $conexion=$db->conectar();
-      $sql='UPDATE tb_inversionista
-            SET banco=:banco, numerocuenta=:numerocuenta
-            WHERE idinversionista=:idinversionista';
+      $sql='UPDATE tb_inversionista '.
+            'SET banco=:banco, numerocuenta=:numerocuenta '.
+            'WHERE idinversionista=:idinversionista';
       $sentencia=$conexion->prepare($sql);
       $sentencia->bindParam(':idinversionista',$idinversionista);
       $sentencia->bindParam(':banco',$banco);
@@ -199,9 +199,9 @@ class sinversionista
     $db=new baseDatos();
     try {
       $conexion=$db->conectar();
-      $sql='UPDATE tb_inversionista
-            SET diapago=:diapago
-            WHERE idinversionista=:idinversionista';
+      $sql='UPDATE tb_inversionista '.
+            'SET diapago=:diapago '.
+            'WHERE idinversionista=:idinversionista';
       $sentencia=$conexion->prepare($sql);
       $sentencia->bindParam(':idinversionista',$idinversionista);
       $sentencia->bindParam(':diapago',$dia);
@@ -247,9 +247,9 @@ class sinversionista
 
     try {
       $conexion=$db->conectar();
-      $sql='UPDATE tb_inversionista
-            SET rango=:rango,numeroafiliados=:numeroafiliados
-            WHERE idinversionista=:idinversionista';
+      $sql='UPDATE tb_inversionista '.
+            'SET rango=:rango,numeroafiliados=:numeroafiliados '.
+            'WHERE idinversionista=:idinversionista ';
       $sentencia=$conexion->prepare($sql);
       $sentencia->bindParam(':idinversionista',$idinversionista);
       $sentencia->bindParam(':rango',$rango);
@@ -265,9 +265,9 @@ class sinversionista
 
     try {
       $conexion=$db->conectar();
-      $sql='UPDATE tb_inversionista
-            SET cuotaretirada=:cuotaretirada
-            WHERE idinversionista=:idinversionista';
+      $sql='UPDATE tb_inversionista '.
+            'SET cuotaretirada=:cuotaretirada '.
+            'WHERE idinversionista=:idinversionista';
       $sentencia=$conexion->prepare($sql);
       $sentencia->bindParam(':idinversionista',$idinversionista);
       $sentencia->bindParam(':cuotaretirada', $cuotaretirada);
