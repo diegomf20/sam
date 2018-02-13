@@ -107,6 +107,9 @@
                                  <div class="col-xs-12 col-sm-10">
                                      <div id="morris-area-anio"></div>
                                  </div>
+                                 <div class="col-xs-12 col-sm-10">
+                                     <div id="morris-barras"></div>
+                                 </div>
                              </div>
                          </div>
                      </div>

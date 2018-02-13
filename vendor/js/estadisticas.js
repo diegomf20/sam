@@ -4,7 +4,6 @@ $(document).ready(
         $("#txtanio").val(anio);
         graficar();
     }
-
 );
 
 var morrisMes= Morris.Area({
@@ -50,9 +49,21 @@ var morrisAnio= Morris.Area({
     xLabels:'year'
 });
 
+var morrisbarrames=Morris.Bar({
+  element: 'morris-barras',
+  data: [],
+  xkey: 'mes',
+  barColors: ['#34495E', '#3498DB'],
+  ykeys: ['inversion','pagado'],
+  labels: ['inversion','pagado'],
+  hideHover: 'auto',
+  xLabelAngle: 60,
+  resize: true
+});
 
 $('#cbperiodo').change(function (){
     graficar();
+    barras();
 });
 
 function graficar(){
@@ -60,21 +71,22 @@ function graficar(){
     $('#txtanio').prop('disabled',false);
     $('#morris-area-mes').prop('hidden',false);
     $('#morris-area-anio').prop('hidden',true);
+    $('#morris-barras').prop('hidden',false);
+    barras();
     $.ajax({
       url: '../app/control/c-estadisticas.php',
       type:'POST',
       dataType: "json",
       data:{operacion:"graficamensual", anio:$("#txtanio").val()},
       success: function(response){
-        console.log(response);
         morrisMes.setData(response);
       }
     });
   }else{
-
     $('#txtanio').prop('disabled',true);
     $('#morris-area-mes').prop('hidden',true);
     $('#morris-area-anio').prop('hidden',false);
+    $('#morris-barras').prop('hidden',true);
 
     $.ajax({
       url: '../app/control/c-estadisticas.php',
@@ -82,9 +94,22 @@ function graficar(){
       dataType: "json",
       data:{operacion:'grafica'},
       success: function(response){
-        console.log(response);
         morrisAnio.setData(response);
       }
     });
   }
+}
+
+function barras(){
+  $.ajax({
+    url: '../app/control/c-estadisticas.php',
+    type:'POST',
+    dataType: "json",
+    data:{operacion:"graficamensual", anio:$("#txtanio").val()},
+    success: function(response){
+      datos = response;
+      console.log(datos);
+      morrisbarrames.setData(datos);
+    }
+  });
 }
