@@ -87,7 +87,7 @@ class sconsultas
       $operacion=new operaciones();
       $fecha=$operacion->obtenerDiaFiltro();
       $conexion=$db->conectar();
-      $sql='SELECT tb1.idinversionista,idafiliado,tb2.nombres '.
+      $sql='SELECT tb1.idinversionista,idafiliado,tb2.nombres, tb1.imagen  '.
             'FROM tb_inversionista as tb1 INNER JOIN tb_afiliacion on tb1.idinversionista=tb_afiliacion.idinversionista '.
             'INNER JOIN tb_inversionista as tb2 ON tb_afiliacion.idafiliado=tb2.idinversionista '.
             'WHERE nivel=1 AND tb1.idinversionista=:idinversionista';

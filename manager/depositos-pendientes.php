@@ -116,7 +116,7 @@
                 <div class="body totales azul">
                   <div class="row">
                     <div class="col-5 centrar">
-                      <i class="fa fa-money" aria-hidden="true"></i>
+                      <i class="fa fa-print" aria-hidden="true"></i>
                     </div>
                     <div class="col-7">
                       <button onclick="imprimir('vistaImprimir');" class="control">IMPRIMIR</button>
@@ -125,7 +125,7 @@
                   </div>
                 </div>
                 <div class="footer">
-                  <h3  class=centrar>ACTUALIZAR MONTOS</h3>
+                  <h3  class=centrar>IMPRIMIR REPORTE</h3>
                 </div>
               </div>
             </div>

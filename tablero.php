@@ -1,4 +1,4 @@
-<?php  
+<?php
   $pagina='TABLERO';
   include 'retazos/generales/session.php'
 ?>
@@ -207,7 +207,7 @@
                   <div class="rama1">
                     <div class="rama"  v-for="arboles in arbol">
                       <div class="arbol">
-                          <div class="arbol-img-lg" style="background-image: url('vendor/img/usuario.jpg')"></div>
+                          <div class="arbol-img-lg" v-bin: style="background-image: url('vendor/img/"+arboles.imagen+"')"></div>
                           <div class="arbol-nombre">
                             <h6>{{arboles.nombres}}</h6>
                           </div>
@@ -215,7 +215,7 @@
                       <div :class="'rama'+ arboles.idafiliado ">
                         <div class="rama" v-for="arboles2 in arboles.arbol">
                           <div class="arbol">
-                              <div class="arbol-img-sm" style="background-image: url('vendor/img/usuario.jpg')"></div>
+                              <div class="arbol-img-sm" v-bin:style="background-image: url('vendor/img/"+arboles2.imagen+"')"></div>
                               <div class="arbol-nombre">
                                 <h6>{{arboles2.nombres}}</h6>
                               </div>
@@ -223,7 +223,7 @@
                           <div :class="'rama'+ arboles2.idafiliado ">
                             <div class="rama" v-for="arboles3 in arboles2.arbol">
                               <div class="arbol">
-                                  <div class="arbol-img-sm" style="background-image: url('vendor/img/usuario.jpg')"></div>
+                                  <div class="arbol-img-sm" v-bin:style="background-image: url('vendor/img/"+arboles3.imagen+"')"></div>
                                   <div class="arbol-nombre">
                                     <h6>{{arboles3.nombres}}</h6>
                                   </div>

@@ -1,6 +1,4 @@
 <?php
-  include 'nocache.php';
-  noCache();
   $pagina='PAGO INICIAL';
   session_start();
   $administrador=$_SESSION['administrador'];
