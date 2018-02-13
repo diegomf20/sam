@@ -5,8 +5,8 @@
   </div>
   <div class="menu-avatar">
     <div class="avatar-separe">
-      <div class="avatar-imagen">
-        <img class="img-avatar" src="../vendor/img/usuario.jpg">
+      <div class="avatar-imagen" style="background-image: url(../imagenes/usuario.jpg)">
+
       </div>
       <div class="avatar-datos">
         <h4 class="centrar"><?php echo $administrador['nombres'] ?></h4>

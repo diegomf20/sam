@@ -30,6 +30,8 @@
         background-color: #2489c5;
         border:1px solid #111;
       }
+      #vistaImprimir td:nth-child(5),#vistaImprimir th:nth-child(5){display: none;}
+      #vistaImprimir td:nth-child(6),#vistaImprimir th:nth-child(6){display: none;}
       @media screen and (max-width: 700px) {
         .tabla-responsiva th,.tabla-responsiva td,.tabla-responsiva tr {
           display: block;
@@ -57,6 +59,7 @@
         .tabla-responsiva td:nth-child(2):before { content: 'Descripción:'; }
         .tabla-responsiva td:nth-child(3):before { content: 'Monto:'; }
         .tabla-responsiva td:nth-child(4):before { content: 'Estado:'; }
+
       }
     </style>
   </head>
@@ -108,6 +111,24 @@
                 </div>
               </div>
             </div>
+            <div class="col-xl-3 col-md-6">
+              <div class="tarjeta">
+                <div class="body totales azul">
+                  <div class="row">
+                    <div class="col-5 centrar">
+                      <i class="fa fa-money" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-7">
+                      <button onclick="imprimir('vistaImprimir');" class="control">IMPRIMIR</button>
+                      <h3 v-else>MONTOS ASIGNADOS</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="footer">
+                  <h3  class=centrar>ACTUALIZAR MONTOS</h3>
+                </div>
+              </div>
+            </div>
           </div>
           <!--fin Resumenes-->
           <div class="row">
@@ -122,15 +143,16 @@
                 </div>
                 <div class="body">
                   <div class="row">
-                    <div class="col-sm-7">
+                    <div id="vistaImprimir" class="col-sm-7">
                       <h5 class="centrar">PROCESANDO</h5>
                       <table class="table tabla-responsiva table-bordered table-striped">
-
                         <tr>
                           <th>NOMBRE Y APELLIDOS</th>
                           <th>DESCRIPCION</th>
                           <th>MONTO</th>
                           <th>ESTADO</th>
+                          <th>BANCO</th>
+                          <th>NUMERO CUENTA</th>
                         </tr>
                         <tr v-for="item in items">
                           <td>{{item.nombres}} {{item.apellidos}}</td>
@@ -141,6 +163,8 @@
                               <i class="fa fa-save"></i> Pagar
                             </button>
                           </td>
+                          <td>{{item.banco}}</td>
+                          <td>{{item.numerocuenta}}</td>
                         </tr>
                       </table>
                     </div>
@@ -271,4 +295,15 @@
     vuejs.actualizar2();
 
   </script>
+
+        <script>
+            function imprimir(nombre) {
+                var backup=document.body.innerHTML;
+                var ficha = document.getElementById(nombre).innerHTML;
+                document.body.innerHTML=ficha;
+                window.print( );
+                document.body.innerHTML=backup;
+            }
+        </script>
+
 </html>
