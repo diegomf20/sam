@@ -1,8 +1,6 @@
 <?php
   $pagina='INVERSION INICIAL';
-  session_start();
-  $administrador=$_SESSION['administrador'];
-  $administrador['nombres'];
+  include "sectores/session.php";
 ?>
 <html>
   <head>

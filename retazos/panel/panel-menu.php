@@ -1,15 +1,16 @@
 <div class="menu">
   <div class="menu-scroll">
     <div class="menu-logo">
-      <h1 class="logo-momentaneo">SAM</h1>
+      <h1 class="logo-momentaneo"><img src="vendor/img/logo.png"></h1>
     </div>
     <div class="menu-avatar">
       <div class="avatar-separe">
         <div class="avatar-imagen" style="background-image: url(imagenes/<?php echo $inversionista['imagen']?>)">
-          
         </div>
-        <div class="avatar-datos">
-          <h4 class="centrar"><?php echo $nombreApellidos;?></h4>
+        <div class="row avatar-datos">
+          <div class="col-12">
+            <h4 class="centrar"><?php echo $nombreApellidos;?></h4>
+          </div>
         </div>
         <div class="row">
           <div class="col-12">

@@ -17,5 +17,5 @@ if (isset($_SESSION['inversionista'])) {
   }
   $nombreApellidos=$nombres.' '.$apellidos;
 }else {
-  header('Location: login.php');
+  header('Location: index.php');
 }

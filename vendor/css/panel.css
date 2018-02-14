@@ -1,3 +1,13 @@
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+      background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.8);
+}
+
 html,body{
   font-family: 'Roboto';
   background-color: #eee;
@@ -5,6 +15,7 @@ html,body{
   margin: 0;
   overflow-x: hidden;
 }
+
 .centrar{
   text-align: center
 }
@@ -17,7 +28,7 @@ html,body{
 .panel{height: 100%;position: relative;}
 .menu{
   color: #fff;
-  background-image: url('../img/fondo.jpg');
+  background-image: url('../img/rubik.jpg');
   background-position:center right;
   width: 260px;
   position: absolute;
@@ -25,6 +36,9 @@ html,body{
   top: 0;
   bottom: 0;
   border-right: 1px solid #ddd
+}
+.menu img{
+  width: 30%;
 }
 .menu-visible{left: 0}
 .contenido{margin-left: 0;height: 100%;overflow-y: scroll;}
@@ -44,7 +58,7 @@ html,body{
   .contenido{margin-left: 260px;transform: translate3d(0,0,0)}
 }
 
-.menu::before{ content:"";display: block; position:absolute; top:0; left:0; width:100%; height:100%; opacity: 0.77; background:#000 }
+.menu::before{ content:"";display: block; position:absolute; top:0; left:0; width:100%; height:100%; opacity: 0.3; background:#000 }
 
 .menu-logo{ position: relative; padding-top: 10px; padding-bottom: 10px }
 .menu-logo .logo-momentaneo{ font-size: 40px; margin: 0; color:#efb810; text-align: center }
@@ -52,27 +66,28 @@ html,body{
 .menu-avatar{ position: relative; padding-left: 20px; padding-right: 20px }
 .avatar-separe{ padding-top: 20px; padding-bottom: 20px; border-bottom: 1px solid hsla(0,0%,100%,.3); border-top: 1px solid hsla(0,0%,100%,.3) }
 .avatar-imagen{
-  width: 90px;
-  height: 90px;
+  float: left;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   background-size: 100% auto;
   background-position: center center;
   background-repeat: no-repeat;
   margin-right: auto;
   margin-left: auto;
-  border: 3px solid #111;
-  margin-bottom: 10px;
+  border: 3px solid hsla(0,0%,100%,.3);
   background-color: #fff;
  }
-.avatar-imagen img{  }
 .avatar-datos h4{
-  margin-top: 5px;
+  margin-top: 10px;
   margin-bottom: 10px;
-  font-weight: 300;
-  font-size: 16px;
+  font-weight: 700;
+  font-size: 14px;
+}
+.avatar-separe .col-12{
+  padding-right: 0
 }
 .menu-opciones{
-
   position: relative;
   padding-top: 20px;
   padding-left: 20px;
@@ -86,8 +101,8 @@ html,body{
 .menu-opciones ul>li>a{display: block; padding: 10px 15px}
 .menu-opciones li{border-radius: 5px;opacity: 1;margin-bottom: 5px}
 .menu-opciones li.activo{background-color: hsla(0,0%,100%,.23);}
-.menu-opciones i{float: left; font-size: 28px; text-align: center;margin-right: 15px;width: 30px;line-height: 30px;}
-.menu-opciones p{line-height: 30px;font-size: 12px;margin: 0;}
+.menu-opciones i{float: left; font-size: 25px; text-align: center;margin-right: 15px;width: 30px;line-height: 30px;}
+.menu-opciones p{line-height: 30px;font-size: 11px;margin: 0;}
 .menu-opciones a{text-decoration: none; color: #fff;font-family: 'Roboto';font-weight: 700;}
 
 
@@ -169,13 +184,14 @@ h2,h3,h4{margin: 0}
 /*Extras de plantillas*/
 /*botones de rango de inversionista*/
 .rango{
+  font-weight: 700;
   padding: 5px 10px;
   text-transform: uppercase;
-  width: 80%;
-  margin-left: 10%;
+  width: 100%;
   border: 1px solid black;
-  font-size: 15px;
+  font-size: 12px;
   border-radius: 10px;
+  margin-bottom: 10px
 }
 .rango-inversionista{
   background-color:#87cb16;

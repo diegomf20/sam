@@ -16,6 +16,9 @@ body{
   background-size: auto auto;
   background-repeat: no-repeat;
 }
+.login img{
+  width: 50%
+}
 @media (min-width: 880px){
   .login{
     padding-top: 100px;

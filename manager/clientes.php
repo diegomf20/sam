@@ -1,8 +1,6 @@
 <?php
   $pagina='CLIENTES';
-  session_start();
-  $administrador=$_SESSION['administrador'];
-  $administrador['nombres'];
+  include "sectores/session.php";
 ?>
 <html>
   <head>

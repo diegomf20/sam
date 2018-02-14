@@ -13,10 +13,8 @@
     <div class="login">
       <div class="container">
         <div class="tarjeta">
-          <h1 class="centrar">SAM</h1>
-          <p class="imagen">
-            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-          </p>
+          <h1 class="centrar"><img src="vendor/img/logo.png"></h1>
+          
           <h2 class="separar">-o-</h2>
           <div class="row">
             <form id="form-ingresar">

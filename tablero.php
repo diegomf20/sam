@@ -81,6 +81,7 @@
         margin-bottom: 0;
       }
       .arbol-img-lg{
+        background-position: center center;
         width: 60px;
         height: 60px;
         border-radius: 50%;
