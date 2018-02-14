@@ -10,6 +10,17 @@
 	<link href="https://fonts.googleapis.com/css?family=Rammetto+One" rel="stylesheet">
 	<link rel="stylesheet" href="vendor/css/index.css">
 	<link rel="stylesheet" href="vendor/css/forms.css">
+	<style>
+		.escrito {
+			text-align: justify;
+			overflow-y: scroll;
+			padding: 10px;
+			border: 1px solid #000;
+			height: 200px;
+			font-size: 12px;
+			margin-bottom: 20px;
+		}
+	</style>
 </head>
 <body lang="es">
 		<nav id="nav" class="navbar navbar-expand-sm  fixed-top">
@@ -60,6 +71,11 @@
 								</div>
 								<div class="col-sm-12">
 									<input id="terminos" type="checkbox"> Aceptar terminos y condiciones
+								</div>
+								<div class="col-sm-12">
+									<div class="escrito">
+										<?php include 'terminos-condiciones.php' ?>
+									</div>
 								</div>
 								<div class="col-sm-12">
 										<button id="registrar" class="control bon-primario">REGISTRAR</button>
