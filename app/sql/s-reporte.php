@@ -52,11 +52,13 @@ class sreportes
     }
   }
 
-  function afilidosRnago(){
+  function noRenovados(){
     $db=new baseDatos();
     try {
       $conexion=$db->conectar();
-      $sql='';
+      $sql='SELECT tb_inversionista.idinversionista as idinversionista,nombres,apellidos FROM `tb_inversionista` '.
+            'LEFT JOIN  (SELECT idinversionista, max(tipo) as tip from tb_inversion GROUP by idinversionista) as td ON tb_inversionista.idinversionista=td.idinversionista '.
+            'WHERE cuotaretirada=6 and td.tip=1';
       $sentencia=$conexion->prepare($sql);
       $sentencia->execute();
       $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
