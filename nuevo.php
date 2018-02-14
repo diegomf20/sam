@@ -61,12 +61,12 @@
                           <input id="celular" type="text" class="control" placeholder="celular">
                       </div>
                       <div class="col-sm-12">
-      									<input id="terminos" type="checkbox"> Aceptar terminos y condiciones
-      								</div>
-                      <div class="col-sm-12">
       									<div class="escrito">
                           <?php include 'terminos-condiciones.php' ?>
                         </div>
+      								</div>
+                      <div class="col-sm-12">
+      									<input id="terminos" type="checkbox"> Aceptar terminos y condiciones
       								</div>
       								<div class="col-sm-12">
                           <button id="registrar" class="control boton-default">REGISTRAR</button>

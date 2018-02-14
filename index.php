@@ -16,9 +16,12 @@
 			overflow-y: scroll;
 			padding: 10px;
 			border: 1px solid #000;
-			height: 200px;
+			height: 150px;
 			font-size: 12px;
 			margin-bottom: 20px;
+		}
+		.escrito h1{
+			font-size: 14px;
 		}
 	</style>
 </head>
@@ -70,12 +73,12 @@
 										<input id="celular" type="text" class="control" placeholder="celular">
 								</div>
 								<div class="col-sm-12">
-									<input id="terminos" type="checkbox"> Aceptar terminos y condiciones
-								</div>
-								<div class="col-sm-12">
 									<div class="escrito">
 										<?php include 'terminos-condiciones.php' ?>
 									</div>
+								</div>
+								<div class="col-sm-12">
+									<input id="terminos" type="checkbox"> Aceptar terminos y condiciones
 								</div>
 								<div class="col-sm-12">
 										<button id="registrar" class="control bon-primario">REGISTRAR</button>

@@ -13,7 +13,7 @@ $('#form-ingresar').submit(function(event){
         if (response=="true") {
           alertify.success('Correcto, Ingresando ...');
           setTimeout(function () {
-              location.href='depositos-pendientes.php';
+              location.href='estadisticas.php';
           }, 2000);
         }else {
           alertify.error('Usuario o Contraseña Incorrecta');

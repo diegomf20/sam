@@ -24,6 +24,24 @@
   </div>
   <div class="menu-opciones">
     <ul>
+      <li class=<?php if($pagina=="ESTADISTICAS") echo "activo";?>>
+        <a href="estadisticas.php">
+          <i class="fa fa-bar-chart"></i>
+          <p>ESTADISTICAS</p>
+        </a>
+      </li>
+      <li class=<?php if($pagina=="REPORTES") echo "activo";?>>
+        <a href="reportes.php">
+          <i class="fa fa-bar-chart"></i>
+          <p>REPORTES</p>
+        </a>
+      </li>
+      <li class=<?php if($pagina=="DEPOSITOS PENDIENTES") echo "activo";?>>
+        <a href="depositos-pendientes.php">
+          <i class="fa fa-copy"></i>
+          <p>DEPOSITOS PENDIENTES</p>
+        </a>
+      </li>
       <li class=<?php if($pagina=="PAGO INICIAL") echo "activo";?>>
         <a href="pago-inicial.php">
           <i class="fa fa-flag-checkered"></i>
@@ -42,12 +60,7 @@
           <p>INVERSION RENOVACIÓN</p>
         </a>
       </li>
-      <li class=<?php if($pagina=="DEPOSITOS PENDIENTES") echo "activo";?>>
-        <a href="depositos-pendientes.php">
-          <i class="fa fa-copy"></i>
-          <p>DEPOSITOS PENDIENTES</p>
-        </a>
-      </li>
+
       <li class=<?php if($pagina=="CLIENTES") echo "activo";?>>
         <a href="clientes.php">
           <i class="fa fa-address-book-o"></i>

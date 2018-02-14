@@ -20,8 +20,9 @@ class enviar
     $mail->SMTPAuth = true;
     $mail->Username = "admin@ciwsam.com";
     $mail->Password = "@emailsam";
-    $mail->setFrom("admin@ciwsam.com","SAM"); 
+    $mail->setFrom("admin@ciwsam.com","SAM");
     $mail->AddAddress($email);
+    $mail->addAttachment('sam.pdf'); 
     $mail->Subject='SAM - SOCIEDAD DE AYUDA MUTUA';
     $mail->isHTML(true);
     $mail->Body=$html;

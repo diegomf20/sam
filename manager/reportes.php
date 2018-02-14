@@ -20,27 +20,27 @@
           <!--cuerpo de la pagina-->
           <div class="row">
             <div class="col-xl-3 col-md-6">
-            <div class="tarjeta">
-              <div class="body totales azul">
-                <div class="row">
-                  <div class="col-5 centrar">
-                    <i class="fa fa-print" aria-hidden="true"></i>
-                  </div>
-                  <div class="col-7">
-                    <button onclick="imprimir('vistaImprimir');" class="control">IMPRIMIR</button>
-                    <h3 v-else>MONTOS ASIGNADOS</h3>
+              <div class="tarjeta">
+                <div class="body totales azul">
+                  <div class="row">
+                    <div class="col-5 centrar">
+                      <i class="fa fa-print" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-7">
+                      <button onclick="imprimir('vistaImprimir1');" class="control">IMPRIMIR</button>
+                      <h3 v-else>MONTOS ASIGNADOS</h3>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="footer">
-                <h3  class=centrar>IMPRIMIR REPORTE</h3>
+                <div class="footer">
+                  <h3  class=centrar>IMPRIMIR REPORTE</h3>
+                </div>
               </div>
             </div>
           </div>
-          </div>
         <!--fin Resumenes-->
           <!--lista de afiliados  por rangos -->
-          <div class="row">
+          <div id="vistaImprimir1" class="row">
             <div class="col-sm-12">
               <div class="tarjeta">
                 <div class="header">
@@ -74,8 +74,28 @@
               </div>
             </div>
           </div>
-          <!--cantidad por rangos -->
           <div class="row">
+            <div class="col-xl-3 col-md-6">
+              <div class="tarjeta">
+                <div class="body totales azul">
+                  <div class="row">
+                    <div class="col-5 centrar">
+                      <i class="fa fa-print" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-7">
+                      <button onclick="imprimir('vistaImprimir2');" class="control">IMPRIMIR</button>
+                      <h3 v-else>MONTOS ASIGNADOS</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="footer">
+                  <h3  class=centrar>IMPRIMIR REPORTE</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--cantidad por rangos -->
+          <div id="vistaImprimir2" class="row">
             <div class="col-sm-12">
               <div class="tarjeta">
                 <div class="header">
@@ -107,8 +127,28 @@
               </div>
             </div>
           </div>
-          <!-- falta paquete -->
           <div class="row">
+            <div class="col-xl-3 col-md-6">
+              <div class="tarjeta">
+                <div class="body totales azul">
+                  <div class="row">
+                    <div class="col-5 centrar">
+                      <i class="fa fa-print" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-7">
+                      <button onclick="imprimir('vistaImprimir3');" class="control">IMPRIMIR</button>
+                      <h3 v-else>MONTOS ASIGNADOS</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="footer">
+                  <h3  class=centrar>IMPRIMIR REPORTE</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- falta paquete -->
+          <div id="vistaImprimir3" class="row">
             <div class="col-sm-12">
               <div class="tarjeta">
                 <div class="header">
@@ -142,8 +182,28 @@
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-xl-3 col-md-6">
+              <div class="tarjeta">
+                <div class="body totales azul">
+                  <div class="row">
+                    <div class="col-5 centrar">
+                      <i class="fa fa-print" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-7">
+                      <button onclick="imprimir('vistaImprimir4');" class="control">IMPRIMIR</button>
+                      <h3 v-else>MONTOS ASIGNADOS</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="footer">
+                  <h3  class=centrar>IMPRIMIR REPORTE</h3>
+                </div>
+              </div>
+            </div>
+          </div>
             <!-- falta renovar  -->
-            <div class="row">
+            <div id="vistaImprimir4" class="row">
               <div class="col-sm-12">
                 <div class="tarjeta">
                   <div class="header">
@@ -181,8 +241,28 @@
                 </div>
               </div>
             </div>
-            <!-- renovar -->
             <div class="row">
+              <div class="col-xl-3 col-md-6">
+                <div class="tarjeta">
+                  <div class="body totales azul">
+                    <div class="row">
+                      <div class="col-5 centrar">
+                        <i class="fa fa-print" aria-hidden="true"></i>
+                      </div>
+                      <div class="col-7">
+                        <button onclick="imprimir('vistaImprimir5');" class="control">IMPRIMIR</button>
+                        <h3 v-else>MONTOS ASIGNADOS</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="footer">
+                    <h3  class=centrar>IMPRIMIR REPORTE</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- renovar -->
+            <div id="vistaImprimir5" class="row">
               <div class="col-sm-12">
                 <div class="tarjeta">
                   <div class="header">

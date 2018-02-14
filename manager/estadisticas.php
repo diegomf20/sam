@@ -1,8 +1,6 @@
 <?php
   $pagina='ESTADISTICAS';
-  session_start();
-  $administrador=$_SESSION['administrador'];
-  $administrador['nombres'];
+  include "sectores/session.php";
 ?>
 <html>
   <head>
@@ -100,11 +98,7 @@
                                </div>
                                <div class="col-xs-12 col-sm-10">
                                    <div id="morris-area-mes"></div>
-                               </div>
-                               <div class="col-xs-12 col-sm-10">
                                    <div id="morris-area-anio"></div>
-                               </div>
-                               <div class="col-xs-12 col-sm-10">
                                    <div id="morris-barras"></div>
                                </div>
                            </div>
