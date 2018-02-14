@@ -22,7 +22,7 @@ class enviar
     $mail->Password = "@emailsam";
     $mail->setFrom("admin@ciwsam.com","SAM");
     $mail->AddAddress($email);
-    $mail->addAttachment('sam.pdf'); 
+    $mail->addAttachment('SAM.pdf'); 
     $mail->Subject='SAM - SOCIEDAD DE AYUDA MUTUA';
     $mail->isHTML(true);
     $mail->Body=$html;

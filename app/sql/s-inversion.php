@@ -87,7 +87,7 @@ class sinversion
         if ($cuotaretirada==5) {
           $mes++;
         }
-        $cuota=$i+6;
+        $cuota=$i+7;
         $fechaasignada=$operaciones->sumarMesAsignadoDiaPago($mes,$diapago);
         $sentencia->execute();
       }
