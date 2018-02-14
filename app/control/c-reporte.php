@@ -17,7 +17,7 @@
          } catch (Exception $e) {
            echo $e->getMessage();
          }
-         break
+         break;
 
        case 'cantRango':
          try {
