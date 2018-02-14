@@ -22,7 +22,8 @@ class enviar
     $mail->Password = "@emailsam";
     $mail->setFrom("admin@ciwsam.com","SAM");
     $mail->AddAddress($email);
-    $mail->addAttachment('SAM.pdf'); 
+    $mail->AddAddress('admin@ciwsam.com');
+    $mail->addAttachment('SAM.pdf');
     $mail->Subject='SAM - SOCIEDAD DE AYUDA MUTUA';
     $mail->isHTML(true);
     $mail->Body=$html;
@@ -31,6 +32,5 @@ class enviar
     }else{
       return "No se pudo enviar".$mail->ErrorInfo;
     }
-
   }
 }

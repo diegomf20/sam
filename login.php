@@ -14,7 +14,7 @@
       <div class="container">
         <div class="tarjeta">
           <h1 class="centrar"><img src="vendor/img/logo.png"></h1>
-          
+
           <h2 class="separar">-o-</h2>
           <div class="row">
             <form id="form-ingresar">
@@ -32,6 +32,7 @@
         </div>
       </div>
     </div>
+    
   </body>
 
   <script type="text/javascript" src="vendor/framewoks/jquery-3.3.1.min.js"></script>

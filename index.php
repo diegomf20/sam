@@ -10,6 +10,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Rammetto+One" rel="stylesheet">
 	<link rel="stylesheet" href="vendor/css/index.css">
 	<link rel="stylesheet" href="vendor/css/forms.css">
+	<link rel="shortcut icon"  href="vendor/img/logo-mini.png">
 	<style>
 		.escrito {
 			text-align: justify;
@@ -36,7 +37,7 @@
 					<ul class="nav navbar-nav">
 	          <li><a class="page-scroll" href="#como-funciona">&iquest;COMO FUNCIONA?</a></li>
 						<li><a class="page-scroll" href="#paquetes">PAQUETES</a></li>
-						<li><a class="page-scroll" href="#contactenos">CONTACTANOS</a></li>
+						<li><a class="page-scroll" href="#contactanos">CONTACTANOS</a></li>
 						<li><a class="page-scroll" href="login.php">LOGIN</a></li>
 	        </ul>
 			  </div>
@@ -96,7 +97,7 @@
 				<img src="vendor/img/baner.jpg">
 			</div>
 		</section>
-		<section>
+		<section id="como-funciona">
 			<div class=container>
 		    <h1>¿Que es SAM?</h1>
 				<h1><i class="fa fa-angle-down"></i></h1>
@@ -249,6 +250,10 @@
 						</div>
 						<div id="mostrar"></div>
 					</div>
+				</div>
+				<div class="col-12">
+					<br>
+					<i class="fa fa-copyright"></i> 2018 ciwsam & Desarrollo 21
 				</div>
 			</div>
 		</div>

@@ -95,6 +95,7 @@
         font-size: 12px
       }
       .arbol-img-sm{
+        position: relative;
         width: 50px;
         height: 50px;
         border-radius: 50%;
@@ -104,6 +105,19 @@
         margin-left: auto;
         border:3px solid #2489c5;
       }
+      .arbol-img-oculto:before{
+        content: " ";
+        top: 30px;
+        left: 0;
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        background-color: rgba(100,100,100,0.5);
+        margin-left: calc( (100% - 60px)/2 );
+        margin-right: 50px;
+        border-radius: 50%;
+      }
+
       .arbol-img-lg img{width: 100%}
     </style>
   </head>

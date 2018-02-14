@@ -11,3 +11,4 @@
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="//cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css">
 <!---->
+<link rel="shortcut icon"  href="vendor/img/logo-mini.png">
