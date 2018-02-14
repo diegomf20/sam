@@ -83,10 +83,12 @@ class sinversion
        */
       for ($i=0; $i <$numerocuotas ; $i++) {
         $cuota=$i+1;
+        $mes=$cuota;
         if ($cuotaretirada==5) {
-          $cuota++;
+          $mes++;
         }
-        $fechaasignada=$operaciones->sumarMesAsignadoDiaPago($cuota,$diapago);
+        $cuota=$i+6;
+        $fechaasignada=$operaciones->sumarMesAsignadoDiaPago($mes,$diapago);
         $sentencia->execute();
       }
     } catch (PDOException $e) {
