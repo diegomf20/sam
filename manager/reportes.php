@@ -18,8 +18,27 @@
           <?php include '../retazos/panel/contenido-head.php' ?>
           <!--Fin Encabezado-->
           <!--cuerpo de la pagina-->
-
-          <!--fin Resumenes-->
+          <div class="row">
+            <div class="col-xl-3 col-md-6">
+            <div class="tarjeta">
+              <div class="body totales azul">
+                <div class="row">
+                  <div class="col-5 centrar">
+                    <i class="fa fa-print" aria-hidden="true"></i>
+                  </div>
+                  <div class="col-7">
+                    <button onclick="imprimir('vistaImprimir');" class="control">IMPRIMIR</button>
+                    <h3 v-else>MONTOS ASIGNADOS</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="footer">
+                <h3  class=centrar>IMPRIMIR REPORTE</h3>
+              </div>
+            </div>
+          </div>
+          </div>
+        <!--fin Resumenes-->
           <!--lista de afiliados  por rangos -->
           <div class="row">
             <div class="col-sm-12">
@@ -209,7 +228,15 @@
     </div>
   </body>
   <?php include 'sectores/script.php'; ?>
-  <script type="text/javascript" src="../vendor/js/m-reportes.js">
+  <script type="text/javascript" src="../vendor/js/m-reportes.js"></script>
 
+  <script>
+      function imprimir(nombre) {
+          var backup=document.body.innerHTML;
+          var ficha = document.getElementById(nombre).innerHTML;
+          document.body.innerHTML=ficha;
+          window.print( );
+          document.body.innerHTML=backup;
+      }
   </script>
 </html>
