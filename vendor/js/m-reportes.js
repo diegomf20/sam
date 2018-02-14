@@ -6,6 +6,7 @@ var vuejs=new Vue({
     cantafiliado:[],
     nopaquetes:[],
     norenova:[],
+    faltrenovar:[],
   },
   methods: {
     actualizar: function (event) {
@@ -64,9 +65,24 @@ var vuejs=new Vue({
       });
     },
 
+    faltarenuevo: function (event) {
+      $.ajax({
+        url: '../app/control/c-reporte.php',
+        type:'POST',
+        dataType: "json",
+        data:{operacion:"faltaRenovar3"},
+        success: function(response){
+          vuejs.faltrenovar=response;
+          console.log(response);
+        //  asignarDataTable();
+        }
+      });
+    },
+
   }
 });
 vuejs.actualizar();
 vuejs.cantxRango();
 vuejs.paquete();
 vuejs.renovar();
+vuejs.faltarenuevo();

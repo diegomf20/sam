@@ -46,6 +46,14 @@
          }
          break;
 
+       case 'faltaRenovar3':
+         try {
+           $datos=$sreportes->faltaRenovar();
+           echo json_encode($datos);
+         } catch (Exception $e) {
+           echo $e->getMessage();
+         }
+       break;
 
      }
    }

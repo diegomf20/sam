@@ -162,6 +162,47 @@
                 </div>
               </div>
             </div>
+            <!-- renovar -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="tarjeta">
+                  <div class="header">
+                    <div class="row">
+                      <div class="col-sm-8">
+                        Lista de afiliados que proximaos se  renuevan
+                      </div>
+                    </div>
+                  </div>
+                  <div class="body">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <table id="tabla" width=100% class="table table-bordered table-striped">
+                          <thead>
+                            <tr>
+                              <td>ID</td>
+                              <td>NOMBRE Y APELLIDOS</td>
+                              <td>CELULAR</td>
+                              <td>FECHA</td>
+                              <td>DIAS</td>
+
+                            </tr>
+                          </thead>
+
+                          <tr v-for="list5 in faltrenovar">
+                            <td>{{list5.idinversionista}}</td>
+                            <td>{{list5.nombres}} {{list5.apellidos}}</td>
+                            <td>{{list5.celular}}</td>
+                            <td>{{list5.fecha}}</td>
+                            <td>{{list5.dias}}</td>
+
+                          </tr>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <!--acabo -->
         </div>
       </div>
