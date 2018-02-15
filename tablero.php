@@ -268,7 +268,7 @@
                       <tr>
                         <td>NOMBRE</td>
                         <td>EMAIL</td>
-                        <td>NUMERO</td>
+                        <td>NUM TELEFONO</td>
                       </tr>
                     </thead>
                     <tbody>
