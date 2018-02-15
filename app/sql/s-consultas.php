@@ -148,5 +148,19 @@ class sconsultas
       throw $e;
     }
   }
+  function consultaPendientes($idinversionista){
+    $db=new baseDatos();
+    try {
+      $conexion=$db->conectar();
+      $sql='SELECT nombres,apellidos,email,celular FROM tb_inversionista INNER JOIN tb_afiliacion on tb_inversionista.idinversionista=tb_afiliacion.idafiliado WHERE tb_afiliacion.estado=0 AND tb_afiliacion.idinversionista=:idinversionista';
+      $sentencia=$conexion->prepare($sql);
+      $sentencia->bindParam(':idinversionista',$idinversionista);
+      $sentencia->execute();
+      $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+      return $resultados;
+    } catch (PDOException $e) {
+      throw $e;
+    }
+  }
 
 }
