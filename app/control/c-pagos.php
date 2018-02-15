@@ -31,7 +31,11 @@
              $monto=$fila['paquete']*0.2;//monto de bono de regalia
              $bono=0;//bono por afiliar a otras personas en los distintos niveles
              //obtiene una lista de paquetes y el nivel en q estan
-             $paquetenivel=$sconsultas->obtenerPaquetePago($fila['idinversionista'],$fechaAnterior,$fechaayer);
+             if ($fila['cuota']==1) {
+               $paquetenivel=$sconsultas->obtenerPaquetePago($fila['idinversionista'],date("Y-m-d", strtotime("$fechaAnterior - 15 days")),$fechaayer);
+             }else{
+               $paquetenivel=$sconsultas->obtenerPaquetePago($fila['idinversionista'],$fechaAnterior,$fechaayer);
+             }
              echo json_encode($paquetenivel)." <------> ".$fila['idinversionista'].$fecha." <------> ";
              //se obtiene el monto de la comision por inversionista
 
