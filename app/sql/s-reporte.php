@@ -78,7 +78,7 @@ class sreportes
             'FROM `tb_inversionista` LEFT JOIN  '.
             '(SELECT idinversion, idinversionista, max(tipo) as tip from tb_inversion GROUP by idinversionista)as td ON tb_inversionista.idinversionista=td.idinversionista '.
             'inner join tb_retiros  tb2 on tb2.idinversion  = td.idinversion '.
-            ' WHERE  td.tip=1 and tb2.cuota=6 and datediff(tb2.fechaasignada,curdate())>0';
+            ' WHERE tb_inversionista.cuotaretirada > 4 and   td.tip=1 and tb2.cuota=6 and datediff(tb2.fechaasignada,curdate())>0';
       $sentencia=$conexion->prepare($sql);
       $sentencia->execute();
       $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
