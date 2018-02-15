@@ -216,7 +216,7 @@ class sinversionista
      $db= new baseDatos();
      try {
        $conexion=$db->conectar();
-       $sql='SELECT count(idafiliado) as cantidad FROM `tb_afiliacion` where idinversionista=:idinversionista and nivel=1 ';
+       $sql='SELECT count(idafiliado) as cantidad FROM `tb_afiliacion` where idinversionista=:idinversionista and nivel=1 and estado=1';
        $sentencia=$conexion->prepare($sql);
        $sentencia->bindParam(':idinversionista',$idinversionista);
        $sentencia->execute();
@@ -244,6 +244,7 @@ class sinversionista
     }elseif($cant>=11) {
       $rango=4;
     }
+
 
     try {
       $conexion=$db->conectar();
