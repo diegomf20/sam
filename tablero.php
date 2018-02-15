@@ -122,6 +122,7 @@
     </style>
   </head>
   <body>
+
     <div id="app" class="panel">
       <!--Panel Menu-->
       <?php include 'retazos/panel/panel-menu.php'; ?>
