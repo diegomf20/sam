@@ -105,7 +105,7 @@
         margin-left: auto;
         border:3px solid #2489c5;
       }
-      .arbol-img-oculto:before{
+      .arbol-img-oculto-0:before{
         content: " ";
         top: 30px;
         left: 0;
@@ -238,7 +238,7 @@
                           <div :class="'rama'+ arboles2.idafiliado ">
                             <div class="rama" v-for="arboles3 in arboles2.arbol">
                               <div class="arbol">
-                                  <div class="arbol-img-sm" :style="{ 'background-image': 'url( imagenes/' + arboles3.imagen + ')' }"></div>
+                                  <div :class="{active:true, 'arbol-img-sm': false, 'arbol-img-oculto-0': true}" :style="{ 'background-image': 'url( imagenes/' + arboles3.imagen + ')' }"></div>
                                   <div class="arbol-nombre">
                                     <h6>{{arboles3.nombres}}</h6>
                                   </div>

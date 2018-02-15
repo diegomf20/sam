@@ -24,7 +24,7 @@
         try {
           $inversionista=$sinversionista->buscarClienteCorreoContrasenia($email,$contrasenia);
           $sinversion=new sinversion();
-          $inversionista['renovacion']=$sinversion->obtenerEstadoRenovacion($inversionista['idinversionista']);
+          $_SESSION['renovacion']=(int)$sinversion->obtenerEstadoRenovacion($inversionista['idinversionista']);
           $_SESSION['inversionista']=$inversionista;
           echo "correcto";
         } catch (Exception $e) {
