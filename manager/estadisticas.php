@@ -7,15 +7,7 @@
     <meta charset="utf-8">
     <title>SAM-<?php echo $pagina ?></title>
     <!--scripts y css generales-->
-    <!--diseño-->
-    <link rel="stylesheet" href="../vendor/framewoks/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../vendor/css/panel.css">
-    <link rel="stylesheet" href="../vendor/css/forms.css">
-    <link rel="stylesheet" href="../vendor/alertifyjs/css/alertify.min.css">
-    <!--fuentes-->
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,700,300">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-
+    <?php include 'sectores/head.php'; ?>
     <!-- lib estadisticas-->
      <link rel="stylesheet" href="../vendor/css/morris.css">
     <!--fin scripts y css generales-->

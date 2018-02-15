@@ -105,14 +105,14 @@
         margin-left: auto;
         border:3px solid #2489c5;
       }
-      .arbol-img-oculto:before{
+      .arbol-img-oculto-0:before{
         content: " ";
         top: 30px;
         left: 0;
         width: 60px;
         height: 60px;
         position: absolute;
-        background-color: rgba(100,100,100,0.5);
+        background-color: rgba(200,200,200,0.5);
         margin-left: calc( (100% - 60px)/2 );
         margin-right: 50px;
         border-radius: 50%;
@@ -161,7 +161,7 @@
                     </div>
                     <div class="col-7">
                       <h3>Dolares</h3>
-                      <h2 id="txt-recibido"></h2>
+                      <h2>{{totalRetiros}}</h2>
                     </div>
                   </div>
                 </div>
@@ -179,7 +179,7 @@
                     </div>
                     <div class="col-7">
                       <h3>Unidad</h3>
-                      <h2 id="txt-cuota"></h2>
+                      <h2><?php echo $inversionista['cuotaretirada'] ?></h2>
                     </div>
                   </div>
                 </div>
@@ -223,7 +223,7 @@
                   <div class="rama1">
                     <div class="rama"  v-for="arboles in arbol">
                       <div class="arbol">
-                          <div class="arbol-img-lg" :style="{ 'background-image': 'url( imagenes/' + arboles.imagen + ')' }"></div>
+                          <div :class="{ 'arbol-img-lg': true, 'arbol-img-oculto-0': arboles.estado==0 }" :style="{ 'background-image': 'url( imagenes/' + arboles.imagen + ')' }"></div>
                           <div class="arbol-nombre">
                             <h6>{{arboles.nombres}}</h6>
                           </div>
@@ -231,7 +231,7 @@
                       <div :class="'rama'+ arboles.idafiliado ">
                         <div class="rama" v-for="arboles2 in arboles.arbol">
                           <div class="arbol">
-                              <div class="arbol-img-sm" :style="{ 'background-image': 'url( imagenes/' + arboles2.imagen + ')' }"></div>
+                              <div :class="{ 'arbol-img-lg': true, 'arbol-img-oculto-0': arboles2.estado==0 }" :style="{ 'background-image': 'url( imagenes/' + arboles2.imagen + ')' }"></div>
                               <div class="arbol-nombre">
                                 <h6>{{arboles2.nombres}}</h6>
                               </div>
@@ -239,7 +239,7 @@
                           <div :class="'rama'+ arboles2.idafiliado ">
                             <div class="rama" v-for="arboles3 in arboles2.arbol">
                               <div class="arbol">
-                                  <div class="arbol-img-sm" :style="{ 'background-image': 'url( imagenes/' + arboles3.imagen + ')' }"></div>
+                                  <div :class="{'arbol-img-lg': true, 'arbol-img-oculto-0': arboles2.estado==0}" :style="{ 'background-image': 'url( imagenes/' + arboles3.imagen + ')' }"></div>
                                   <div class="arbol-nombre">
                                     <h6>{{arboles3.nombres}}</h6>
                                   </div>
@@ -265,7 +265,6 @@
     <?php
       if($inversionista['banco']==null){
     ?>
-
       alertify.alert("SAM","Faltan datos bancarios. Dar click en OK para ir...", function(){
           alertify.success('REDIRECIONANDO ...');
           setTimeout(function () {
@@ -275,6 +274,8 @@
     <?php
       }
      ?>
+
+
     function  abrir(){
       $('#btn1').click();
     }
@@ -283,9 +284,33 @@
     var vuejs=new Vue({
       el:'#app',
       data:{
-        arbol:[]
+        arbol:[],
+        tabla:[]
+      },
+      computed:{
+        totalRetiros(){
+          return this.tabla.reduce((sum,item)=>{
+            if (item.estado!=0) {
+                return sum + Number(item.monto)
+            }else {
+                return sum
+            }
+          },0);
+        }
       },
       methods: {
+        listar: function(){
+          $.ajax({
+            url: 'app/control/c-pagos.php',
+            type: 'POST',
+            dataType:'json',
+            data:{operacion:"consultaRetiros2"},
+            success: function(response){
+              vuejs.tabla=response;
+              console.log(response);
+            }
+          });
+        },
         actualizar: function (event) {
           $.ajax({
             url: 'app/control/c-consultas.php',
@@ -320,9 +345,27 @@
               console.log(response);
             }
           });
+        },
+        faltaRenovar:function(event){
+          $.ajax({
+            url: 'app/control/c-alerta.php',
+            type:'POST',
+            data:{operacion:"diasRenovacion"},
+            success: function(response){
+              if (response!="no") {
+                if ((Number(response)+1)>=0) {
+                  alertify.alert("SAM","Usted Tiene "+(Number(response)+1)+" dias para renovar!", function(){});
+                }else {
+                  alertify.alert("SAM","Su plazo de reinversi&oacuten a caducado. Contactese con la empresa!", function(){});
+                }
+              }
+            }
+          });
         }
       }
     });
+    vuejs.listar();
+    vuejs.faltaRenovar();
     vuejs.actualizar();
   </script>
 </html>

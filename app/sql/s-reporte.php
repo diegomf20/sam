@@ -75,7 +75,7 @@ class sreportes
     try {
       $conexion=$db->conectar();
       $sql='SELECT tb_inversionista.idinversionista as idinversionista,nombres,apellidos, celular, tb2.fechaasignada fecha, datediff(tb2.fechaasignada,curdate()) dias  '.
-            'FROM `tb_inversionista` LEFT JOIN  '.
+            'FROM tb_inversionista LEFT JOIN  '.
             '(SELECT idinversion, idinversionista, max(tipo) as tip from tb_inversion GROUP by idinversionista)as td ON tb_inversionista.idinversionista=td.idinversionista '.
             'inner join tb_retiros  tb2 on tb2.idinversion  = td.idinversion '.
             ' WHERE tb_inversionista.cuotaretirada > 4 and   td.tip=1 and tb2.cuota=6 and datediff(tb2.fechaasignada,curdate())>0';

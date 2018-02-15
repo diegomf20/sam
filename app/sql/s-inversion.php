@@ -110,5 +110,18 @@ class sinversion
       throw $e;
     }
   }
-
+  function obtenerEstadoRenovacion($idinversionista){
+    $db=new baseDatos();
+    try {
+      $conexion=$db->conectar();
+      $sql='SELECT * FROM tb_inversion WHERE idinversionista=:idinversionista AND tipo=2';
+      $sentencia=$conexion->prepare($sql);
+      $sentencia->bindParam(':idinversionista',$idinversionista);
+      $sentencia->execute();
+      $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+      return count($resultados);
+    } catch (PDOException $e) {
+      throw $e;
+    }
+  }
 }

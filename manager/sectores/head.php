@@ -1,4 +1,5 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="shortcut icon"  href="../vendor/img/logo-mini.png">
 <!--diseño-->
 <link rel="stylesheet" href="../vendor/framewoks/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="../vendor/css/panel.css">
