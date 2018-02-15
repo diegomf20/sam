@@ -112,7 +112,7 @@
         width: 60px;
         height: 60px;
         position: absolute;
-        background-color: rgba(100,100,100,0.5);
+        background-color: rgba(200,200,200,0.5);
         margin-left: calc( (100% - 60px)/2 );
         margin-right: 50px;
         border-radius: 50%;
@@ -222,7 +222,7 @@
                   <div class="rama1">
                     <div class="rama"  v-for="arboles in arbol">
                       <div class="arbol">
-                          <div class="arbol-img-lg" :style="{ 'background-image': 'url( imagenes/' + arboles.imagen + ')' }"></div>
+                          <div :class="{ 'arbol-img-lg': true, 'arbol-img-oculto-0': arboles.estado==0 }" :style="{ 'background-image': 'url( imagenes/' + arboles.imagen + ')' }"></div>
                           <div class="arbol-nombre">
                             <h6>{{arboles.nombres}}</h6>
                           </div>
@@ -230,7 +230,7 @@
                       <div :class="'rama'+ arboles.idafiliado ">
                         <div class="rama" v-for="arboles2 in arboles.arbol">
                           <div class="arbol">
-                              <div class="arbol-img-sm" :style="{ 'background-image': 'url( imagenes/' + arboles2.imagen + ')' }"></div>
+                              <div :class="{ 'arbol-img-lg': true, 'arbol-img-oculto-0': arboles2.estado==0 }" :style="{ 'background-image': 'url( imagenes/' + arboles2.imagen + ')' }"></div>
                               <div class="arbol-nombre">
                                 <h6>{{arboles2.nombres}}</h6>
                               </div>
@@ -238,7 +238,7 @@
                           <div :class="'rama'+ arboles2.idafiliado ">
                             <div class="rama" v-for="arboles3 in arboles2.arbol">
                               <div class="arbol">
-                                  <div :class="{active:true, 'arbol-img-sm': false, 'arbol-img-oculto-0': true}" :style="{ 'background-image': 'url( imagenes/' + arboles3.imagen + ')' }"></div>
+                                  <div :class="{'arbol-img-lg': true, 'arbol-img-oculto-0': arboles2.estado==0}" :style="{ 'background-image': 'url( imagenes/' + arboles3.imagen + ')' }"></div>
                                   <div class="arbol-nombre">
                                     <h6>{{arboles3.nombres}}</h6>
                                   </div>
@@ -355,7 +355,7 @@
                 if ((Number(response)+1)>=0) {
                   alertify.alert("SAM","Usted Tiene "+(Number(response)+1)+" dias para renovar!", function(){});
                 }else {
-                  alertify.alert("SAM","Su plazo de reinversi贸n a caducado. Contactese con la empresa!", function(){});
+                  alertify.alert("SAM","Su plazo de reinversi&oacuten a caducado. Contactese con la empresa!", function(){});
                 }
               }
             }
