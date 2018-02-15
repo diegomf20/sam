@@ -209,7 +209,10 @@
           <!--fin Resumenes-->
           <div class="row">
             <div class="col-sm-12 centrar">
-              <div class="tarjeta negro">
+              <div class="tarjeta">
+                <div class="header">
+                  RED BINARIA
+                </div>
                 <div class="body">
                   <div  class="rama0 centrar">
                     <div class="arbol">
@@ -253,6 +256,33 @@
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="tarjeta">
+                <div class="header">
+                  PATROCINADOS PENDIENTES
+                </div>
+                <div class="body" width=100%>
+                  <table class="table table-bordered table-striper">
+                    <thead>
+                      <tr>
+                        <td>NOMBRE</td>
+                        <td>EMAIL</td>
+                        <td>NUMERO</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="item in tabla2">
+                        <td>{{item.nombres}} {{item.apellidos}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.celular}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -284,7 +314,8 @@
       el:'#app',
       data:{
         arbol:[],
-        tabla:[]
+        tabla:[],
+        tabla2:[]
       },
       computed:{
         totalRetiros(){
@@ -306,6 +337,18 @@
             data:{operacion:"consultaRetiros2"},
             success: function(response){
               vuejs.tabla=response;
+              console.log(response);
+            }
+          });
+        },
+        listarPendiente: function(){
+          $.ajax({
+            url: 'app/control/c-consultas.php',
+            type: 'POST',
+            dataType:'json',
+            data:{operacion:"consultaPendientes"},
+            success: function(response){
+              vuejs.tabla2=response;
               console.log(response);
             }
           });
@@ -364,6 +407,7 @@
       }
     });
     vuejs.listar();
+    vuejs.listarPendiente();
     vuejs.faltaRenovar();
     vuejs.actualizar();
   </script>

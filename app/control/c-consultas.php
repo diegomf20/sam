@@ -62,5 +62,17 @@
             echo $operacion->obtenerDiaFiltro().'/'.$sactualizar->confirmarActualizar($operacion->obtenerDiaFiltro());
 
             break;
+          case 'consultaPendientes':
+             try {
+               session_start();
+               $inversionista=$_SESSION['inversionista'];
+               $idinversionista=$inversionista['idinversionista'];
+               $datos=$sconsultas->consultaPendientes($idinversionista);
+               echo json_encode($datos);
+             } catch (Exception $e) {
+               echo $e->getMessage();
+             }
+             break;
+
      }
    }
