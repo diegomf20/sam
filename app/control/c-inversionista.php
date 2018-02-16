@@ -46,6 +46,8 @@
           if ($enviar->comprobar($email)) {
             $id=$sinversionista->registraInversionista($nombres,$apellidos,$dni,$celular,$email,$imagen,$contrasenia);
             $inversionista=$sinversionista->buscarClienteId($id);
+            $sinversion=new sinversion();
+            $_SESSION['renovacion']=(int)$sinversion->obtenerEstadoRenovacion($inversionista['idinversionista']);
             $_SESSION['inversionista']=$inversionista;
             $html="<h1>Sr(a) $nombres  $apellidos</h1>".
                   "su nombre de usuario y contrase&ntildea son:<br>".
