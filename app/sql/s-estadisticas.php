@@ -6,13 +6,14 @@
    class sestadisticas
    {
 
-    function montototalinvertido(){
+    function montoinvertido(){ //anual
         $db = new baseDatos();
 
         try {
           $conexion= $db->conectar();
 
-          $sql ='SELECT (COUNT(idinversion)*10+ SUM(paquete) ) as total from tb_inversion ';
+          $sql ='SELECT SUM(paquete) inversion from tb_inversion WHERE tipo=1 ';
+
           $sentencia = $conexion->prepare($sql);
           $sentencia-> execute();
           $resultados =$sentencia -> fetchAll(PDO::FETCH_ASSOC);
@@ -22,6 +23,42 @@
           throw $e;
         }
     }
+
+    function montoreinvertido(){ //anual
+        $db = new baseDatos();
+
+        try {
+          $conexion= $db->conectar();
+
+          $sql ='select paquete from tb_inversion WHERE tipo=2';
+          $sentencia = $conexion->prepare($sql);
+          $sentencia-> execute();
+          $resultados =$sentencia -> fetchAll(PDO::FETCH_ASSOC);
+          return $resultados;
+
+        } catch (PDOException $e) {
+          throw $e;
+        }
+    }
+
+    function montoinicial(){ //anual
+        $db = new baseDatos();
+
+        try {
+          $conexion= $db->conectar();
+
+          $sql ='SELECT COUNT(idinversionista)*10 inicial from tb_inicial';
+          $sentencia = $conexion->prepare($sql);
+          $sentencia-> execute();
+          $resultados =$sentencia -> fetchAll(PDO::FETCH_ASSOC);
+          return $resultados;
+
+        } catch (PDOException $e) {
+          throw $e;
+        }
+    }
+
+
 
     function montopagadocuotas(){
         $db = new baseDatos();

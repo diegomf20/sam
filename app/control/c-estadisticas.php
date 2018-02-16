@@ -9,8 +9,38 @@ if (isset($_REQUEST['operacion'])) {
 
     case 'totalinvertido':
       try {
-        $monto = $sestadisticas->montototalinvertido();
-        echo json_encode($monto);
+        //$monto = $sestadisticas->montototalinvertido();
+        $inversion = $sestadisticas->montoinvertido();
+        $inicial = $sestadisticas->montoinicial();
+        $reinvertido =  $sestadisticas->montoreinvertido();
+  //      var_dump($reinvertido);
+        $suma=0;
+        for ($i=0; $i < count($reinvertido); $i++) {
+          $dato= $reinvertido[$i];
+      //    for ($j=0; $j <2 ; $j++) {
+            if ((int)$dato['paquete']==200) {
+              $suma=$suma+210;
+            }elseif ((int)$dato['paquete']==300) {
+              $suma=$suma+320;
+            }elseif ((int)$dato['paquete']==500) {
+              $suma=$suma+530;
+            }elseif ((int)$dato['paquete']==1000) {
+              $suma=$suma+1050;
+            }
+          }
+      //  }
+
+        $a=$inversion[0];
+        $b=$inicial[0];
+
+        $c=$a['inversion']+$b['inicial']+$suma;
+      //  echo "total invertido";
+      //  var_dump($c);
+    /*  echo " a ". $a['inversion'];
+      echo "b ".$b['inicial'];
+      echo " s ". $suma;
+    //  echo $c." c";*/
+        echo json_encode($c);
       } catch (\Exception $e) {
         echo $e->getMessage();
       }

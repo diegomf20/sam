@@ -36,7 +36,7 @@
                     </div>
                     <div class="col-7">
                       <h3 >  Dolares</h3>
-                      <h2 >{{items.total}}</h2>
+                      <h2 >{{items}}</h2>
                     </div>
                   </div>
                 </div>
@@ -132,8 +132,9 @@
             dataType: "json",
             data:{operacion:"totalinvertido"},
             success: function(response){
+              console.log("hola");
             //  inversion =response[0];
-              vuejs.items=response[0];
+              vuejs.items=response;
               console.log(response);
             }
           });
