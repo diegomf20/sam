@@ -10,5 +10,6 @@ $.ajax({
     $('#txt-inversion').text('$ '+obj.paquete);
     $('#txt-recibido').text('$ '+obj.recuperado);
     $('#txt-cuota').text(obj.cuota);
+    $('#txt-personas').text(obj.personas);
   }
 });

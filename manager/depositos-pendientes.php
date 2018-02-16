@@ -251,27 +251,29 @@
             function(evt, value ){
               var numerooperacion=value;
               //insertar desde ajax
-              $.ajax({
-                url: '../app/control/c-pagos.php',
-                type:'POST',
-                data:{
-                  operacion:"actualizarEstado",
-                  idinversionista:idinversionista,
-                  idinversion:idinversion,
-                  cuota:cuota,
-                  numerooperacion:numerooperacion
-                },
-                success: function(response){
-                  console.log(response);
-                  if (response) {
-                    alertify.success('Registrado Pago a Inversionista');
-                  }else {
-                    alertify.error(response);
+              setTimeout(function () {
+                $.ajax({
+                  url: '../app/control/c-pagos.php',
+                  type:'POST',
+                  data:{
+                    operacion:"actualizarEstado",
+                    idinversionista:idinversionista,
+                    idinversion:idinversion,
+                    cuota:cuota,
+                    numerooperacion:numerooperacion
+                  },
+                  success: function(response){
+                    console.log(response);
+                    if (response) {
+                      alertify.success('Registrado Pago a Inversionista');
+                    }else {
+                      alertify.error(response);
+                    }
+                    vuejs.actualizar();
+                    vuejs.actualizar2();
                   }
-                  vuejs.actualizar();
-                  vuejs.actualizar2();
-                }
-              });
+                });
+              }, 100);
             },
             function(){alertify.error('Cancelado');});
         }

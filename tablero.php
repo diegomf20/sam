@@ -179,7 +179,7 @@
                     </div>
                     <div class="col-7">
                       <h3>Unidad</h3>
-                      <h2><?php echo $inversionista['cuotaretirada'] ?></h2>
+                      <h2 id="txt-cuota"></h2>
                     </div>
                   </div>
                 </div>
@@ -197,7 +197,7 @@
                     </div>
                     <div class="col-7">
                       <h3>Personas</h3>
-                      <h2><?php echo $inversionista['numeroafiliados'] ?></h2>
+                      <h2 id="txt-personas"></h2>
                     </div>
                   </div>
                 </div>
@@ -314,6 +314,7 @@
     var vuejs=new Vue({
       el:'#app',
       data:{
+        resumen:[],
         arbol:[],
         tabla:[],
         tabla2:[]
@@ -405,6 +406,7 @@
             }
           });
         }
+
       }
     });
     vuejs.listar();

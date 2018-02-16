@@ -6,6 +6,7 @@
      include 'db.php';
      include 'sql.php';
      include 'logica/operaciones.php';
+     include 'sql/s-inversionista.php';
      $sql=new sql();
      //$db->prepare('SELECT * FROM partida WHERE apellido LIKE concat("%", :buscar, "%")');
     /**
@@ -47,9 +48,14 @@
         $inversionista=$_SESSION['inversionista'];
         $idinversionista=(int) $inversionista['idinversionista'];
         if ($sql->consultaExisteciaInversion($idinversionista)==0) {
-          $resultados=["paquete"=>0,"cuota"=>0,"recuperado"=>0,"inactivo"=>true];
+          $resultados=["paquete"=>0,"cuota"=>0,"personas"=>0];
         }else{
           $resultados=$sql->obtenerResumenes($idinversionista);
+          $sinversionista=new sinversionista();
+          $inversionista=$sinversionista->buscarClienteId($idinversionista);
+          $_SESSION['inversionista']=$inversionista;
+          $resultados['cuota']=$inversionista['cuotaretirada'];
+          $resultados['personas']=$inversionista['numeroafiliados'];
         }
         echo json_encode($resultados);
         break;
