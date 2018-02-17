@@ -6,58 +6,23 @@
    class sestadisticas
    {
 
-    function montoinvertido(){ //anual
-        $db = new baseDatos();
+    function totalinvertido(){
+      $db = new baseDatos();
 
-        try {
-          $conexion= $db->conectar();
+      try {
+        $conexion= $db->conectar();
 
-          $sql ='SELECT SUM(paquete) inversion from tb_inversion WHERE tipo=1 ';
+        $sql ='select sum(paquete)+sum(inscripcion) as total from tb_inversion';
 
-          $sentencia = $conexion->prepare($sql);
-          $sentencia-> execute();
-          $resultados =$sentencia -> fetchAll(PDO::FETCH_ASSOC);
-          return $resultados;
+        $sentencia = $conexion->prepare($sql);
+        $sentencia-> execute();
+        $resultados =$sentencia -> fetchAll(PDO::FETCH_ASSOC);
+        return $resultados;
 
-        } catch (PDOException $e) {
-          throw $e;
-        }
+      } catch (PDOException $e) {
+        throw $e;
+      }
     }
-
-    function montoreinvertido(){ //anual
-        $db = new baseDatos();
-
-        try {
-          $conexion= $db->conectar();
-
-          $sql ='select paquete from tb_inversion WHERE tipo=2';
-          $sentencia = $conexion->prepare($sql);
-          $sentencia-> execute();
-          $resultados =$sentencia -> fetchAll(PDO::FETCH_ASSOC);
-          return $resultados;
-
-        } catch (PDOException $e) {
-          throw $e;
-        }
-    }
-
-    function montoinicial(){ //anual
-        $db = new baseDatos();
-
-        try {
-          $conexion= $db->conectar();
-
-          $sql ='SELECT COUNT(idinversionista)*10 inicial from tb_inicial';
-          $sentencia = $conexion->prepare($sql);
-          $sentencia-> execute();
-          $resultados =$sentencia -> fetchAll(PDO::FETCH_ASSOC);
-          return $resultados;
-
-        } catch (PDOException $e) {
-          throw $e;
-        }
-    }
-
 
 
     function montopagadocuotas(){
@@ -98,12 +63,11 @@
     function invertidomensual($anio){
         $db = new baseDatos();
 
-
         try {
           $conexion= $db->conectar();
 
-          $sql = 'SELECT month(fecha) as mes , (COUNT(idinversion)*10+SUM(paquete)) as total	from tb_inversion '.
-                  'where tipo = 1 and year(fecha)=:anio group by month(fecha) order by month(fecha) asc ';
+          $sql = 'SELECT month(fechainscripcion) as mes , SUM(paquete)+SUM(inscripcion) as total	from tb_inversion '.
+                  'where tipo = 1 and year(fechainscripcion)=:anio group by month(fechainscripcion) order by month(fechainscripcion) asc';
           $sentencia = $conexion->prepare($sql);
           $sentencia->bindParam(':anio',$anio);
           $sentencia-> execute();
@@ -166,8 +130,8 @@
         try {
           $conexion= $db->conectar();
 
-          $sql = 'SELECT year(fecha) as anio, ifnull(sum(paquete),0.00) as total from tb_inversion '.
-                  'where tipo = 1 group by year(fecha) order by year(fecha) asc';
+          $sql = 'SELECT year(fechainscripcion) as anio, (sum(paquete)+SUM(inscripcion)) as total from tb_inversion
+                  group by year(fechainscripcion) order by year(fechainscripcion) asc';
           $sentencia = $conexion->prepare($sql);
           $sentencia-> execute();
           $resultados =$sentencia -> fetchAll(PDO::FETCH_ASSOC);
@@ -177,6 +141,9 @@
           throw $e;
         }
     }
+
+
+
 
     function pagadocuotaAnio(){
         $db = new baseDatos();

@@ -40,9 +40,9 @@ class sreportes
     $db=new baseDatos();
     try {
       $conexion=$db->conectar();
-      $sql='SELECT concat(nombres," ", apellidos) nombre, celular, tb2.fecha fecha from tb_inversionista tb '.
-            'inner join tb_inicial tb2  on tb2.idinversionista=tb.idinversionista '.
-            'left join tb_inversion tb3 on tb3.idinversionista=tb2.idinversionista WHERE tb3.idinversionista is null';
+      $sql='SELECT concat(tb2.nombres," ", tb2.apellidos) nombre, tb2.celular celular , fechainscripcion fecha FROM tb_inversion tb '.
+            'inner join  tb_inversionista tb2 on tb.idinversionista=tb2.idinversionista '.
+            'WHERE inscripcion>0 and paquete is null';
       $sentencia=$conexion->prepare($sql);
       $sentencia->execute();
       $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);

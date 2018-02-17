@@ -13,7 +13,7 @@
        case 'listaAfiliadosRango':
          try {
            $datos=$sreportes->listAfilidosRango();
-           var_dump($datos);
+    //       var_dump($datos);
            echo json_encode($datos);
          } catch (Exception $e) {
            echo $e->getMessage();

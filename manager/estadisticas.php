@@ -36,7 +36,7 @@
                     </div>
                     <div class="col-7">
                       <h3 >  Dolares</h3>
-                      <h2 >{{items}}</h2>
+                      <h2 >{{items.total}}</h2>
                     </div>
                   </div>
                 </div>
@@ -77,7 +77,7 @@
                                        <div class="col-xs-4 col-sm-12 form-group">
                                            <select class="form-control" id="cbperiodo">
                                                <option value="0">MENSUAL</option>
-                                               <option value="1">ANUAL</option>
+                                               <!--<option value="1">ANUAL</option>-->
                                            </select>
                                        </div>
                                        <div class="col-xs-4 col-sm-12 form-group">
@@ -134,8 +134,8 @@
             success: function(response){
               console.log("hola");
             //  inversion =response[0];
-              vuejs.items=response;
-              console.log(response);
+              vuejs.items=response[0];
+              console.log(response[0]);
             }
           });
         },

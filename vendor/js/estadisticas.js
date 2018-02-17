@@ -95,6 +95,7 @@ function graficar(){
       data:{operacion:'grafica'},
       success: function(response){
         morrisAnio.setData(response);
+        console.log(response);
       }
     });
   }
