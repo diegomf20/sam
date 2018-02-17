@@ -5,6 +5,7 @@
     include '../sql/s-inversionista.php';
     include '../sql/s-afiliado.php';
     include '../sql/s-inversion.php';
+    include '../logica/contrasenia.php';
     include 'phpmailer/PHPMailerAutoload.php';
 
     $sinversionista=new sinversionista();
@@ -41,7 +42,9 @@
         $celular=$_REQUEST['celular'];
         $email=$_REQUEST['email'];
         $imagen='usuario.jpg';
-        $contrasenia='inversionista';
+        $mcontrasenia=new contrasenia();
+
+        $contrasenia=$mcontrasenia->generarpassword();
         try {
           $enviar=new enviar();
           if ($enviar->comprobar($email)) {
@@ -79,7 +82,8 @@
         $celular=$_REQUEST['celular'];
         $email=$_REQUEST['email'];
         $imagen='usuario.jpg';
-        $contrasenia='inversionista';
+        $mcontrasenia=new contrasenia();
+        $contrasenia=$mcontrasenia->generarpassword();
         try {
           $enviar=new enviar();
           if ($enviar->comprobar($email)) {
