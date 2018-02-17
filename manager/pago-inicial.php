@@ -39,7 +39,8 @@
                             <td></td>
                             <td>NOMBRE Y APELLIDOS</td>
                             <td>FECHA</td>
-                            <td>AFILIACION</td>
+                            <td>MONTO</td>
+                            <td>INSCRIPCION</td>
                           </tr>
                         </thead>
 
@@ -47,6 +48,7 @@
                           <td>{{item.idinversionista}}</td>
                           <td>{{item.nombres}} {{item.apellidos}}</td>
                           <td>{{item.fechainscripcion}}</td>
+                          <td>{{ item.inscripcion}}</td>
                           <td>
                             <button name=pagar  v-bind:id="item.idinversion"  v-on:click="insertarPago" v-if="item.inscripcion===null" class="btn-registrar">
                               PAGAR
