@@ -8,27 +8,66 @@
     $sinversion=new sinversion();
     $operacion=$_REQUEST['operacion'];
     switch ($operacion) {
-      case 'registrarInversion':
+      //confirmados
+      case 'registrarInscripcion':
+        $idinversion=$_REQUEST['idinversion'];
+        $inscripcion=$_REQUEST['inscripcion'];
+        $fechainscripcion=date('Y-m-d');
+        $sinversion->registrarInscripcion($idinversion,$inscripcion,$fechainscripcion);
+        echo true;
+        break;
+
+      //para evaluacion si se queda o no
+      case 'registrarInversionInicial':
         try {
-          $sinversion->insertarInversion($_REQUEST['idinversionista'],$_REQUEST['paquete'],$_REQUEST['numerooperacion'],1,0);
+          $idinversionista=$_REQUEST['idinversionista'];
+          $idinversion=$_REQUEST['idinversion'];
+          $paquete=$_REQUEST['paquete'];
+          $numerooperacion=$_REQUEST['numerooperacion'];
+          $fecha=date('Y-m-d');
+          $inscripcion=10.0;
+          if ($paquete==200||$paquete==300) {
+            $inscripcion=10.0;
+          }elseif ($paquete==500) {
+            $inscripcion=15.0;
+          }elseif ($paquete==1000) {
+            $inscripcion=20.0;
+          }
+          $sinversion->registrarInversionInicial($idinversionista,$idinversion,$paquete,$numerooperacion,$inscripcion,$fecha);
           echo true;
         } catch (Exception $e) {
           echo $e->getMessage();
         }
         break;
+
+
       case 'registrarRenovacion':
         try {
-          $resultado=$sinversion->obtenerPaquete($_REQUEST['idinversionista']);
+          $idinversionista=$_REQUEST['idinversionista'];
           $sinversionista=new sinversionista();
-          $inversionista=$sinversionista->buscarClienteId($_REQUEST['idinversionista']);
+          $resultado=$sinversion->obtenerPaquete($idinversionista);
+          $inversionista=$sinversionista->buscarClienteId($idinversionista);
+
+          $numerooperacion=$_REQUEST['numerooperacion'];
+          $cuotaretirada=$inversionista['cuotaretirada'];
+          $fecha=date('Y-m-d');
+
           $paquete=$resultado['paquete'];
-          $sinversion->insertarInversion($_REQUEST['idinversionista'],$paquete,$_REQUEST['numerooperacion'],2,$inversionista['cuotaretirada']);
+          $inscripcion=10.0;
+          if ($paquete==200) {
+            $inscripcion=10.0;
+          }elseif ($paquete==300) {
+            $inscripcion=20.0;
+          }elseif ($paquete==500) {
+            $inscripcion=30.0;
+          }elseif ($paquete==1000) {
+            $inscripcion=50.0;
+          }
+          $sinversion->registrarInversionRenovacion($idinversionista,$paquete,$numerooperacion,$cuotaretirada,$inscripcion,$fecha);
           echo true;
         } catch (Exception $e) {
           echo $e->getMessage();
         }
         break;
-
     }
-
   }

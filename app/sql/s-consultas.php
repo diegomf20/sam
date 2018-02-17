@@ -1,20 +1,35 @@
 <?php
 class sconsultas
 {
-  function consultaPagoInicial(){
+  //usuarios en general
+  function consultaInversion(){
     $db=new baseDatos();
     try {
       $conexion=$db->conectar();
-      $sql='SELECT tb_inversionista.idinversionista AS idinversionista,nombres,apellidos,fecha '.
-            'FROM `tb_inversionista` LEFT JOIN tb_inicial on tb_inversionista.idinversionista=tb_inicial.idinversionista';
+      $sql='SELECT * FROM tb_inversionista INNER JOIN tb_inversion ON tb_inversionista.idinversionista=tb_inversion.idinversionista WHERE tipo=1';
       $sentencia=$conexion->prepare($sql);
       $sentencia->execute();
       $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
       return $resultados;
     } catch (PDOException $e) {
-      throw $e->getMessage();
+      throw $e;
     }
   }
+  //usuarios que ya pagaron inscripcion y quieren pagar inicial
+  function consultaInversionInicial(){
+    $db=new baseDatos();
+    try {
+      $conexion=$db->conectar();
+      $sql='SELECT * FROM tb_inversionista INNER JOIN tb_inversion ON tb_inversionista.idinversionista=tb_inversion.idinversionista WHERE tipo=1 AND inscripcion is NOT null';
+      $sentencia=$conexion->prepare($sql);
+      $sentencia->execute();
+      $resultados=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+      return $resultados;
+    } catch (PDOException $e) {
+      throw $e;
+    }
+  }
+
   function consultaInversionRenovacion(){
     $db=new baseDatos();
     try {

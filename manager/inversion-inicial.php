@@ -52,10 +52,10 @@
                           <td>{{item.fecha}}</td>
                           <td>{{item.paquete}}</td>
                           <td>
-                            <div v-bind:id="item.idinversionista" v-if="item.tipo==='1'">
+                            <div v-bind:id="item.idinversionista" v-if="item.paquete!=null">
                               INICIAL
                             </div>
-                            <button v-bind:id="item.idinversionista" v-on:click="ingresarPaquete" type="button" name="button" v-if="item.tipo===null" class="btn-registrar">
+                            <button v-else v-bind:id="item.idinversionista+'-'+item.idinversion " v-on:click="ingresarPaquete" type="button" name="button" class="btn-registrar">
                               INACTIVO
                             </button>
                           </td>

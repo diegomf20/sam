@@ -33,7 +33,8 @@
         break;
 
       case 'registrarInversionista':
-        $inversionista=[];
+        //variables de  ingreso para metodo registrar inversionista inicial Nivel 0
+        $metodoingreso=0;//registro desde sam/index.php
         $nombres=strtoupper($_REQUEST['nombres']);
         $apellidos=strtoupper($_REQUEST['apellidos']);
         $dni=$_REQUEST['dni'];
@@ -44,7 +45,7 @@
         try {
           $enviar=new enviar();
           if ($enviar->comprobar($email)) {
-            $id=$sinversionista->registraInversionista($nombres,$apellidos,$dni,$celular,$email,$imagen,$contrasenia);
+            $id=$sinversionista->registraInversionista($nombres,$apellidos,$dni,$celular,$email,$imagen,$contrasenia,$metodoingreso);
             $inversionista=$sinversionista->buscarClienteId($id);
             $sinversion=new sinversion();
             $_SESSION['renovacion']=(int)$sinversion->obtenerEstadoRenovacion($inversionista['idinversionista']);

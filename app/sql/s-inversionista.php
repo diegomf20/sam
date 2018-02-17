@@ -5,10 +5,13 @@ class sinversionista
   /**
    * Registrar inversionista
    */
-   function registraInversionista($nombres,$apellidos,$dni,$celular,$email,$imagen,$contrasenia){
-     $db=new baseDatos();
+   function registraInversionista($nombres,$apellidos,$dni,$celular,$email,$imagen,$contrasenia,$metodoingreso){
+     //variables para el metodo
+     $fecha=date("Y-m-d");
      $sentencia;
+     $db=new baseDatos();
      try {
+       //se inserta el nuevo usuario
        $conexion=$db->conectar();
        $sql='INSERT INTO tb_inversionista( nombres , apellidos , dni , celular ,email, imagen , contrasenia)'.
            ' VALUES( :nombres , :apellidos , :dni , :celular , :email , :imagen , :contrasenia)';
@@ -22,12 +25,14 @@ class sinversionista
        $sentencia->bindParam(':contrasenia',$contrasenia);
        $sentencia->execute();
        $id=$conexion->lastInsertId();
+       //insertar inversion inicial sin datos
+       $sinversion=new sinversion();
+       $sinversion->insertarInversion($id);
        return $id;
      } catch (PDOException $e) {
        $codigo=$sentencia->errorInfo();
        throw new PDOException($codigo[1]);
        throw $e;
-
      }
    }
    /**
@@ -49,6 +54,9 @@ class sinversionista
        $sentencia->bindParam(':contrasenia',$contrasenia);
        $sentencia->execute();
        $id=$conexion->lastInsertId();
+       //insertar inversion inicial sin datos
+       $sinversion=new sinversion();
+       $sinversion->insertarInversion($id);
        $safiliado=new safiliado();
        $safiliado->registrarAfiliacion($idinversionista,$id,1);
        return $id;
@@ -89,7 +97,7 @@ class sinversionista
        throw $e;
      }
    }
-
+   //post eliminacion
    function listarInversionistas(){
      $db=new baseDatos();
      try {

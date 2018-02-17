@@ -46,12 +46,12 @@
                         <tr v-for="item in items">
                           <td>{{item.idinversionista}}</td>
                           <td>{{item.nombres}} {{item.apellidos}}</td>
-                          <td>{{item.fecha}}</td>
+                          <td>{{item.fechainscripcion}}</td>
                           <td>
-                            <button name=pagar  v-bind:id="item.idinversionista"  v-on:click="insertarPago" v-if="item.fecha===null" class="btn-registrar">
+                            <button name=pagar  v-bind:id="item.idinversion"  v-on:click="insertarPago" v-if="item.inscripcion===null" class="btn-registrar">
                               PAGAR
                             </button>
-                            <div v-bind:id="item.idinversionista" v-else>
+                            <div v-else>
                               PAGADO
                             </div>
                           </td>

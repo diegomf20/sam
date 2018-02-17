@@ -31,9 +31,8 @@ function reemplazar(html){
 var vuejs=new Vue({
   el:'#app',
   data:{
-    idinversionista:0,
-    paquete:0,
-    numerooperacion:'',
+    idinversion:0,
+    inscripcion:0,
     items:[]
   },
   methods: {
@@ -50,28 +49,35 @@ var vuejs=new Vue({
         }
       });
     },
+    //inicio de alerta y confirmacion de monto
     insertarPago:function(event){
-      alertify.confirm("SAM","Confirmar pago de afiliación.",
-      function(){
-        $.ajax({
-          url: '../app/control/c-inicial.php',
-          type:'POST',
-          data:{operacion:"insertarPagoInicial",idinversionista:event.target.id},
-          success: function(response){
-            if (response) {
-              alertify.success('Registrado pago inicial');
-              reemplazar('<div>PAGADO</div>');
-            }else {
-              alertify.error(response);
-            }
-            vuejs.actualizar();
-          }
-        });
-      },
-      function(){
-        alertify.error('Cancel');
-      });
+      alertify.prompt("SAM","Confirmar pago de inscripcion. ( $ )","10.00",
+        function(evt, value ){
+          vuejs.idinversion=event.target.id;
+          vuejs.inscripcion=value;
+          Vue.nextTick(function () {
+            $.ajax({
+              url: '../app/control/c-inversion.php',
+              type:'POST',
+              data:{operacion:"registrarInscripcion",idinversion:vuejs.idinversion,inscripcion:vuejs.inscripcion},
+              success: function(response){
+                if (response) {
+                  alertify.success('Registrado pago inicial');
+                  reemplazar('<div>PAGADO</div>');
+                }else {
+                  alertify.error(response);
+                }
+                vuejs.actualizar();
+              }
+            });
+          });
+        },
+        function(){
+          alertify.error('Cancel');
+        }
+      );
     }
+    //fin de alerta y confirmacion de monto
   }
 });
 vuejs.actualizar();

@@ -3,7 +3,6 @@
     /**
      * includes
      */
-
      include '../db.php';
      include '../sql/s-inicial.php';
      $sinicial=new sinicial();

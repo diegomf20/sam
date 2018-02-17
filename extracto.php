@@ -67,7 +67,7 @@
                     </div>
                     <div class="col-7">
                       <h3>Dolares</h3>
-                      <h2>{{totalRetiros}}</h2>
+                      <h2>$ {{totalRetiros}}</h2>
                     </div>
                   </div>
                 </div>

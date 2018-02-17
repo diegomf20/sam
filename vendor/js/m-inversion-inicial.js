@@ -30,6 +30,7 @@ var vuejs=new Vue({
   el:'#app',
   data:{
     idinversionista:0,
+    idinversion:0,
     paquete:0,
     numerooperacion:'',
     items:[]
@@ -37,10 +38,10 @@ var vuejs=new Vue({
   methods: {
     actualizar: function (event) {
       $.ajax({
-        url: '../app/control/c-inversionista.php',
+        url: '../app/control/c-consultas.php',
         type:'POST',
         dataType: "json",
-        data:{operacion:"listarInversionistas"},
+        data:{operacion:"consultaInversionInicial"},
         success: function(response){
           vuejs.items=response;
           console.log(response);
@@ -51,31 +52,49 @@ var vuejs=new Vue({
 
     ingresarPaquete:function(event){
       alertify.prompt("SAM","Ingresar Paquete.", "0.00",
-        function(evt, value ){vuejs.paquete=value;vuejs.idinversionista=event.target.id;
+        function(evt, value ){
+          //capturamos valores
+          vuejs.paquete=value;
+          vuejs.idinversionista=event.target.id.split('-')[0];
+          vuejs.idinversion=event.target.id.split('-')[1];
           setTimeout(function () {
+            //segunda alerta
             alertify.prompt("Ingresar Numero de transaccion.", "",
-              function(evt, value ){vuejs.numerooperacion=value;vuejs.insertar();},
+              function(evt, value ){
+                vuejs.numerooperacion=value;
+                Vue.nextTick(function () {
+                  $.ajax({
+                    url: '../app/control/c-inversion.php',
+                    type:'POST',
+                    data:{
+                      operacion:"registrarInversionInicial",
+                      idinversionista:vuejs.idinversionista,
+                      idinversion:vuejs.idinversion,
+                      paquete:vuejs.paquete,
+                      numerooperacion:vuejs.numerooperacion
+                    },
+                    success: function(response){
+                      alert(response);
+                      if (response) {
+                        alertify.success('Registrado inversion inicial');
+                        reemplazar('<span>INICIAL</span>');
+                      }else {
+                        alertify.error(response);
+                      }
+                      vuejs.actualizar();
+                    }
+                  });
+                });
+              },
               function(){alertify.error('Cancelado');});
+              //fin segunda alerta
           }, 200);
         },
         function(){alertify.error('Cancelado');});
     },
 
     insertar: function(event){
-      $.ajax({
-        url: '../app/control/c-inversion.php',
-        type:'POST',
-        data:{operacion:"registrarInversion",idinversionista:vuejs.idinversionista,paquete:vuejs.paquete,numerooperacion:vuejs.numerooperacion},
-        success: function(response){
-          if (response) {
-            alertify.success('Registrado inversion inicial');
-            reemplazar('<span>INICIAL</span>');
-          }else {
-            alertify.error(response);
-          }
-          vuejs.actualizar();
-        }
-      });
+
     }
   }
 });

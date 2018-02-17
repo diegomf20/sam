@@ -4,6 +4,7 @@ $.ajax({
   dataType: "json",
   success:  function (response) {
     var obj=response;
+    if (obj.paquete==null) obj.paquete=0;
     if (obj.cuota==null) obj.cuota=0;
     if (obj.recuperado==null) obj.recuperado=0;
 
