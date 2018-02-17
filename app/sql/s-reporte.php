@@ -40,7 +40,7 @@ class sreportes
     $db=new baseDatos();
     try {
       $conexion=$db->conectar();
-      $sql='SELECT concat(nombres,' ', apellidos) nombre, celular, tb2.fecha fecha from tb_inversionista tb '.
+      $sql='SELECT concat(nombres," ", apellidos) nombre, celular, tb2.fecha fecha from tb_inversionista tb '.
             'inner join tb_inicial tb2  on tb2.idinversionista=tb.idinversionista '.
             'left join tb_inversion tb3 on tb3.idinversionista=tb2.idinversionista WHERE tb3.idinversionista is null';
       $sentencia=$conexion->prepare($sql);
