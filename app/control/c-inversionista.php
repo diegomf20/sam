@@ -4,6 +4,7 @@
     include '../logica/enviar.php';
     include '../sql/s-inversionista.php';
     include '../sql/s-afiliado.php';
+    include '../sql/s-inversion.php';
     include 'phpmailer/PHPMailerAutoload.php';
 
     $sinversionista=new sinversionista();
@@ -22,6 +23,8 @@
         $contrasenia=$_REQUEST['contrasenia'];
         try {
           $inversionista=$sinversionista->buscarClienteCorreoContrasenia($email,$contrasenia);
+          $sinversion=new sinversion();
+          $inversionista['renovacion']=$sinversion->obtenerEstadoRenovacion($inversionista['idinversionista']);
           $_SESSION['inversionista']=$inversionista;
           echo "correcto";
         } catch (Exception $e) {
