@@ -128,11 +128,8 @@
       $db=new baseDatos();
       try {
         $conexion=$db->conectar();
-        $sql='SELECT paquete,max(cuota) as cuota,SUM(monto) as recuperado
-              FROM tb_inversion as tb1 LEFT JOIN
-              (SELECT idinversion,cuota,monto FROM tb_retiros WHERE estado!=0) as tb2
-              ON tb1.idinversion=tb2.idinversion
-              WHERE tb1.idinversionista=:idinversionista GROUP BY tb1.paquete';
+        //$sql='SELECT SUM(paquete) as from tb_inversion WHERE idinversionista =:idinversionista'
+        $sql='SELECT sum(paquete) as paquete,0 as cuota, sum(monto) as recuperado FROM (SELECT paquete ,tipo, SUM(tb_retiros.monto) AS monto from tb_inversion INNER JOIN tb_retiros ON tb_inversion.idinversion=tb_retiros.idinversion WHERE tb_inversion.idinversionista=:idinversionista GROUP BY tb_retiros.idinversion) as td';
         $sentencia=$conexion->prepare($sql);
         $sentencia->bindParam(':idinversionista',$idinversionista);
         $sentencia->execute();

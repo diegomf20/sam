@@ -58,6 +58,26 @@
           <?php include 'retazos/panel/contenido-head.php' ?>
           <!--Fin Encabezado-->
           <div class="row">
+            <div class="col-xl-3 col-md-6">
+              <div class="tarjeta">
+                <div class="body totales azul">
+                  <div class="row">
+                    <div class="col-5 centrar">
+                      <i class="fa fa-calculator"></i>
+                    </div>
+                    <div class="col-7">
+                      <h3>Dolares</h3>
+                      <h2>{{totalRetiros}}</h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="footer">
+                  <h3 class=centrar>TOTAL</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
             <div class="col-sm-12">
               <div class="tarjeta">
                 <div class="header">
@@ -84,6 +104,7 @@
                           <td class="txt-verde centrar" v-else><i class="fa fa-check-circle-o"></i></td>
                         </tr>
                       </table>
+                      <h2></h2>
                     </div>
                   </div>
                 </div>
@@ -99,6 +120,17 @@
       var vuejs=new Vue({
         el:'#app',
         data:{tabla:[]},
+        computed:{
+          totalRetiros(){
+            return this.tabla.reduce((sum,item)=>{
+              if (item.estado!=0) {
+                  return sum + Number(item.monto)
+              }else {
+                  return sum
+              }
+            },0);
+          }
+        },
         methods:{
           listar: function(){
             $.ajax({

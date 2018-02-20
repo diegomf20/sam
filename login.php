@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>SAM</title>
+    <link rel="shortcut icon"  href="vendor/img/logo-mini.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <link rel="stylesheet" href="vendor/framewoks/bootstrap/css/bootstrap.min.css">
@@ -32,7 +33,7 @@
         </div>
       </div>
     </div>
-    
+
   </body>
 
   <script type="text/javascript" src="vendor/framewoks/jquery-3.3.1.min.js"></script>

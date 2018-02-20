@@ -160,7 +160,7 @@
                     </div>
                     <div class="col-7">
                       <h3>Dolares</h3>
-                      <h2 id="txt-recibido"></h2>
+                      <h2>{{totalRetiros}}</h2>
                     </div>
                   </div>
                 </div>
@@ -178,7 +178,7 @@
                     </div>
                     <div class="col-7">
                       <h3>Unidad</h3>
-                      <h2 id="txt-cuota"></h2>
+                      <h2><?php echo $inversionista['cuotaretirada'] ?></h2>
                     </div>
                   </div>
                 </div>
@@ -264,7 +264,6 @@
     <?php
       if($inversionista['banco']==null){
     ?>
-
       alertify.alert("SAM","Faltan datos bancarios. Dar click en OK para ir...", function(){
           alertify.success('REDIRECIONANDO ...');
           setTimeout(function () {
@@ -274,6 +273,8 @@
     <?php
       }
      ?>
+
+
     function  abrir(){
       $('#btn1').click();
     }
@@ -282,9 +283,33 @@
     var vuejs=new Vue({
       el:'#app',
       data:{
-        arbol:[]
+        arbol:[],
+        tabla:[]
+      },
+      computed:{
+        totalRetiros(){
+          return this.tabla.reduce((sum,item)=>{
+            if (item.estado!=0) {
+                return sum + Number(item.monto)
+            }else {
+                return sum
+            }
+          },0);
+        }
       },
       methods: {
+        listar: function(){
+          $.ajax({
+            url: 'app/control/c-pagos.php',
+            type: 'POST',
+            dataType:'json',
+            data:{operacion:"consultaRetiros2"},
+            success: function(response){
+              vuejs.tabla=response;
+              console.log(response);
+            }
+          });
+        },
         actualizar: function (event) {
           $.ajax({
             url: 'app/control/c-consultas.php',
@@ -319,9 +344,27 @@
               console.log(response);
             }
           });
+        },
+        faltaRenovar:function(event){
+          $.ajax({
+            url: 'app/control/c-alerta.php',
+            type:'POST',
+            data:{operacion:"diasRenovacion"},
+            success: function(response){
+              if (response!="no") {
+                if ((Number(response)+1)>=0) {
+                  alertify.alert("SAM","Usted Tiene "+(Number(response)+1)+" dias para renovar!", function(){});
+                }else {
+                  alertify.alert("SAM","Su plazo de reinversi贸n a caducado. Contactese con la empresa!", function(){});
+                }
+              }
+            }
+          });
         }
       }
     });
+    vuejs.listar();
+    vuejs.faltaRenovar();
     vuejs.actualizar();
   </script>
 </html>

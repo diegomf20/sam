@@ -48,8 +48,8 @@ class sconsultas
                 'INNER JOIN tb_inversionista AS tb3 ON tb2.idinversionista=tb3.idinversionista '.
                 'WHERE `fechaasignada`=:fecha and estado=0) '.
             'UNION '.
-              'SELECT 0,0,descripcion, monto, idinversionista, null,null,"" as banco,"" as numero from tb_bono_afiliacion '.
-              'where fecha=:fecha AND estado=0) as tb '.
+              '( SELECT 0,0,descripcion, monto, idinversionista, null,null,"" as banco,"" as numero from tb_bono_afiliacion '.
+              'where fecha=:fecha AND estado=0 ) ) as tb '.
             'GROUP by tb.idinversionista';
       $sentencia=$conexion->prepare($sql);
       $sentencia->bindParam(':fecha',$fecha);
