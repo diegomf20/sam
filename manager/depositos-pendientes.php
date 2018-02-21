@@ -292,6 +292,7 @@
                 document.body.innerHTML=ficha;
                 window.print( );
                 document.body.innerHTML=backup;
+                location.reload();
             }
         </script>
 

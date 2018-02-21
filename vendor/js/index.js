@@ -43,6 +43,9 @@ $(document).on("scroll", function(){
 		$('#nav').removeClass('navbar-grey');
 	}
 });
+$('.page-scroll').click(function(){
+  $('.navbar-toggler').click();
+});
 
 //notificaciones o  alertas
 function alerta($mensaje){

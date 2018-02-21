@@ -5,7 +5,9 @@ function asignarDataTable(){
     Vue.nextTick(function () {
       $('#tabla').DataTable({
         responsive: true,
-        columnDefs: [{ responsivePriority: 0, targets: 0 },{ responsivePriority: 1, targets: 1 }]
+        "columnDefs": [
+          { "width": "30%", "targets": 5 },{ "width": "30%", "targets": 5 }
+        ]
       });
       statusDataTable=1;
     });

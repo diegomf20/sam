@@ -39,30 +39,30 @@
                       <table id="tabla" class="table table-bordered table-striped" width=100%>
                         <thead>
                           <tr>
-                            <td>NOMBRE Y APELLIDOS</td>
-                            <td>DNI</td>
-                            <td>DIRECCION</td>
-                            <td>CIUDAD</td>
+                            <td >NOMBRE Y APELLIDOS</td>
                             <td>CELULAR</td>
                             <td>EMAIL</td>
                             <td>CONTRASEÑA</td>
                             <td>BANCO</td>
                             <td>N° CUENTA</td>
                             <td>DíA PAGO</td>
+                            <td>DNI</td>
+                            <td>DIRECCION</td>
+                            <td>CIUDAD</td>
                           </tr>
                         </thead>
 
                         <tr v-for="item in items">
-                          <td>{{item.nombres}} {{item.apellidos}}</td>
-                          <td>{{item.dni}}</td>
-                          <td>{{item.direccion}}</td>
-                          <td>{{item.ciudad}}</td>
+                          <td style="width: 300px;">{{item.nombres}} {{item.apellidos}}</td>
                           <td>{{item.celular}}</td>
                           <td>{{item.email}}</td>
                           <td>{{item.contrasenia}}</td>
                           <td>{{item.banco}}</td>
                           <td>{{item.numerocuenta}}</td>
                           <td>{{item.diapago}}</td>
+                          <td>{{item.dni}}</td>
+                          <td>{{item.direccion}}</td>
+                          <td>{{item.ciudad}}</td>
                         </tr>
                       </table>
 

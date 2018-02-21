@@ -5,9 +5,19 @@
   background-image: url('../img/rubik.jpg');
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: auto auto;
+  background-size: auto 100%;
+}
+.inicio h1{
+  text-align: center;
+  font-size: 25px
+}
+.inicio h2{
+  font-size: 15px
 }
 @media (min-width: 990px){
+  .inicio h1{
+    font-size: 35px
+  }
   .inicio{
     position: relative;
     padding-top: 150px;
@@ -69,7 +79,7 @@
   text-align: center;
 }
 .titulo img{
-  height: 250px;
+  height: 100px;
   color: #ffc20a;
   font-size: 50px
 }
@@ -78,6 +88,9 @@
   font-size:15px
 }
 @media (min-width: 880px){
+  .titulo img{
+    height: 250px;
+  }
   .titulo h1{
     font-size: 100px
   }
@@ -86,7 +99,7 @@
   }
 }
 .gris{
-  background-color: #eee;
+  background-color: #444;
 }
 section{
   padding-top: 30px;
@@ -134,18 +147,60 @@ section{
 }
 
 section{
-  padding-top: 50px;
-  padding-bottom: 50px;
-  text-align: center;
+  padding-top: 80px;
+  padding-bottom: 80px;
 }
 section h1{
-  color: #00569D;
+  margin-top: 20px;
+  text-align:left;
+  font-weight: 300;
+  font-size: 35px;
+  color: #333;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #333;
+  margin-bottom: 20px;
 }
+section h2{
+  margin-top: 20px;
+  font-weight: 300;
+  font-size: 35px;
+  color: #333;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+section h1,section h2{
+  font-size: 25px
+}
+@media (min-width: 768px){
+  section h1,section h2{
+    font-size: 35px
+  }
+}
+#como-funciona{
+  background-color: #F2F2F2;
+}
+#cuenta{
+  text-align: center;
+}
+
 #noticias img{
-  width: 80%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
+#cuenta img{
+  width: 100px
+}
+.numerocuenta{
+  margin-top: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 250px;
+  padding: 20px;
+  border:1px solid #333;
+}
+
+
 .table-bordered thead td{
   color: #fff;
 }
@@ -228,4 +283,19 @@ input.form-control{
 }
 .preguntas,.redes-inf{
   text-align: left
+}
+
+table td:not(:last-child):not(:first-child){
+  display: none;
+}
+table td:last-child{
+  display: block;
+}
+@media (min-width: 990px){
+  table td:not(:last-child):not(:first-child){
+    display: table-cell;
+  }
+  table td:last-child{
+    display: none
+  }
 }

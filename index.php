@@ -90,38 +90,50 @@
 				</div>
 		</div>
 	</div>
-		<section id="noticias" class="gris">
+		<section >
 			<div class="container">
-				<h1>Noticias</h1>
-				<h1><i class="fa fa-angle-down"></i></h1>
-				<img src="vendor/img/baner.jpg">
+				<div class="row">
+					<div id="noticias" class="col-sm-4">
+						<h1 style="">NOTICIAS</h1>
+						<img src="vendor/img/baner.jpg">
+					</div>
+					<div id="cuenta" class="col-sm-8">
+						<h2>CUENTA CORRIENTE</h2>
+						<h4>CRIPTO INKA WORLD</h4>
+						<div class="numerocuenta">
+							<img src="vendor/img/bcp.png" alt="">
+							<h6>290 2488682 0 92</h6>
+						</div>
+					</div>
+				</div>
 			</div>
 		</section>
-		<section id="como-funciona">
+		<section id="como-funciona" class="gris-claro">
 			<div class=container>
-		    <h1>¿Que es SAM?</h1>
-				<h1><i class="fa fa-angle-down"></i></h1>
-		    <p>
-		    Es una comunidad de apoyo solidario que se ayudan mutuamente de forma libre
-		    y voluntaria, sin presión ni obligación; unidas entre si para superar la desigualdad
-		    social y generar un nuevo estilo de vida diferente.
-		    </p>
-		  </div>
-		  <div class=container>
-		    <h1>Objetivo</h1>
-				<h1><i class="fa fa-angle-down"></i></h1>
-		    <p>
-		    Ayudar a todos los emprendedores del Perú a impulsar sus negocios a través
-		    de la financiación solidaria que fomenta el emprendimiento del peruano, esto
-		    genera mas progreso, con una educación financiera que le permitirá saber cuales
-		    son las nuevas tendencias de mercado en una sociedad cada vez mas competitiva.
-		    </p>
+				<div class="row">
+					<div class="col-sm-6">
+						<h1>¿Que es SAM?</h1>
+				    <p>
+				    Es una comunidad de apoyo solidario que se ayudan mutuamente de forma libre
+				    y voluntaria, sin presión ni obligación; unidas entre si para superar la desigualdad
+				    social y generar un nuevo estilo de vida diferente.
+				    </p>
+					</div>
+					<div class="col-sm-6">
+						<h1>Objetivo</h1>
+				    <p>
+				    Ayudar a todos los emprendedores del Perú a impulsar sus negocios a través
+				    de la financiación solidaria que fomenta el emprendimiento del peruano, esto
+				    genera mas progreso, con una educación financiera que le permitirá saber cuales
+				    son las nuevas tendencias de mercado en una sociedad cada vez mas competitiva.
+				    </p>
+					</div>
+				</div>
 		  </div>
 		</section>
 		<section id=paquetes>
 		  <div class=container>
 		    <h1>PAQUETES DE INVERSIÓN</h1>
-				<h1><i class="fa fa-angle-down"></i></h1>
 				<table class="table table-bordered">
 					<thead>
 						<tr>
@@ -132,6 +144,7 @@
 							<td>4° Mes</td>
 							<td>5° Mes</td>
 							<td>6° Mes</td>
+							<td>1° - 6° Mes</td>
 						</tr>
 					</thead>
 					<tr>
@@ -142,6 +155,7 @@
 						<td>$ 40</td>
 						<td>$ 40</td>
 						<td>$ 40</td>
+						<td>$ 40 x Mes</td>
 					</tr>
 					<tr>
 						<td>$ 300</td>
@@ -151,6 +165,7 @@
 						<td>$ 60</td>
 						<td>$ 60</td>
 						<td>$ 60</td>
+						<td>$ 60 x Mes</td>
 					</tr>
 					<tr>
 						<td>$ 500</td>
@@ -160,6 +175,7 @@
 						<td>$ 100</td>
 						<td>$ 100</td>
 						<td>$ 100</td>
+						<td>$ 100 x Mes</td>
 					</tr>
 					<tr>
 						<td>$ 1000</td>
@@ -169,6 +185,7 @@
 						<td>$ 200</td>
 						<td>$ 200</td>
 						<td>$ 200</td>
+						<td>$ 200 x Mes</td>
 					</tr>
 				</table>
 		  </div>
@@ -185,7 +202,7 @@
 					</div>
 					<!--inicio de seccion de redes-->
 					<div class="redes-inf">
-						<div class="row">
+						<!--div class="row">
 							<div class="col-sm-4 col-4">
 								<span>escríbenos:</span>
 							</div>
@@ -197,7 +214,7 @@
 								</a>
 							</div>
 						</div>
-						<div class="row">
+						<!--div class="row">
 							<div class="col-sm-4 col-4">
 								<span>síguenos:</span>
 							</div>
@@ -215,7 +232,7 @@
 									<i class="fa fa-behance"></i>
 								</a>
 							</div>
-						</div>
+						</div-->
 					</div>
 					<!--fin de seccion de redes-->
 				</div>
@@ -251,9 +268,9 @@
 						<div id="mostrar"></div>
 					</div>
 				</div>
-				<div class="col-12">
+				<div style="text-align:center" class="col-12">
 					<br>
-					<i class="fa fa-copyright"></i> 2018 ciwsam & Desarrollo 21
+					<i class="fa fa-copyright"></i> 2018 ciwsam & Desarrollo 21 - <a href="terminos-condiciones.php">Términinos y condiciones</a>
 				</div>
 			</div>
 		</div>
