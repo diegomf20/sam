@@ -165,7 +165,8 @@ section h2{
   font-weight: 300;
   font-size: 35px;
   color: #333;
-  padding-bottom: 20px;
+}
+section h6{
   margin-bottom: 20px;
 }
 section h1,section h2{
@@ -180,6 +181,7 @@ section h1,section h2{
   background-color: #F2F2F2;
 }
 #cuenta{
+  margin-top: 70px;
   text-align: center;
 }
 

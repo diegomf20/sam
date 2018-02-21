@@ -99,6 +99,7 @@
 					</div>
 					<div id="cuenta" class="col-sm-8">
 						<h2>CUENTA CORRIENTE</h2>
+						<h6>En Dolares</h6>
 						<h4>CRIPTO INKA WORLD</h4>
 						<div class="numerocuenta">
 							<img src="vendor/img/bcp.png" alt="">

@@ -4,8 +4,8 @@ class baseDatos
   function conectar()
   {
     try {
-      //$pdo=new PDO('mysql:host=localhost;dbname=tiposam_db_sam;','tiposam_root','@rootsam');
-      $pdo=new PDO('mysql:host=localhost;dbname=db_sam;charset=utf8','root','root');
+      $pdo=new PDO('mysql:host=localhost;dbname=tiposam_db_sam;','tiposam_root','@rootsam');
+      //$pdo=new PDO('mysql:host=localhost;dbname=db_sam;charset=utf8','root','root');
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       return $pdo;
     } catch (PDOException $e) {
