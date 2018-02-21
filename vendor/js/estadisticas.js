@@ -94,7 +94,7 @@ function graficar(){
       dataType: "json",
       data:{operacion:'grafica'},
       success: function(response){
-        morrisAnio.setData(response);
+      morrisAnio.setData(response);
         console.log(response);
       }
     });

@@ -268,7 +268,7 @@
                   <div class="header">
                     <div class="row">
                       <div class="col-sm-8">
-                        Lista de afiliados que proximaos se  renuevan
+                        Lista de afiliados que próximos se  renuevan
                       </div>
                     </div>
                   </div>
