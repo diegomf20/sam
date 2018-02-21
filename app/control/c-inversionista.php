@@ -53,9 +53,20 @@
             $sinversion=new sinversion();
             $_SESSION['renovacion']=(int)$sinversion->obtenerEstadoRenovacion($inversionista['idinversionista']);
             $_SESSION['inversionista']=$inversionista;
-            $html="<h1>Sr(a) $nombres  $apellidos</h1>".
+            /*$html="<h1>Sr(a) $nombres  $apellidos</h1>".
                   "su nombre de usuario y contrase&ntildea son:<br>".
-                  "<br>"." Usuario: ".$inversionista['email']."<br>"."  Contrase&ntildea: ".$inversionista['contrasenia']."<br>";
+                  "<br>"." Usuario: ".$inversionista['email']."<br>"."  Contrase&ntildea: ".$inversionista['contrasenia']."<br>"; */
+            $html="";
+            $html=$html."<html>";
+            $html=$html."<head>";
+            $html=$html."<meta charset='UTF-8'>";
+            $html=$html."</head>";
+            $html=$html."<body>";
+            $html=$html."<h1>Sr(a) $nombres  $apellidos</h1>";
+            $html=$html."su nombre de usuario y contraseña son:<br>";
+            $html=$html."<br>"." Usuario: ".$inversionista['email']."<br>"."  Contraseña: ".$inversionista['contrasenia']."<br>";
+            $html=$html."</body> ";
+            $html=$html."</html>";
             $respuesta=$enviar->gmail($html,$email,$nombres);
             if ($respuesta=="true") {
               echo "correcto";
@@ -89,9 +100,17 @@
           if ($enviar->comprobar($email)) {
             $id=$sinversionista->registrarAfiliado($idinversionista,$nombres,$apellidos,$dni,$celular,$email,$imagen,$contrasenia);
             $inversionista=$sinversionista->buscarClienteId($id);
-            $html="<h1>Sr(a) $nombres  $apellidos</h1>".
-                  "su nombre de usuario y contrase&ntildea son:<br>".
-                  "<br>"." Usuario: ".$inversionista['email']."<br>"."  Contrase&ntildea: ".$inversionista['contrasenia']."<br>";
+            $html="";
+            $html=$html."<html>";
+            $html=$html."<head>";
+            $html=$html."<meta charset='UTF-8'>";
+            $html=$html."</head>";
+            $html=$html."<body>";
+            $html=$html."<h1>Sr(a) $nombres  $apellidos</h1>";
+            $html=$html."su nombre de usuario y contraseña son:<br>";
+            $html=$html."<br>"." Usuario: ".$inversionista['email']."<br>"."  Contraseña: ".$inversionista['contrasenia']."<br>";
+            $html=$html."</body> ";
+            $html=$html."</html>";
             $respuesta=$enviar->gmail($html,$email,$nombres);
             if ($respuesta=="true") {
               echo "correcto";

@@ -114,45 +114,7 @@ if (isset($_REQUEST['operacion'])) {
         $pagocuota = $sestadisticas->pagadocuotaAnio();
         $pagobono= $sestadisticas->pagadobonosAnio();
 
-/*
-        $invertido= $sestadisticas->inversionAnio();
-        $reinvertido = $sestadisticas->reinversionAnio();
-        $inicial = $sestadisticas->inicialAnio();
-
-        $invertidoanual=[];
-
-        for ($i=0; $i <COUNT($inicial) ; $i++) {
-          $fila= $inicial[$i];
-          $dato=['anio'=>(string)$fila['anio'], 'invertido'=>(int)$fila['total']];
-          for ($j=0; $j <COUNT($invertido) ; $j++) {
-            $monto=$inversion[$j];
-            if ($dato['anio']==$monto['anio']) {
-              $a=$fila['total'];
-              $b=$monto['total'];
-              $c=$a+$b;
-              $dato['invertido']=$c;
-            //  $invertidoanual[$i]=$dato;
-            }
-            $invertidoanual[$i]=$dato;
-          }
-        }
-
-        for ($i=0; $i <COUNT($invertidoanual) ; $i++) {
-          $fila= $invertidoanual[$i];
-          $dato=['anio'=>(string)$fila['anio'], 'invertido'=>(int)$fila['invertido']];
-          for ($j=0; $j <COUNT($reinvertido) ; $j++) {
-            $monto=$reinvertido[$j];
-            if ($dato['anio']==$monto['anio']) {
-              $a=$fila['invertido'];
-              $b=$monto['total'];
-              $c=$a+$b;
-              $dato['invertido']=$c;
-            //  $invertidoanual[$i]=$dato;
-            }
-            $invertidoanual[$i]=$dato;
-          }
-        }
-*/
+      //  var_dump($invertidoanual);
 
         $pagadoanual=[];
         for ($i=0; $i <count($pagocuota) ; $i++) {
@@ -170,6 +132,8 @@ if (isset($_REQUEST['operacion'])) {
               $pagadoanual[$i]=$total;
           }
         }
+
+
         $anioinicio=$invertidoanual[0]['anio']-1;
         $dato=['anio'=>(string)$anioinicio, 'inversion'=>0, 'pagado'=>0];
         array_push($datos2, $dato);
@@ -177,19 +141,27 @@ if (isset($_REQUEST['operacion'])) {
         for ($i=0; $i <count($invertidoanual) ; $i++) {
           $fila =$invertidoanual[$i];
           $dato=['anio'=>(string)$fila['anio'], 'inversion'=>(int)$fila['total'], 'pagado'=> 0 ];
-          for ($j=0; $j <count($pagadoanual) ; $j++) {
-            $pago=$pagadoanual[$j];
-            if ($fila['anio']==$pago['anio']) {
-              $dato['pagado']=(int)$pago['pagado'];
-              $datos2[$i+1]=$dato;
-              break;
-            }
+          if (count($pagadoanual)==0) {
             $datos2[$i+1]=$dato;
+          }elseif (condition) {
+            for ($j=0; $j <count($pagadoanual) ; $j++) {
+              $pago=$pagadoanual[$j];
+              if ($fila['anio']==$pago['anio']) {
+                $dato['pagado']=(int)$pago['pagado'];
+                $datos2[$i+1]=$dato;
+                break;
+              }
+              $datos2[$i+1]=$dato;
+            }
           }
+
         }
 
         $anioinvertido=$invertidoanual[count($invertidoanual)-1]['anio']+1;
-        $aniopagado=$pagadoanual[count($pagadoanual)-1]['anio']+1;
+        $dato=['anio'=>(string)$anioinvertido, 'inversion'=>0, 'pagado'=> 0 ];
+        array_push($datos2,$dato);
+
+      /*  $aniopagado=$pagadoanual[count($pagadoanual)-1]['anio']+1;
 
         if ($anioinvertido>=$aniopagado) {
           $dato=['anio'=>(string)$anioinvertido, 'inversion'=>0, 'pagado'=> 0 ];
@@ -197,8 +169,8 @@ if (isset($_REQUEST['operacion'])) {
         }else{
           $dato=['anio'=>(string)$aniopagado, 'inversion'=>0, 'pagado'=> 0 ];
           array_push($datos2,$dato);
-        }
-        var_dump($datos2);
+        }*/
+//        var_dump($datos2);
       echo json_encode($datos2);
       } catch (Exception $e) {
           echo $e->getMessage();

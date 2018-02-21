@@ -26,6 +26,7 @@ class enviar
     $mail->addAttachment('SAM.pdf');
     $mail->Subject='SAM - SOCIEDAD DE AYUDA MUTUA';
     $mail->isHTML(true);
+    $mail->CharSet='UTF-8';
     $mail->Body=$html;
     if ($mail->Send()) {
       return "true";

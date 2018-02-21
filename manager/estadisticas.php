@@ -77,7 +77,7 @@
                                        <div class="col-xs-4 col-sm-12 form-group">
                                            <select class="form-control" id="cbperiodo">
                                                <option value="0">MENSUAL</option>
-                                               <!--<option value="1">ANUAL</option>-->
+                                               <option value="1">ANUAL</option>
                                            </select>
                                        </div>
                                        <div class="col-xs-4 col-sm-12 form-group">

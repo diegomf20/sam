@@ -130,8 +130,9 @@
         try {
           $conexion= $db->conectar();
 
-          $sql = 'SELECT year(fechainscripcion) as anio, (sum(paquete)+SUM(inscripcion)) as total from tb_inversion
-                  group by year(fechainscripcion) order by year(fechainscripcion) asc';
+          $sql = 'SELECT year(fechainscripcion) as anio, (ifnull(sum(paquete),0)+ifnull(SUM(inscripcion),0)) as total from tb_inversion '.
+                  'where year(fechainscripcion) is not null  '.
+                  'group by year(fechainscripcion) order by year(fechainscripcion) ASC';
           $sentencia = $conexion->prepare($sql);
           $sentencia-> execute();
           $resultados =$sentencia -> fetchAll(PDO::FETCH_ASSOC);
