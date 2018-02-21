@@ -39,23 +39,28 @@ if (isset($_REQUEST['operacion'])) {
         $pagacuota = $sestadisticas->pagadomensualcuotas($anio); //retiros
         $pagobono = $sestadisticas->pagadomensualbonos($anio);  //bonos
 
-        //var_dump($invertidomensual);
+//        var_dump($pagacuota);
 
         $pagadomensual = [];
         for ($i=0; $i <count($pagacuota) ; $i++) {
           $cuota=$pagacuota[$i];
           $total=['mes'=>$cuota['mes'], 'pagado'=>$cuota['total']];
-          for ($j=0; $j <count($pagobono) ; $j++) {
-             $bono=$pagobono[$j];
-             if ($bono['mes']==$cuota['mes']) {
-               $a=$cuota['total'];
-               $b=$bono['total'];
-               $c=$a+$b;
-               $total['pagado']=$c;
+          if (count($pagobono)==0) {
+            $pagadomensual[$i]=$total;
+          }elseif (count($pagobono)!=0) {
+            for ($j=0; $j <count($pagobono) ; $j++) {
+               $bono=$pagobono[$j];
+               if ($bono['mes']==$cuota['mes']) {
+                 $a=$cuota['total'];
+                 $b=$bono['total'];
+                 $c=$a+$b;
+                 $total['pagado']=$c;
+                 $pagadomensual[$i]=$total;
+               }
                $pagadomensual[$i]=$total;
-             }
-             $pagadomensual[$i]=$total;
+            }
           }
+
         }
 
 
@@ -114,25 +119,28 @@ if (isset($_REQUEST['operacion'])) {
         $pagocuota = $sestadisticas->pagadocuotaAnio();
         $pagobono= $sestadisticas->pagadobonosAnio();
 
-      //  var_dump($invertidoanual);
-
         $pagadoanual=[];
         for ($i=0; $i <count($pagocuota) ; $i++) {
           $cuota=$pagocuota[$i];
           $total=['anio'=>(string)$cuota['anio'], 'pagado'=>(int)$cuota['total']];
-          for ($j=0; $j <count($pagobono) ; $j++) {
-            $bono = $pagobono[$j];
-            if ($cuota['anio']==$bono['anio']) {
-              $a=$cuota['total'];
-              $b=$bono['total'];
-              $c=$a+$b;
-              $total['pagado']=$c;
-              $pagadoanual[$i]=$total;
+          if (count($pagobono)==0) {
+            $pagadoanual[$i]=$total;
+          }elseif (count($pagobono)!=0) {
+            for ($j=0; $j <count($pagobono) ; $j++) {
+              $bono = $pagobono[$j];
+              if ($cuota['anio']==$bono['anio']) {
+                $a=$cuota['total'];
+                $b=$bono['total'];
+                $c=$a+$b;
+                $total['pagado']=$c;
+                $pagadoanual[$i]=$total;
+              }
+                $pagadoanual[$i]=$total;
             }
-              $pagadoanual[$i]=$total;
           }
         }
 
+        //var_dump($pagadoanual);
 
         $anioinicio=$invertidoanual[0]['anio']-1;
         $dato=['anio'=>(string)$anioinicio, 'inversion'=>0, 'pagado'=>0];
@@ -143,7 +151,7 @@ if (isset($_REQUEST['operacion'])) {
           $dato=['anio'=>(string)$fila['anio'], 'inversion'=>(int)$fila['total'], 'pagado'=> 0 ];
           if (count($pagadoanual)==0) {
             $datos2[$i+1]=$dato;
-          }elseif (condition) {
+          }elseif (count($pagadoanual)!=0) {
             for ($j=0; $j <count($pagadoanual) ; $j++) {
               $pago=$pagadoanual[$j];
               if ($fila['anio']==$pago['anio']) {
@@ -170,7 +178,9 @@ if (isset($_REQUEST['operacion'])) {
           $dato=['anio'=>(string)$aniopagado, 'inversion'=>0, 'pagado'=> 0 ];
           array_push($datos2,$dato);
         }*/
-//        var_dump($datos2);
+
+        //var_dump($datos2);
+
       echo json_encode($datos2);
       } catch (Exception $e) {
           echo $e->getMessage();

@@ -43,7 +43,7 @@ var morrisAnio= Morris.Area({
     ykeys: ['inversion','pagado'],
     labels: ['inversion','pagado'],
     resize:true,
-    lineColors: ['#009688','#f0ad4e'],//,'#286090'
+    lineColors: ['#009688','#f0ad4e'],
     ymax: 'auto[12000]',
     ymin:'auto[0]',
     xLabels:'year'
@@ -80,6 +80,7 @@ function graficar(){
       data:{operacion:"graficamensual", anio:$("#txtanio").val()},
       success: function(response){
         morrisMes.setData(response);
+        console.log(response);
       }
     });
   }else{
@@ -94,7 +95,7 @@ function graficar(){
       dataType: "json",
       data:{operacion:'grafica'},
       success: function(response){
-      morrisAnio.setData(response);
+        morrisAnio.setData(response);
         console.log(response);
       }
     });
